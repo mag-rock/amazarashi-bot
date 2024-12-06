@@ -1,7 +1,9 @@
 {
 	"dependencies": {
 		"@google-cloud/functions-framework": "^3.0.0",
+		"@google-cloud/local-auth": "^2.1.0",
 		"axios": "^1.7.7",
-		"axios-oauth-1.0a": "0.3.6"
+		"axios-oauth-1.0a": "0.3.6",
+		"googleapis": "^105.0.0"
 	}
 }

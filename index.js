@@ -1,9 +1,20 @@
 const functions = require('@google-cloud/functions-framework');
 const { postTweet } = require('./twitterApi');
+const { authorize, getSheats } = require('./spreadsheatApi');
 
 console.log(`Running on Node.js version: ${process.version}`);
 
 functions.http('helloHttp', (req, res) => {
+	// Spreadsheatからデータを取得
+	const params = {
+		spreadsheetId: '18sYgADWuSJKYeA7NiCvDaGaSLhovBiTd5KIrC9yLz8E',
+		targetRange: '歌詞一覧!A2:O',
+	};
+	authorize()
+		.then(auth => getSheats(auth, params))
+		.catch(console.error);
+
+	// ツイートするテキスト
 	const text = "My First Post.";
 
 	// 環境変数から認証情報を取得し、オブジェクトとしてまとめる
