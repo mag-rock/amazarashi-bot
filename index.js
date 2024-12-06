@@ -5,6 +5,7 @@ const { authorize, getSheats } = require('./spreadsheatApi');
 console.log(`Running on Node.js version: ${process.version}`);
 
 functions.http('helloHttp', (req, res) => {
+	console.log(`Request recieved.`);
 	// Spreadsheatからデータを取得
 	const params = {
 		spreadsheetId: '18sYgADWuSJKYeA7NiCvDaGaSLhovBiTd5KIrC9yLz8E',

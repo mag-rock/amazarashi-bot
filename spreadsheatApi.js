@@ -3,6 +3,8 @@ const path = require('path');
 const process = require('process');
 const { authenticate } = require('@google-cloud/local-auth');
 const { google } = require('googleapis');
+const { GoogleAuth } = require('google-auth-library');
+
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -50,7 +52,7 @@ async function saveCredentials(client) {
  * Load or request or authorization to call APIs.
  *
  */
-async function authorize() {
+async function authroizeAtLocal() {
 	let client = await loadSavedCredentialsIfExist();
 	if (client) {
 		return client;
@@ -63,6 +65,18 @@ async function authorize() {
 		await saveCredentials(client);
 	}
 	return client;
+}
+
+async function authorize() {
+	if (process.env.ENVIRONMENT === 'local') {
+		return await authroizeAtLocal();
+	} else {
+		const auth = new GoogleAuth({
+			scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+		});
+		const client = await auth.getClient();
+		return client;
+	}
 }
 
 /**

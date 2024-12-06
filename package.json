@@ -4,6 +4,7 @@
 		"@google-cloud/local-auth": "^2.1.0",
 		"axios": "^1.7.7",
 		"axios-oauth-1.0a": "0.3.6",
+		"google-auth-library": "^9.15.0",
 		"googleapis": "^105.0.0"
 	}
 }
