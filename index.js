@@ -1,11 +1,24 @@
 const functions = require('@google-cloud/functions-framework');
 const { postTweet } = require('./twitterApi');
 const { authorize, getSheats } = require('./spreadsheatApi');
+const { createDocument, readDocument, updateDocument, deleteDocument, getAllDocuments } = require('./firestoreCrud');
+const { quickstart } = require('./firestoreQuickstart.js')
+
+async function allReadTest() {
+	console.log(`Running on Node.js version: ${process.version}`);
+	// Firestoreからドキュメントを読み取り
+	const docData = await getAllDocuments('quiz');
+	console.log(`docdata : ${docData}`);
+}
 
 console.log(`Running on Node.js version: ${process.version}`);
 
 functions.http('helloHttp', (req, res) => {
 	console.log(`Request recieved.`);
+
+	// Firestoreからドキュメントを読み取り
+	allReadTest();
+
 	// Spreadsheatからデータを取得
 	const params = {
 		spreadsheetId: '18sYgADWuSJKYeA7NiCvDaGaSLhovBiTd5KIrC9yLz8E',

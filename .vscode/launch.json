@@ -7,6 +7,16 @@
 		{
 			"type": "node",
 			"request": "launch",
+			"name": "firestoreCrudTest",
+			"program": "${workspaceFolder}\\firestoreCrudTest.js",
+			"envFile": "${workspaceFolder}\\.env",
+			"outFiles": [
+				"${workspaceFolder}/**/*.js"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
 			"name": "spreadsheatApiTest",
 			"program": "${workspaceFolder}\\spreadsheatApiTest.js",
 			"envFile": "${workspaceFolder}\\.env",

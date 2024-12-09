@@ -131,4 +131,5 @@ dist
 
 # Credentials
 credentials.json
+amazarashi-bot-credentials.json
 token.json
