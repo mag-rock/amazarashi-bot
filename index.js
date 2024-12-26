@@ -10,10 +10,12 @@ async function allReadTest() {
 	console.log(`docdata : ${docData}`);
 }
 
+console.log(`Deploy Success Code: abcd`);
 console.log(`Running on Node.js version: ${process.version}`);
 
 functions.http('helloHttp', (req, res) => {
 	console.log(`Request recieved.`);
+	console.log(`Request recieved Code: abcd`);
 
 	// Firestoreからドキュメントを読み取り
 	allReadTest();
