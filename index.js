@@ -2,7 +2,6 @@ const functions = require('@google-cloud/functions-framework');
 const { postTweet } = require('./twitterApi');
 const { authorize, getSheats } = require('./spreadsheatApi');
 const { createDocument, readDocument, updateDocument, deleteDocument, getAllDocuments } = require('./firestoreCrud');
-const { quickstart } = require('./firestoreQuickstart.js')
 
 async function allReadTest() {
 	console.log(`Running on Node.js version: ${process.version}`);
