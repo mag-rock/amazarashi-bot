@@ -34,7 +34,7 @@ functions.http('helloHttp', async (req, res) => {
 	const nextLevel = nextLevelOf(docData.data);
 
 	// Postする内容を作成
-	const randomText = crypto.randomUUID;
+	const randomText = crypto.randomUUID();
 	const postText = `${todayStr} レベル${nextLevel} ${randomText}`;
 	console.info(`Post text: ${postText}`);
 
