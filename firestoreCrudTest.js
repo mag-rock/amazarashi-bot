@@ -13,11 +13,20 @@ async function testScenario() {
 	console.log('All documents:', documents);
 
 	// createDocument
-	await createDocument('your_collection', 'testDoc', { field1: 'value1', date: '2023-10-15' });
+	await createDocument('your_collection', 'testDoc',
+		{
+			origin_post_id: 'value1',
+			date: '2023-10-15',
+			quiz_posts: [{ level: 0, post_id: 'value1' }]
+		});
 	console.log('Document created.');
 
 	// updateDocument
-	await updateDocument('your_collection', 'testDoc', { field1: 'updatedValue' });
+	await updateDocument('your_collection', 'testDoc',
+		{
+			quiz_posts: [{ level: 0, post_id: 'value1' }, { level: 1, post_id: 'value2' }]
+		}
+	);
 	console.log('Document updated.');
 
 	// getDocumentsCreatedBy

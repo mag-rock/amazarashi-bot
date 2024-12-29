@@ -1,7 +1,11 @@
 const functions = require('@google-cloud/functions-framework');
 const { postTweet } = require('./twitterApi');
 const { authorize, getSheats } = require('./spreadsheatApi');
-const { createDocument, readDocument, updateDocument, deleteDocument, getAllDocuments } = require('./firestoreCrud');
+const { createDocument, readDocument, updateDocument, deleteDocument, getAllDocuments, getDocumentsCreatedBy } = require('./firestoreCrud');
+const { nextLevelOf } = require('./quizLogic');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+const timezone = require('dayjs/plugin/timezone');
 
 async function allReadTest() {
 	console.log(`Running on Node.js version: ${process.version}`);
@@ -12,8 +16,17 @@ async function allReadTest() {
 
 console.log(`Running on Node.js version: ${process.version}`);
 
-functions.http('helloHttp', (req, res) => {
+functions.http('helloHttp', async (req, res) => {
 	console.log(`Request recieved.`);
+
+
+	dayjs.extend(utc);
+	dayjs.extend(timezone);
+
+	const todayStr = dayjs().tz('Asia/Tokyo').format('YYYY-MM-DD');
+	console.log(`Today: `, todayStr);
+	const docData = await getDocumentsCreatedBy('quiz', todayStr);
+	const nextLevel = nextLevelOf(docData.data);
 
 	// Firestoreからドキュメントを読み取り
 	allReadTest();
