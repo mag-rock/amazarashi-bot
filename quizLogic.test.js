@@ -1,6 +1,12 @@
 const { nextLevelOf } = require('./quizLogic');
 
 describe('nextLevelOf', () => {
+	test('should return 0 if quizPosts is null', () => {
+		const quizPosts = null;
+		const result = nextLevelOf(quizPosts);
+		expect(result).toBe(0);
+	});
+
 	test('should return 0 if quizPosts is empty', () => {
 		const quizPosts = [];
 		const result = nextLevelOf(quizPosts);
