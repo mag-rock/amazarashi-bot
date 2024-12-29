@@ -7,19 +7,19 @@ const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
 const timezone = require('dayjs/plugin/timezone');
 const crypto = require("crypto");
-console.log(crypto.randomUUID());
+console.info(crypto.randomUUID());
 
 async function allReadTest() {
-	console.log(`Running on Node.js version: ${process.version}`);
+	console.info(`Running on Node.js version: ${process.version}`);
 	// Firestoreからドキュメントを読み取り
 	const docData = await getAllDocuments('quiz');
-	console.log(`docdata : ${docData}`);
+	console.info(`docdata : ${docData}`);
 }
 
-console.log(`Running on Node.js version: ${process.version}`);
+console.info(`Running on Node.js version: ${process.version}`);
 
 functions.http('helloHttp', async (req, res) => {
-	console.log(`Request recieved.`);
+	console.info(`Request recieved.`);
 
 	// Firestoreからドキュメントを読み取り
 	allReadTest();
@@ -28,24 +28,24 @@ functions.http('helloHttp', async (req, res) => {
 	dayjs.extend(utc);
 	dayjs.extend(timezone);
 	const todayStr = dayjs().tz('Asia/Tokyo').format('YYYY-MM-DD');
-	console.log(`Today: `, todayStr);
+	console.info(`Today: `, todayStr);
 
 	const docData = await getDocumentsCreatedBy('quiz', todayStr);
 	const nextLevel = nextLevelOf(docData.data);
 
 	// Postする内容を作成
 	const randomText = crypto.randomUUID;
-	const postText = `${todayStr}\nレベル${nextLevel}\n${randomText}`;
-	console.log(`Post text: ${postText}`);
+	const postText = `${todayStr} レベル${nextLevel} ${randomText}`;
+	console.info(`Post text: ${postText}`);
 
 	// Firestoreにドキュメントを作成
-	if (docData.data === null | docData.data.length === 0) {
+	if (nextLevel === 0) {
 		await createDocument('quiz', todayStr, {
 			origin_post_id: 'value1',
 			date: '2023-10-15',
 			quiz_posts: [{ level: 0, post_id: 'value1' }]
 		});
-		console.log(`Document created.`);
+		console.info(`Document created.`);
 	}
 
 
@@ -73,9 +73,9 @@ functions.http('helloHttp', async (req, res) => {
 	// postTweet関数にテキストと認証情報を渡す
 	postTweet(postText, credentials)
 		.then(async (response) => {
-			console.log('ステータスコード:', response.status);
-			console.log('レスポンスヘッダー:', response.headers);
-			console.log('レスポンスボディ:', response.data);
+			console.info('ステータスコード:', response.status);
+			console.info('レスポンスヘッダー:', response.headers);
+			console.info('レスポンスボディ:', response.data);
 			// 投稿結果を永続化
 			if (nextLevel === 0) {
 				const docId = randomText;
