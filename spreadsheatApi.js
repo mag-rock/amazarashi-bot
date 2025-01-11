@@ -85,6 +85,9 @@ async function authorize() {
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
 async function getSheats(auth, params) {
+	console.log("auth:");
+	console.log(auth);
+
 	const sheets = google.sheets({ version: 'v4', auth });
 	const res = await sheets.spreadsheets.values.get({
 		spreadsheetId: params.spreadsheetId,

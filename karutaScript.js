@@ -3,8 +3,6 @@ const { authorize, getSheats } = require('./spreadsheatApi');
 const { createDocument, readDocument, updateDocument, deleteDocument, getAllDocuments, getDocumentsCreatedBy } = require('./firestoreCrud');
 const { nextLevelOf } = require('./quizLogic');
 const dayjs = require('dayjs');
-dayjs.extend(utc);
-dayjs.extend(timezone);
 const utc = require('dayjs/plugin/utc');
 const timezone = require('dayjs/plugin/timezone');
 const crypto = require("crypto");
@@ -12,6 +10,9 @@ console.info(crypto.randomUUID());
 
 
 async function execute() {
+	dayjs.extend(utc);
+	dayjs.extend(timezone);
+
 	// 現在日付を取得
 	const todayStr = dayjs().tz('Asia/Tokyo').format('YYYY-MM-DD');
 	console.info(`Today: `, todayStr);
@@ -40,9 +41,22 @@ async function execute() {
 		spreadsheetId: '18sYgADWuSJKYeA7NiCvDaGaSLhovBiTd5KIrC9yLz8E',
 		targetRange: '歌詞一覧!A2:O',
 	};
-	authorize()
-		.then(auth => getSheats(auth, params))
-		.catch(console.error);
+	// authorize()
+	// 	.then(auth => getSheats(auth, params))
+	// 	.catch(console.error);
+
+	const auth = await authorize();
+	const sheat = await getSheats(auth, params);
+
+
+	// const rows = sheat;
+	// rows.forEach((row) => {
+	// 	rowlogText = "";
+	// 	row.forEach((cell) => rowlogText += cell + ", ")
+	// 	// Print columns A and E, which correspond to indices 0 and 4.
+	// 	console.log(rowlogText);
+	// });
+
 
 	// 環境変数から認証情報を取得し、オブジェクトとしてまとめる
 	const consumerKey = process.env.API_KEY;
