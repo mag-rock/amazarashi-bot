@@ -85,9 +85,6 @@ async function authorize() {
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
 async function getSheats(auth, params) {
-	console.log("auth:");
-	console.log(auth);
-
 	const sheets = google.sheets({ version: 'v4', auth });
 	const res = await sheets.spreadsheets.values.get({
 		spreadsheetId: params.spreadsheetId,
@@ -96,14 +93,9 @@ async function getSheats(auth, params) {
 	const rows = res.data.values;
 	if (!rows || rows.length === 0) {
 		console.log('No data found.');
-		return;
+		return [];
 	}
-	rows.forEach((row) => {
-		rowlogText = "";
-		row.forEach((cell) => rowlogText += cell + ", ")
-		// Print columns A and E, which correspond to indices 0 and 4.
-		console.log(rowlogText);
-	});
+	return rows;
 }
 
 module.exports = { authorize, getSheats };

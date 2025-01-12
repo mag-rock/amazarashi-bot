@@ -1,4 +1,4 @@
-const { nextLevelOf } = require('./quizLogic');
+const { nextLevelOf, quizTemplateOf } = require('./quizLogic');
 
 describe('nextLevelOf', () => {
 	test('should return 0 if quizPosts is null', () => {
@@ -36,5 +36,94 @@ describe('nextLevelOf', () => {
 		];
 		const result = nextLevelOf(quizPosts);
 		expect(result).toBe(3);
+	});
+});
+
+describe('quizTemplateOf', () => {
+	const testSetSheat = [
+		[
+			"295471",
+			"東京 acoustic version",
+			"https://www.uta-net.com/song/295471/",
+			"ああ",
+			"ああすべ",
+			"ああすべてみ",
+			"ああすべてみない",
+			"ああすべてみないよ",
+			"ああ 全て見ないよ",
+			"ああ 全て見ないように",
+		],
+		[
+			"282743",
+			"抒情死",
+			"https://www.uta-net.com/song/282743/",
+			"あいで",
+			"あいでん",
+			"あいでんてぃ",
+			"あいでんてぃてぃ",
+			"あいでんてぃてぃが",
+			"アイデンティティが",
+			"アイデンティティが東京湾に",
+		],
+		[
+			"108117",
+			"アノミー",
+			"https://www.uta-net.com/song/108117/",
+			"あいな",
+			"あいなど",
+			"あいなどない",
+			"あいなどないしら",
+			"あいなどないしらな",
+			"愛など無い知らな",
+			"愛など無い知らない",
+		],
+		[
+			"262707",
+			"アイザック",
+			"https://www.uta-net.com/song/262707/",
+			"あいざ",
+			"あいざっ",
+			"あいざっくわ",
+			"あいざっくわんか",
+			"あいざっくわんかー",
+			"アイザック 1カー",
+			"アイザック 1カートンのナーバス",
+		],
+	];
+	it('無作為に選ばれたクイズテンプレートを生成する', () => {
+		const result = quizTemplateOf(testSetSheat, null);
+
+		expect(result).toBeDefined();
+		expect(typeof result).toBe('object');
+
+		['songId', 'title', 'url', 'kimariji', 'count4', 'count6', 'count8', 'count10', 'count10_kanji', 'last_quiz']
+			.forEach(prop => {
+				expect(typeof result[prop]).toBe('string');
+				expect(result[prop].length).toBeGreaterThan(0);
+			});
+	});
+	it('十分に試行するとすべてのクイズテンプレートが1回以上作成される', () => {
+		const results = Array.from({ length: 1000 }).map((_) => { return quizTemplateOf(testSetSheat, undefined) })
+		const songIds = results.map(result => result.songId);
+		const uniqueSongIds = new Set(songIds);
+
+		testSetSheat.forEach(template => {
+			expect(uniqueSongIds.has(template[0])).toBe(true);
+		});
+	});
+	it('指定された曲IDのクイズテンプレートを生成する', () => {
+		const songId = "108117";
+		const result = quizTemplateOf(testSetSheat, songId);
+
+		expect(result).toBeDefined();
+		expect(typeof result).toBe('object');
+
+		['songId', 'title', 'url', 'kimariji', 'count4', 'count6', 'count8', 'count10', 'count10_kanji', 'last_quiz']
+			.forEach(prop => {
+				expect(typeof result[prop]).toBe('string');
+				expect(result[prop].length).toBeGreaterThan(0);
+			});
+
+		expect(result.songId).toBe(songId);
 	});
 });
