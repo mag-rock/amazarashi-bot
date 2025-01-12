@@ -1,4 +1,4 @@
-const { postTweet } = require('./twitterApi');
+const { postTweet } = require('./twitterApiMock.js');
 const { authorize, getSheats } = require('./spreadsheatApi');
 const { createDocument, readDocument, updateDocument, deleteDocument, getAllDocuments, getDocumentsCreatedBy } = require('./firestoreCrud');
 const { nextLevelOf } = require('./quizLogic');
