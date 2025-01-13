@@ -42,8 +42,12 @@ axiosInstance.interceptors.response.use(
 	}
 );
 
-function postTweet(text, credentials) {
-	// Oauthの認証処理を追加
+/**
+ * @param {string} text - ツイートのテキスト
+ * @param {string} [replyToTweetId] - リプライ対象のツイートID（オプショナル）
+ * @param {Object} credentials - 認証情報
+ */
+function postTweet(text, replyToTweetId, credentials) {
 	const oauthOptions = {
 		algorithm: 'HMAC-SHA1',
 		key: credentials.consumerKey,
@@ -53,22 +57,20 @@ function postTweet(text, credentials) {
 	};
 	addOAuthInterceptor(axiosInstance, oauthOptions);
 
-	// リクエストデータを設定
 	const requestData = {
 		url: 'https://api.twitter.com/2/tweets',
 		method: 'POST',
 		data: {
-			text: text,
+			text,
+			...(replyToTweetId ? { reply: { in_reply_to_tweet_id: replyToTweetId } } : {})
 		},
 	};
-	// リクエストを送信
+
 	return axiosInstance({
 		url: requestData.url,
 		method: requestData.method,
 		data: requestData.data,
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: { 'Content-Type': 'application/json' },
 	});
 }
 

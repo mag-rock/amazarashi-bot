@@ -35,7 +35,7 @@ function quizTemplateOf(sheat, songId) {
 	}
 }
 
-function makePostText(quizTemplate, todayStr, nextLevel) {
+function formatQuizPostText(quizTemplate, todayStr, nextLevel) {
 	if (nextLevel === 0) {
 		return `${todayStr}のamazarashiカルタ レベル${nextLevel} 「${quizTemplate.kimariji}」`;
 	} else if (nextLevel === 1) {
@@ -60,5 +60,5 @@ module.exports = {
 	nextLevelOf,
 	isFinishedTodaysQuiz,
 	quizTemplateOf,
-	makePostText,
+	formatQuizPostText,
 };

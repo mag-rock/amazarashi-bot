@@ -1,12 +1,13 @@
 const crypto = require("crypto");
 
-function postTweet(text, credentials) {
+function postTweet(text, replyToTweetId, credentials) {
 	// リクエストデータを設定
 	const requestData = {
 		url: 'https://api.twitter.com/2/tweets',
 		method: 'POST',
 		data: {
-			text: text,
+			text,
+			...(replyToTweetId ? { reply: { in_reply_to_tweet_id: replyToTweetId } } : {})
 		},
 	};
 	console.log('=== Mockリクエスト ===');

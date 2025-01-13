@@ -67,7 +67,7 @@ async function authroizeAtLocal() {
 	return client;
 }
 
-async function authorize() {
+async function authorizeGoogleApis() {
 	if (process.env.ENVIRONMENT === 'local') {
 		return await authroizeAtLocal();
 	} else {
@@ -98,4 +98,4 @@ async function getSheats(auth, params) {
 	return rows;
 }
 
-module.exports = { authorize, getSheats };
+module.exports = { authorizeGoogleApis, getSheats };
