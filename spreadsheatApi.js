@@ -85,6 +85,7 @@ async function authorizeGoogleApis() {
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
 async function getSheats(auth, params) {
+	console.log('=== getSheats ===');
 	const sheets = google.sheets({ version: 'v4', auth });
 	const res = await sheets.spreadsheets.values.get({
 		spreadsheetId: params.spreadsheetId,
@@ -94,8 +95,10 @@ async function getSheats(auth, params) {
 	if (!rows || rows.length === 0) {
 		console.log('No data found.');
 		return [];
+	} else {
+		console.log(`Row num: ${rows.length}`);
+		return rows;
 	}
-	return rows;
 }
 
 module.exports = { authorizeGoogleApis, getSheats };
