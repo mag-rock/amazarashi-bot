@@ -19,8 +19,10 @@ function postTweet(text, replyToTweetId, _credentials) {
 			'content-type': 'application/json',
 		},
 		data: {
-			id: `mock-${crypto.randomUUID()}`,
-			text: text,
+			data: {
+				id: `mock-${crypto.randomUUID()}`,
+				text: text,
+			},
 		},
 	});
 }
