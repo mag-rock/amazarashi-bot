@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 
-function postTweet(text, replyToTweetId, credentials) {
+function postTweet(text, replyToTweetId, _credentials) {
 	// リクエストデータを設定
 	const requestData = {
 		url: 'https://api.twitter.com/2/tweets',

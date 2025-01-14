@@ -1,6 +1,5 @@
 const {
 	createDocument,
-	readDocument,
 	updateDocument,
 	deleteDocument,
 	getAllDocuments,

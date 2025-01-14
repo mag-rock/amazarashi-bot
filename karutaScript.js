@@ -1,8 +1,8 @@
 const { authorizeGoogleApis, getSheats } = require('./spreadsheatApi');
-const { createDocument, readDocument, updateDocument, deleteDocument, getAllDocuments, getDocumentsCreatedBy } = require('./firestoreCrud');
-const { nextLevelOf, isFinishedTodaysQuiz, quizTemplateOf, formatQuizPostText } = require('./quizLogic');
+const { createDocument, updateDocument, getDocumentsCreatedBy } = require('./firestoreCrud');
+const { nextLevelOf, isFinishedTodaysQuiz, quizTemplateOf } = require('./quizLogic');
 const crypto = require("crypto");
-const { getDayJsWithTimeZone, getTwitterCredentials } = require('./configLoader');
+const { getDayJsWithTimeZone } = require('./configLoader');
 const { executeTweet } = require('./tweetExecutor.js');
 
 async function execute() {
