@@ -37,19 +37,19 @@ function quizTemplateOf(sheat, songId) {
 
 function formatQuizPostText(quizTemplate, todayStr, nextLevel) {
 	if (nextLevel === 0) {
-		return `${todayStr}のamazarashiカルタ レベル${nextLevel} 「${quizTemplate.kimariji}」`;
+		return `${todayStr}のamazarashiカルタ レベル${nextLevel} 『${quizTemplate.kimariji}』`;
 	} else if (nextLevel === 1) {
-		return `レベル${nextLevel} 「${quizTemplate.count4}」`;
+		return `レベル${nextLevel} 『${quizTemplate.count4}』`;
 	} else if (nextLevel === 2) {
-		return `レベル${nextLevel} 「${quizTemplate.count6}」`;
+		return `レベル${nextLevel} 『${quizTemplate.count6}』`;
 	} else if (nextLevel === 3) {
-		return `レベル${nextLevel} 「${quizTemplate.count8}」`;
+		return `レベル${nextLevel} 『${quizTemplate.count8}』`;
 	} else if (nextLevel === 4) {
-		return `レベル${nextLevel} 「${quizTemplate.count10}」`;
+		return `レベル${nextLevel} 『${quizTemplate.count10}』`;
 	} else if (nextLevel === 5) {
-		return `レベル${nextLevel} 「${quizTemplate.count10_kanji}」`;
+		return `レベル${nextLevel} 『${quizTemplate.count10_kanji}』`;
 	} else if (nextLevel === 6) {
-		return `レベル${nextLevel} 「${quizTemplate.last_quiz}」`;
+		return `レベル${nextLevel} 『${quizTemplate.last_quiz}』`;
 	} else {
 		return ` ${quizTemplate.title} 歌詞全文：${quizTemplate.url}`;
 	}
