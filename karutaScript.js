@@ -31,7 +31,7 @@ async function execute() {
 	const quizTemplate = quizTemplateOf(sheat, docData[0]?.song_id);
 
 	// postTweet関数にテキストと認証情報を渡す
-	executeTweet(quizTemplate, nextLevel, docData[0]?.origin_post_id, todayStr)
+	return executeTweet(quizTemplate, nextLevel, docData[0]?.origin_post_id, todayStr)
 		.then(async (response) => {
 			console.dir(response.data);
 			if (nextLevel === 0) {
