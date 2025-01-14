@@ -10,7 +10,7 @@ axiosInstance.interceptors.request.use(
 		console.log('=== リクエスト情報 ===');
 		console.log('URL:', request.url);
 		console.log('メソッド:', request.method);
-		console.log('ヘッダー:', request.headers);
+		// console.log('ヘッダー:', request.headers); // ヘッダーには認証情報が含まれるため、ログに出力しない
 		console.log('データ:', request.data);
 		return request;
 	},
@@ -25,7 +25,7 @@ axiosInstance.interceptors.response.use(
 	(response) => {
 		console.log('=== レスポンス情報 ===');
 		console.log('ステータスコード:', response.status);
-		console.log('ヘッダー:', response.headers); // ヘッダーには認証情報が含まれるため、ログに出力しない
+		// console.log('ヘッダー:', response.headers); // ヘッダーには認証情報が含まれるため、ログに出力しない
 		console.log('データ:', response.data);
 		return response;
 	},
@@ -33,7 +33,7 @@ axiosInstance.interceptors.response.use(
 		if (error.response) {
 			console.error('=== レスポンスエラー ===');
 			console.error('ステータスコード:', error.response.status);
-			console.error('ヘッダー:', error.response.headers);
+			// console.error('ヘッダー:', error.response.headers); // ヘッダーには認証情報が含まれるため、ログに出力しない
 			console.error('データ:', error.response.data);
 		} else {
 			console.error('レスポンスエラー:', error.message);
