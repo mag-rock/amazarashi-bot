@@ -1,10 +1,10 @@
 const { postTweet } = require('./twitterApi');
 
 // 環境変数から認証情報を取得し、オブジェクトとしてまとめる
-const consumerKey = process.env.API_KEY;
-const consumerSecret = process.env.API_KEY_SECRET;
-const accessToken = process.env.ACCESS_TOKEN;
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
+const consumerKey = process.env.TWITTER_API_KEY;
+const consumerSecret = process.env.TWITTER_API_KEY_SECRET;
+const accessToken = process.env.TWITTER_ACCESS_TOKEN;
+const accessTokenSecret = process.env.TWITTER_ACCESS_TOKEN_SECRET;
 const credentials = {
 	consumerKey,
 	consumerSecret,
