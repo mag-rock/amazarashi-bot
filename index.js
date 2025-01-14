@@ -7,7 +7,6 @@ functions.http('helloHttp', async (req, res) => {
 	execute().then(() => {
 		res.status(200).send('Success to post tweet.');
 	}).catch((error) => {
-		console.error(error);
 		res.status(500).send('Error: ' + error.message);
 	});
 });
