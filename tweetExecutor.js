@@ -1,7 +1,7 @@
 const { getTwitterCredentials } = require("./configLoader");
 let postTweet;
-if (process.env.ENVIRONMENT === 'local') {
-	({ postTweet } = require('./twitterApi.js'));
+if (process.env.USE_TWITTER_MOCK === 'true') {
+	({ postTweet } = require('./twitterApiMock.js'));
 } else {
 	({ postTweet } = require('./twitterApi.js'));
 }
