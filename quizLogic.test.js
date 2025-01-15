@@ -50,7 +50,6 @@ describe('quizTemplateOf', () => {
 			"ああすべてみ",
 			"ああすべてみない",
 			"ああすべてみないよ",
-			"ああ 全て見ないよ",
 			"ああ 全て見ないように",
 		],
 		[
@@ -62,7 +61,6 @@ describe('quizTemplateOf', () => {
 			"あいでんてぃ",
 			"あいでんてぃてぃ",
 			"あいでんてぃてぃが",
-			"アイデンティティが",
 			"アイデンティティが東京湾に",
 		],
 		[
@@ -74,7 +72,6 @@ describe('quizTemplateOf', () => {
 			"あいなどない",
 			"あいなどないしら",
 			"あいなどないしらな",
-			"愛など無い知らな",
 			"愛など無い知らない",
 		],
 		[
@@ -86,7 +83,6 @@ describe('quizTemplateOf', () => {
 			"あいざっくわ",
 			"あいざっくわんか",
 			"あいざっくわんかー",
-			"アイザック 1カー",
 			"アイザック 1カートンのナーバス",
 		],
 	];
@@ -96,7 +92,7 @@ describe('quizTemplateOf', () => {
 		expect(result).toBeDefined();
 		expect(typeof result).toBe('object');
 
-		['songId', 'title', 'url', 'kimariji', 'count4', 'count6', 'count8', 'count10', 'count10_kanji', 'last_quiz']
+		['songId', 'title', 'url', 'kimariji', 'count4', 'count6', 'count8', 'count10', 'last_quiz']
 			.forEach(prop => {
 				expect(typeof result[prop]).toBe('string');
 				expect(result[prop].length).toBeGreaterThan(0);
@@ -118,7 +114,7 @@ describe('quizTemplateOf', () => {
 		expect(result).toBeDefined();
 		expect(typeof result).toBe('object');
 
-		['songId', 'title', 'url', 'kimariji', 'count4', 'count6', 'count8', 'count10', 'count10_kanji', 'last_quiz']
+		['songId', 'title', 'url', 'kimariji', 'count4', 'count6', 'count8', 'count10', 'last_quiz']
 			.forEach(prop => {
 				expect(typeof result[prop]).toBe('string');
 				expect(result[prop].length).toBeGreaterThan(0);

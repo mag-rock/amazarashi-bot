@@ -8,7 +8,7 @@ function nextLevelOf(quizPosts) {
 }
 
 function isFinishedTodaysQuiz(nextLevel) {
-	return nextLevel > 7;
+	return nextLevel > 6;
 }
 
 function makeQuizTemplate(row) {
@@ -21,8 +21,7 @@ function makeQuizTemplate(row) {
 		count6: row[5],
 		count8: row[6],
 		count10: row[7],
-		count10_kanji: row[8],
-		last_quiz: row[9],
+		last_quiz: row[8],
 	}
 }
 
@@ -34,6 +33,11 @@ function quizTemplateOf(sheat, songId) {
 		return makeQuizTemplate(sheat.filter((row) => row[0] === songId)[0])
 	}
 }
+
+function skipNextLevel(quizTemplate, nextLevel) {
+	// TODO: Implement this function
+}
+
 
 function formatQuizPostText(quizTemplate, todayStr, nextLevel) {
 	if (nextLevel === 0) {
@@ -47,8 +51,6 @@ function formatQuizPostText(quizTemplate, todayStr, nextLevel) {
 	} else if (nextLevel === 4) {
 		return `レベル${nextLevel} 『${quizTemplate.count10}』`;
 	} else if (nextLevel === 5) {
-		return `レベル${nextLevel} 『${quizTemplate.count10_kanji}』`;
-	} else if (nextLevel === 6) {
 		return `レベル${nextLevel} 『${quizTemplate.last_quiz}』`;
 	} else {
 		return ` ${quizTemplate.title} 歌詞全文：${quizTemplate.url}`;
