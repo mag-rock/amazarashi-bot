@@ -43,6 +43,16 @@
 			"outFiles": [
 				"${workspaceFolder}/**/*.js"
 			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "karutaScriptRepeatTest",
+			"program": "${workspaceFolder}\\karutaScriptRepeatTest.js",
+			"envFile": "${workspaceFolder}\\.env",
+			"outFiles": [
+				"${workspaceFolder}/**/*.js"
+			]
 		}
 	]
 }

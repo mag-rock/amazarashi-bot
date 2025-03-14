@@ -29,6 +29,7 @@ async function deleteDocument(collection, docId) {
 	console.log(`Document ${docId} deleted from collection ${collection}`);
 }
 
+
 async function getAllDocuments(collection) {
 	const collectionRef = firestore.collection(collection);
 	const snapshot = await collectionRef.get();
@@ -64,6 +65,20 @@ async function getDocumentsCreatedBy(collection, day) {
 	console.log(`コレクション ${collection} の指定された日付のドキュメントを取得しました。`);
 	return documents;
 }
+
+async function deleteDocumentsCreatedBy(collection, day) {
+	const collectionRef = firestore.collection(collection);
+	const snapshot = await collectionRef.where('date', '==', day).get();
+	const batch = firestore.batch();
+
+	snapshot.forEach(async (doc) => {
+		batch.delete(doc.ref);
+	});
+
+	batch.commit();
+	console.log(`コレクション ${collection} の指定された日付のドキュメントを削除しました。`);
+}
+
 module.exports = {
 	createDocument,
 	readDocument,
@@ -71,4 +86,5 @@ module.exports = {
 	deleteDocument,
 	getAllDocuments,
 	getDocumentsCreatedBy,
+	deleteDocumentsCreatedBy,
 };

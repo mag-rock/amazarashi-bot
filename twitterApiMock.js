@@ -12,6 +12,8 @@ function postTweet(text, replyToTweetId, _credentials) {
 	};
 	console.log('=== Mockリクエスト ===');
 	console.dir(requestData, { depth: null });
+	console.log('=== 投稿内容 ===');
+	console.log(text);
 	// リクエストを送信
 	return Promise.resolve({
 		status: 201,

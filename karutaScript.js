@@ -16,7 +16,7 @@ async function execute() {
 	const nextLevel = nextLevelOf(docData[0]?.quiz_posts);
 	if (isFinishedTodaysQuiz(nextLevel)) {
 		console.info('本日のクイズは終了しています。');
-		return;
+		return 'FINISHED';
 	}
 
 	// SpreadSheatからシートを取得
