@@ -1,4 +1,4 @@
-const { authorizeGoogleApis, getSheats } = require('./spreadsheatApi');
+const { authorizeGoogleApis, getSheets } = require('./spreadsheetApi');
 
 console.log(`Running on Node.js version: ${process.version}`);
 
@@ -7,12 +7,12 @@ const params = {
 	targetRange: '歌詞一覧!A2:J',
 };
 
-async function doGetSheats() {
+async function doGetSheets() {
 	const auth = await authorizeGoogleApis();
-	const sheat = await getSheats(auth, params);
+	const sheet = await getSheets(auth, params);
 
-	if (sheat) {
-		const rows = sheat;
+	if (sheet) {
+		const rows = sheet;
 		rows.forEach((row) => {
 			let rowlogText = "";
 			row.forEach((cell) => rowlogText += cell + ", ");
@@ -22,4 +22,4 @@ async function doGetSheats() {
 	}
 }
 
-doGetSheats();
+doGetSheets();

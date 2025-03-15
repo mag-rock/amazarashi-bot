@@ -1,27 +1,26 @@
-const { nextLevelOf, quizTemplateOf } = require('./quizLogic');
+import { nextLevelOf, quizTemplateOf, QuizPost, SheetRow } from './quizLogic';
 
 describe('nextLevelOf', () => {
 	test('should return 0 if quizPosts is null', () => {
-		const quizPosts = null;
+		const quizPosts: null = null;
 		const result = nextLevelOf(quizPosts);
 		expect(result).toBe(0);
 	});
 
 	test('should return 0 if quizPosts is empty', () => {
-		const quizPosts = [];
+		const quizPosts: QuizPost[] = [];
 		const result = nextLevelOf(quizPosts);
 		expect(result).toBe(0);
 	});
 
 	test('should return the next level if quizPosts is not empty', () => {
-
-		const quizPosts = [{ level: 0, post_id: 'value1' }, { level: 1, post_id: 'value2' }];
+		const quizPosts: QuizPost[] = [{ level: 0, post_id: 'value1' }, { level: 1, post_id: 'value2' }];
 		const result = nextLevelOf(quizPosts);
 		expect(result).toBe(2);
 	});
 
 	test('should return the next level if quizPosts has one element', () => {
-		const quizPosts = [
+		const quizPosts: QuizPost[] = [
 			{ level: 5 }
 		];
 		const result = nextLevelOf(quizPosts);
@@ -29,7 +28,7 @@ describe('nextLevelOf', () => {
 	});
 
 	test('should return the next level if quizPosts has multiple elements with the same level', () => {
-		const quizPosts = [
+		const quizPosts: QuizPost[] = [
 			{ level: 2 },
 			{ level: 2 },
 			{ level: 2 }
@@ -40,7 +39,7 @@ describe('nextLevelOf', () => {
 });
 
 describe('quizTemplateOf', () => {
-	const testSetSheet = [
+	const testSetSheet: SheetRow[] = [
 		[
 			"295471",
 			"東京 acoustic version",
@@ -86,6 +85,7 @@ describe('quizTemplateOf', () => {
 			"アイザック 1カートンのナーバス",
 		],
 	];
+
 	it('無作為に選ばれたクイズテンプレートを生成する', () => {
 		const result = quizTemplateOf(testSetSheet, null);
 
@@ -94,12 +94,13 @@ describe('quizTemplateOf', () => {
 
 		['songId', 'title', 'url', 'kimariji', 'count4', 'count6', 'count8', 'count10', 'last_quiz']
 			.forEach(prop => {
-				expect(typeof result[prop]).toBe('string');
-				expect(result[prop].length).toBeGreaterThan(0);
+				expect(typeof result[prop as keyof typeof result]).toBe('string');
+				expect(result[prop as keyof typeof result].length).toBeGreaterThan(0);
 			});
 	});
+
 	it('十分に試行するとすべてのクイズテンプレートが1回以上作成される', () => {
-		const results = Array.from({ length: 1000 }).map((_) => { return quizTemplateOf(testSetSheet, undefined) })
+		const results = Array.from({ length: 1000 }).map(() => quizTemplateOf(testSetSheet, null));
 		const songIds = results.map(result => result.songId);
 		const uniqueSongIds = new Set(songIds);
 
@@ -107,6 +108,7 @@ describe('quizTemplateOf', () => {
 			expect(uniqueSongIds.has(template[0])).toBe(true);
 		});
 	});
+
 	it('指定された曲IDのクイズテンプレートを生成する', () => {
 		const songId = "108117";
 		const result = quizTemplateOf(testSetSheet, songId);
@@ -116,10 +118,10 @@ describe('quizTemplateOf', () => {
 
 		['songId', 'title', 'url', 'kimariji', 'count4', 'count6', 'count8', 'count10', 'last_quiz']
 			.forEach(prop => {
-				expect(typeof result[prop]).toBe('string');
-				expect(result[prop].length).toBeGreaterThan(0);
+				expect(typeof result[prop as keyof typeof result]).toBe('string');
+				expect(result[prop as keyof typeof result].length).toBeGreaterThan(0);
 			});
 
 		expect(result.songId).toBe(songId);
 	});
-});
+}); 

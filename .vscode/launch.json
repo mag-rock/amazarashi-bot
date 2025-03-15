@@ -17,8 +17,8 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "spreadsheatApiTest",
-			"program": "${workspaceFolder}\\spreadsheatApiTest.js",
+			"name": "spreadsheetApiTest",
+			"program": "${workspaceFolder}\\spreadsheetApiTest.js",
 			"envFile": "${workspaceFolder}\\.env",
 			"outFiles": [
 				"${workspaceFolder}/**/*.js"
