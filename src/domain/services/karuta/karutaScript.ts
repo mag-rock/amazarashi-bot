@@ -1,9 +1,9 @@
-import { authorizeGoogleApis, getSheets, SpreadsheetsParams } from './spreadsheetApi';
-import { createDocument, updateDocument, getDocumentsCreatedBy } from './firestoreCrud';
-import { nextLevelOf, isFinishedTodaysQuiz, quizTemplateOf, QuizPost, QuizTemplate } from './quizLogic';
+import { authorizeGoogleApis, getSheets, SpreadsheetsParams } from '../../../infrastructure/spreadsheet/spreadsheetApi';
+import { createDocument, updateDocument, getDocumentsCreatedBy } from '../../../infrastructure/database/firestoreCrud';
+import { nextLevelOf, isFinishedTodaysQuiz, quizTemplateOf, QuizPost, QuizTemplate } from '../quiz/quizLogic';
 import crypto from 'crypto';
-import { getDayJsWithTimeZone } from './configLoader';
-import { executeTweet } from './tweetExecutor';
+import { getDayJsWithTimeZone } from '../../../infrastructure/config/configLoader';
+import { executeTweet } from '../../../application/executors/tweetExecutor';
 
 interface QuizDocument {
 	id: string;

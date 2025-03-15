@@ -1,5 +1,5 @@
 import * as functions from '@google-cloud/functions-framework';
-import { execute } from './karutaScript';
+import { execute } from './domain/services/karuta/karutaScript';
 import { Request, Response } from 'express';
 
 console.info(`Running on Node.js version: ${process.version}`);

@@ -15,7 +15,7 @@
 		"build": "tsc",
 		"dev": "tsc --watch",
 		"clean": "rimraf dist",
-		"lint": "eslint . --ext .ts"
+		"lint": "eslint ./src --ext .ts"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.11",

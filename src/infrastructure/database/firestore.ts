@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as process from 'process';
 
 let firestore: Firestore;
-const CREDENTIALS_PATH = path.join(process.cwd(), 'amazarashi-bot-credentials.json');
+const CREDENTIALS_PATH = path.join(process.cwd(), 'config/amazarashi-bot-credentials.json');
 
 if (process.env.ENVIRONMENT === 'local') {
 	firestore = new Firestore({

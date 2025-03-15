@@ -1,5 +1,5 @@
-import { getTwitterCredentials } from "./configLoader";
-import { formatQuizPostText, QuizTemplate } from "./quizLogic";
+import { getTwitterCredentials } from "../../infrastructure/config/configLoader";
+import { formatQuizPostText, QuizTemplate } from "../../domain/services/quiz/quizLogic";
 import type { AxiosResponse } from 'axios';
 
 // 型定義
@@ -20,11 +20,11 @@ interface TwitterAPI {
  */
 async function loadTwitterModule(): Promise<TwitterAPI['postTweet']> {
 	if (process.env.USE_TWITTER_MOCK === 'true') {
-		const module = await import('./twitterApiMock');
+		const module = await import('../../infrastructure/twitter/twitterApiMock');
 		// Double-casting through unknown to force the type conversion
 		return module.postTweet as unknown as TwitterAPI['postTweet'];
 	} else {
-		const module = await import('./twitterApi');
+		const module = await import('../../infrastructure/twitter/twitterApi');
 		return module.postTweet;
 	}
 }
