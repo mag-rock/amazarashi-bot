@@ -7,17 +7,6 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Launch App",
-			"program": "${workspaceFolder}\\src\\index.ts",
-			"envFile": "${workspaceFolder}\\.env",
-			"preLaunchTask": "tsc: build - tsconfig.json",
-			"outFiles": [
-				"${workspaceFolder}/dist/**/*.js"
-			]
-		},
-		{
-			"type": "node",
-			"request": "launch",
 			"name": "firestoreCrudTest",
 			"program": "${workspaceFolder}\\tests\\unit\\infrastructure\\database\\firestoreCrud.test.ts",
 			"runtimeArgs": [
