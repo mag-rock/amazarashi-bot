@@ -7,52 +7,112 @@
 		{
 			"type": "node",
 			"request": "launch",
+			"name": "Launch App",
+			"program": "${workspaceFolder}\\src\\index.ts",
+			"envFile": "${workspaceFolder}\\.env",
+			"preLaunchTask": "tsc: build - tsconfig.json",
+			"outFiles": [
+				"${workspaceFolder}/dist/**/*.js"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
 			"name": "firestoreCrudTest",
-			"program": "${workspaceFolder}\\firestoreCrudTest.js",
+			"program": "${workspaceFolder}\\tests\\unit\\infrastructure\\database\\firestoreCrud.test.ts",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register"
+			],
 			"envFile": "${workspaceFolder}\\.env",
 			"outFiles": [
-				"${workspaceFolder}/**/*.js"
+				"${workspaceFolder}/dist/**/*.js"
 			]
 		},
 		{
 			"type": "node",
 			"request": "launch",
 			"name": "spreadsheetApiTest",
-			"program": "${workspaceFolder}\\spreadsheetApiTest.js",
+			"program": "${workspaceFolder}\\tests\\unit\\infrastructure\\spreadsheet\\spreadsheetApi.test.ts",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register"
+			],
 			"envFile": "${workspaceFolder}\\.env",
 			"outFiles": [
-				"${workspaceFolder}/**/*.js"
+				"${workspaceFolder}/dist/**/*.js"
 			]
 		},
 		{
 			"type": "node",
 			"request": "launch",
 			"name": "twitterApiTest",
-			"program": "${workspaceFolder}\\twitterApiTest.js",
+			"program": "${workspaceFolder}\\tests\\unit\\infrastructure\\twitter\\twitterApi.test.ts",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register"
+			],
 			"envFile": "${workspaceFolder}\\.env",
 			"outFiles": [
-				"${workspaceFolder}/**/*.js"
+				"${workspaceFolder}/dist/**/*.js"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "quizLogicTest",
+			"program": "${workspaceFolder}\\tests\\unit\\domain\\services\\quiz\\quizLogic.test.ts",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register"
+			],
+			"envFile": "${workspaceFolder}\\.env",
+			"outFiles": [
+				"${workspaceFolder}/dist/**/*.js"
 			]
 		},
 		{
 			"type": "node",
 			"request": "launch",
 			"name": "karutaScriptTest",
-			"program": "${workspaceFolder}\\karutaScriptTest.js",
+			"program": "${workspaceFolder}\\tests\\unit\\domain\\services\\karuta\\karutaScriptTest.ts",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register"
+			],
 			"envFile": "${workspaceFolder}\\.env",
 			"outFiles": [
-				"${workspaceFolder}/**/*.js"
+				"${workspaceFolder}/dist/**/*.js"
 			]
 		},
 		{
 			"type": "node",
 			"request": "launch",
 			"name": "karutaScriptRepeatTest",
-			"program": "${workspaceFolder}\\karutaScriptRepeatTest.js",
+			"program": "${workspaceFolder}\\tests\\unit\\domain\\services\\karuta\\karutaScriptRepeatTest.ts",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register"
+			],
 			"envFile": "${workspaceFolder}\\.env",
 			"outFiles": [
-				"${workspaceFolder}/**/*.js"
+				"${workspaceFolder}/dist/**/*.js"
 			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Jest Current File",
+			"program": "${workspaceFolder}/node_modules/jest/bin/jest",
+			"args": [
+				"${fileBasename}",
+				"--config",
+				"jest.config.js"
+			],
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"disableOptimisticBPs": true,
+			"envFile": "${workspaceFolder}\\.env"
 		}
 	]
 }
