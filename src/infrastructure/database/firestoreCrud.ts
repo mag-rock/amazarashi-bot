@@ -1,12 +1,13 @@
-const firestore = require('./firestore');
+import firestore from './firestore';
+import { DocumentData, DocumentReference, QuerySnapshot } from '@google-cloud/firestore';
 
-async function createDocument(collection, docId, data) {
+export async function createDocument(collection: string, docId: string, data: Record<string, any>): Promise<void> {
 	const docRef = firestore.collection(collection).doc(docId);
 	await docRef.set(data);
 	console.log(`Document ${docId} created in collection ${collection}`);
 }
 
-async function readDocument(collection, docId) {
+export async function readDocument(collection: string, docId: string): Promise<DocumentData | null> {
 	const docRef = firestore.collection(collection).doc(docId);
 	const doc = await docRef.get();
 	if (!doc.exists) {
@@ -14,23 +15,22 @@ async function readDocument(collection, docId) {
 		return null;
 	}
 	console.log(`Document data:`, doc.data());
-	return doc.data();
+	return doc.data() || null;
 }
 
-async function updateDocument(collection, docId, data) {
+export async function updateDocument(collection: string, docId: string, data: Record<string, any>): Promise<void> {
 	const docRef = firestore.collection(collection).doc(docId);
 	await docRef.update(data);
 	console.log(`Document ${docId} updated in collection ${collection}`);
 }
 
-async function deleteDocument(collection, docId) {
+export async function deleteDocument(collection: string, docId: string): Promise<void> {
 	const docRef = firestore.collection(collection).doc(docId);
 	await docRef.delete();
 	console.log(`Document ${docId} deleted from collection ${collection}`);
 }
 
-
-async function getAllDocuments(collection) {
+export async function getAllDocuments(collection: string): Promise<Array<DocumentData & { id: string }>> {
 	const collectionRef = firestore.collection(collection);
 	const snapshot = await collectionRef.get();
 
@@ -39,7 +39,7 @@ async function getAllDocuments(collection) {
 		return [];
 	}
 
-	const documents = [];
+	const documents: Array<DocumentData & { id: string }> = [];
 	snapshot.forEach(doc => {
 		documents.push({ id: doc.id, ...doc.data() });
 	});
@@ -48,7 +48,7 @@ async function getAllDocuments(collection) {
 	return documents;
 }
 
-async function getDocumentsCreatedBy(collection, day) {
+export async function getDocumentsCreatedBy(collection: string, day: string): Promise<Array<DocumentData & { id: string }>> {
 	const collectionRef = firestore.collection(collection);
 	const snapshot = await collectionRef.where('date', '==', day).get();
 
@@ -57,7 +57,7 @@ async function getDocumentsCreatedBy(collection, day) {
 		return [];
 	}
 
-	const documents = [];
+	const documents: Array<DocumentData & { id: string }> = [];
 	snapshot.forEach(doc => {
 		documents.push({ id: doc.id, ...doc.data() });
 	});
@@ -66,25 +66,15 @@ async function getDocumentsCreatedBy(collection, day) {
 	return documents;
 }
 
-async function deleteDocumentsCreatedBy(collection, day) {
+export async function deleteDocumentsCreatedBy(collection: string, day: string): Promise<void> {
 	const collectionRef = firestore.collection(collection);
 	const snapshot = await collectionRef.where('date', '==', day).get();
 	const batch = firestore.batch();
 
-	snapshot.forEach(async (doc) => {
+	snapshot.forEach((doc) => {
 		batch.delete(doc.ref);
 	});
 
-	batch.commit();
+	await batch.commit();
 	console.log(`コレクション ${collection} の指定された日付のドキュメントを削除しました。`);
-}
-
-module.exports = {
-	createDocument,
-	readDocument,
-	updateDocument,
-	deleteDocument,
-	getAllDocuments,
-	getDocumentsCreatedBy,
-	deleteDocumentsCreatedBy,
-};
+} 

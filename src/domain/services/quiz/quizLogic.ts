@@ -1,4 +1,23 @@
-function nextLevelOf(quizPosts) {
+interface QuizPost {
+	level: number;
+	[key: string]: any;
+}
+
+interface QuizTemplate {
+	songId: string;
+	title: string;
+	url: string;
+	kimariji: string;
+	count4: string;
+	count6: string;
+	count8: string;
+	count10: string;
+	last_quiz: string;
+}
+
+type SheetRow = [string, string, string, string, string, string, string, string, string, ...string[]];
+
+function nextLevelOf(quizPosts: QuizPost[] | null): number {
 	if (quizPosts == null || quizPosts.length === 0) {
 		return 0;
 	} else {
@@ -7,11 +26,11 @@ function nextLevelOf(quizPosts) {
 	}
 }
 
-function isFinishedTodaysQuiz(nextLevel) {
+function isFinishedTodaysQuiz(nextLevel: number): boolean {
 	return nextLevel > 6;
 }
 
-function makeQuizTemplate(row) {
+function makeQuizTemplate(row: SheetRow): QuizTemplate {
 	return {
 		songId: row[0],
 		title: row[1],
@@ -25,21 +44,24 @@ function makeQuizTemplate(row) {
 	}
 }
 
-function quizTemplateOf(sheat, songId) {
+function quizTemplateOf(sheet: any[][] | SheetRow[], songId: string | null): QuizTemplate {
 	if (songId == null) {
-		const randomIndex = Math.floor(Math.random() * sheat.length);
-		return makeQuizTemplate(sheat[randomIndex])
+		const randomIndex = Math.floor(Math.random() * sheet.length);
+		return makeQuizTemplate(sheet[randomIndex] as SheetRow);
 	} else {
-		return makeQuizTemplate(sheat.filter((row) => row[0] === songId)[0])
+		const filteredSheet = sheet.filter((row) => row[0] === songId);
+		if (filteredSheet.length === 0) {
+			throw new Error(`Song with ID ${songId} not found`);
+		}
+		return makeQuizTemplate(filteredSheet[0] as SheetRow);
 	}
 }
 
-function skipNextLevel(quizTemplate, nextLevel) {
+function skipNextLevel(quizTemplate: QuizTemplate, nextLevel: number): void {
 	// TODO: Implement this function
 }
 
-
-function formatQuizPostText(quizTemplate, todayStr, nextLevel) {
+function formatQuizPostText(quizTemplate: QuizTemplate, todayStr: string, nextLevel: number): string {
 	if (nextLevel === 0) {
 		return `${todayStr}のamazarashiカルタ レベル${nextLevel} 『${quizTemplate.kimariji}』`;
 	} else if (nextLevel === 1) {
@@ -55,12 +77,14 @@ function formatQuizPostText(quizTemplate, todayStr, nextLevel) {
 	} else {
 		return ` ${quizTemplate.title} 歌詞全文：${quizTemplate.url}`;
 	}
-
 }
 
-module.exports = {
+export {
 	nextLevelOf,
 	isFinishedTodaysQuiz,
 	quizTemplateOf,
 	formatQuizPostText,
-};
+	QuizPost,
+	QuizTemplate,
+	SheetRow
+}; 

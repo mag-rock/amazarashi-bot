@@ -1,18 +1,17 @@
-const fs = require('fs').promises;
-const path = require('path');
-const process = require('process');
-const { authenticate } = require('@google-cloud/local-auth');
-const { google } = require('googleapis');
-const { GoogleAuth } = require('google-auth-library');
-
+import * as fs from 'fs/promises';
+import * as path from 'path';
+import * as process from 'process';
+import { authenticate } from '@google-cloud/local-auth';
+import { google } from 'googleapis';
+import { GoogleAuth } from 'google-auth-library';
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
-const TOKEN_PATH = path.join(process.cwd(), 'token.json');
-const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
+const TOKEN_PATH = path.join(process.cwd(), 'config/token.json');
+const CREDENTIALS_PATH = path.join(process.cwd(), 'config/credentials.json');
 
 /**
  * Reads previously authorized credentials from the save file.
@@ -21,7 +20,7 @@ const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
  */
 async function loadSavedCredentialsIfExist() {
 	try {
-		const content = await fs.readFile(TOKEN_PATH);
+		const content = await fs.readFile(TOKEN_PATH, 'utf-8');
 		const credentials = JSON.parse(content);
 		return google.auth.fromJSON(credentials);
 	} catch (err) {
@@ -36,8 +35,8 @@ async function loadSavedCredentialsIfExist() {
  * @param {OAuth2Client} client
  * @return {Promise<void>}
  */
-async function saveCredentials(client) {
-	const content = await fs.readFile(CREDENTIALS_PATH);
+async function saveCredentials(client: any) {
+	const content = await fs.readFile(CREDENTIALS_PATH, 'utf-8');
 	const keys = JSON.parse(content);
 	const key = keys.installed || keys.web;
 	const payload = JSON.stringify({
@@ -51,9 +50,8 @@ async function saveCredentials(client) {
 
 /**
  * Load or request or authorization to call APIs.
- *
  */
-async function authroizeAtLocal() {
+async function authorizeAtLocal() {
 	let client = await loadSavedCredentialsIfExist();
 	if (client) {
 		return client;
@@ -61,16 +59,17 @@ async function authroizeAtLocal() {
 	client = await authenticate({
 		scopes: SCOPES,
 		keyfilePath: CREDENTIALS_PATH,
-	});
-	if (client.credentials) {
+	}) as any;
+
+	if (client && client.credentials) {
 		await saveCredentials(client);
 	}
 	return client;
 }
 
-async function authorizeGoogleApis() {
+export async function authorizeGoogleApis() {
 	if (process.env.ENVIRONMENT === 'local') {
-		return await authroizeAtLocal();
+		return await authorizeAtLocal();
 	} else {
 		const auth = new GoogleAuth({
 			scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
@@ -80,13 +79,18 @@ async function authorizeGoogleApis() {
 	}
 }
 
+export interface SpreadsheetsParams {
+	spreadsheetId: string;
+	targetRange: string;
+}
+
 /**
- * Prints the names and majors of students in a sample spreadsheet:
- * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
- * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
+ * Gets data from a spreadsheet
+ * @param auth The authenticated Google OAuth client.
+ * @param params Parameters for the spreadsheet request
  */
-async function getSheats(auth, params) {
-	console.log('=== getSheats ===');
+export async function getSheets(auth: any, params: SpreadsheetsParams) {
+	console.log('=== getSheets ===');
 	const sheets = google.sheets({ version: 'v4', auth });
 	const res = await sheets.spreadsheets.values.get({
 		spreadsheetId: params.spreadsheetId,
@@ -100,6 +104,4 @@ async function getSheats(auth, params) {
 		console.log(`Row num: ${rows.length}`);
 		return rows;
 	}
-}
-
-module.exports = { authorizeGoogleApis, getSheats };
+} 

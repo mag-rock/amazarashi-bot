@@ -1,11 +1,11 @@
-const { execute } = require('./karutaScript');
-const { deleteDocumentsCreatedBy } = require('./firestoreCrud');
-const { getDayJsWithTimeZone } = require('./configLoader');
+import { execute } from '../../../../../src/domain/services/karuta/karutaScript';
+import { deleteDocumentsCreatedBy } from '../../../../../src/infrastructure/database/firestoreCrud';
+import { getDayJsWithTimeZone } from '../../../../../src/infrastructure/config/configLoader';
 
 console.log(`Running on Node.js version: ${process.version}`);
 
-async function doTest() {
-	if (process.env.USE_TWITTER_MOCK != 'true') {
+async function doTest(): Promise<void> {
+	if (process.env.USE_TWITTER_MOCK !== 'true') {
 		console.log('USE_TWITTER_MOCK is not true.');
 		return;
 	} else {
@@ -18,10 +18,10 @@ async function doTest() {
 				}
 				console.log('Success to post tweet.');
 			} catch (error) {
-				console.error('Error: ' + error.message);
+				console.error('Error: ' + (error as Error).message);
 			}
 		}
 	}
 }
 
-doTest();
+doTest(); 

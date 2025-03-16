@@ -1,8 +1,8 @@
-const axios = require('axios');
-const addOAuthInterceptor = require('axios-oauth-1.0a').default;
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import addOAuthInterceptor from 'axios-oauth-1.0a';
 
 // axiosインスタンスを作成
-const axiosInstance = axios.create();
+const axiosInstance: AxiosInstance = axios.create();
 
 // リクエストのインターセプターを設定
 axiosInstance.interceptors.request.use(
@@ -42,14 +42,32 @@ axiosInstance.interceptors.response.use(
 	}
 );
 
+interface TwitterCredentials {
+	consumerKey: string;
+	consumerSecret: string;
+	accessToken: string;
+	accessTokenSecret: string;
+}
+
+interface TweetRequestData {
+	text: string;
+	reply?: {
+		in_reply_to_tweet_id: string;
+	};
+}
+
 /**
- * @param {string} text - ツイートのテキスト
- * @param {string} [replyToTweetId] - リプライ対象のツイートID（オプショナル）
- * @param {Object} credentials - 認証情報
+ * @param text - ツイートのテキスト
+ * @param replyToTweetId - リプライ対象のツイートID（オプショナル）
+ * @param credentials - 認証情報
  */
-function postTweet(text, replyToTweetId, credentials) {
+export function postTweet(
+	text: string,
+	replyToTweetId: string | null,
+	credentials: TwitterCredentials
+): Promise<AxiosResponse> {
 	const oauthOptions = {
-		algorithm: 'HMAC-SHA1',
+		algorithm: 'HMAC-SHA1' as 'HMAC-SHA1',
 		key: credentials.consumerKey,
 		secret: credentials.consumerSecret,
 		token: credentials.accessToken,
@@ -57,21 +75,15 @@ function postTweet(text, replyToTweetId, credentials) {
 	};
 	addOAuthInterceptor(axiosInstance, oauthOptions);
 
-	const requestData = {
-		url: 'https://api.twitter.com/2/tweets',
-		method: 'POST',
-		data: {
-			text,
-			...(replyToTweetId ? { reply: { in_reply_to_tweet_id: replyToTweetId } } : {})
-		},
+	const requestData: TweetRequestData = {
+		text,
+		...(replyToTweetId ? { reply: { in_reply_to_tweet_id: replyToTweetId } } : {})
 	};
 
 	return axiosInstance({
-		url: requestData.url,
-		method: requestData.method,
-		data: requestData.data,
+		url: 'https://api.twitter.com/2/tweets',
+		method: 'POST',
+		data: requestData,
 		headers: { 'Content-Type': 'application/json' },
 	});
-}
-
-module.exports = { postTweet };
+} 
