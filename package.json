@@ -10,7 +10,7 @@
 		"googleapis": "^144.0.0"
 	},
 	"scripts": {
-		"start": "functions-framework --target=helloHttp",
+		"start": "functions-framework --target=helloHttp --source=dist",
 		"test": "jest",
 		"build": "tsc",
 		"dev": "tsc --watch",
