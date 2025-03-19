@@ -1,14 +1,35 @@
 import * as functions from '@google-cloud/functions-framework';
 import { execute } from './domain/services/karuta/karutaScript';
 import { Request, Response } from 'express';
+import { info, error } from './utils/logger';
 
-console.info(`Running on Node.js version: ${process.version}`);
+// アプリケーション起動時の情報をログ出力
+info(`アプリケーションを起動しました`, {
+    nodeVersion: process.version,
+    environment: process.env.ENVIRONMENT || 'production'
+});
 
+/**
+ * HTTP関数のエントリーポイント
+ * Cloud Functionsから呼び出されるメイン関数
+ */
 functions.http('helloHttp', async (req: Request, res: Response) => {
-	console.info(`Request received.`);
-	execute().then(() => {
-		res.status(200).send('Success to post tweet.');
-	}).catch((error: Error) => {
-		res.status(500).send('Error: ' + error.message);
-	});
-}); 
+    try {
+        info(`リクエストを受信しました`, {
+            method: req.method,
+            path: req.path,
+            query: req.query
+        });
+        
+        const result = await execute();
+        
+        info(`処理が完了しました`, { result });
+        res.status(200).send('Success to post tweet.');
+    } catch (err) {
+        error(`エラーが発生しました`, { 
+            error: err instanceof Error ? err.message : String(err)
+        });
+        
+        res.status(500).send(`Error: ${err instanceof Error ? err.message : String(err)}`);
+    }
+});
