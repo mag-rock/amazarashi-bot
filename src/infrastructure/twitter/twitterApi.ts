@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import addOAuthInterceptor from 'axios-oauth-1.0a';
-import { TwitterCredentials, TweetRequestData } from '../../types';
+import { TwitterCredentials, TweetRequestData, TweetResponse } from '../../types';
 import { info, debug, error } from '../../utils/logger';
 
 // axiosインスタンスを作成
@@ -55,7 +55,7 @@ export function postTweet(
     text: string,
     replyToTweetId: string | null,
     credentials: TwitterCredentials
-): Promise<AxiosResponse> {
+): Promise<TweetResponse> {
     const oauthOptions = {
         algorithm: 'HMAC-SHA1' as 'HMAC-SHA1',
         key: credentials.consumerKey,
@@ -70,7 +70,7 @@ export function postTweet(
         ...(replyToTweetId ? { reply: { in_reply_to_tweet_id: replyToTweetId } } : {})
     };
 
-    info('Twitter APIリクエストを送信します', { 
+    info('Twitter APIリクエストを送信します', {
         isReply: !!replyToTweetId,
         textLength: text.length
     });
@@ -80,5 +80,10 @@ export function postTweet(
         method: 'POST',
         data: requestData,
         headers: { 'Content-Type': 'application/json' },
+    }).then((response: AxiosResponse) => {
+        // AxiosResponseからTweetResponseに変換
+        return {
+            data: response.data
+        };
     });
 }

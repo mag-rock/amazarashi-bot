@@ -1,6 +1,5 @@
 import crypto from "crypto";
-import type { AxiosResponse } from 'axios';
-import { TwitterCredentials } from "../../types";
+import { TwitterCredentials, TweetResponse } from "../../types";
 import { info } from "../../utils/logger";
 
 /**
@@ -15,7 +14,7 @@ export function postTweet(
     text: string,
     replyToTweetId: string | null,
     _credentials: TwitterCredentials
-): Promise<AxiosResponse> {
+): Promise<TweetResponse> {
     info('モックツイートを実行します', {
         text,
         replyTo: replyToTweetId
@@ -23,22 +22,14 @@ export function postTweet(
 
     // モックレスポンスを生成
     const mockId = `mock-${crypto.randomUUID()}`;
-    
-    // Return a properly structured AxiosResponse
+
+    // Return a properly structured TweetResponse
     return Promise.resolve({
-        status: 201,
-        statusText: 'Created',
-        headers: {
-            'content-type': 'application/json'
-        },
         data: {
             data: {
                 id: mockId,
                 text: text
             }
-        },
-        config: {
-            headers: {} // Minimum required property
         }
-    } as unknown as AxiosResponse);
+    });
 }

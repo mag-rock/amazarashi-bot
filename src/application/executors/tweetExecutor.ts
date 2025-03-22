@@ -48,20 +48,20 @@ export async function executeTweet(
     return tryCatchRethrow(async () => {
         const postTweet = await loadTwitterModule();
         const postText = formatQuizPostText(quizTemplate, todayStr, nextLevel);
-        
-        info('ツイートを実行します', { 
-            level: nextLevel, 
+
+        info('ツイートを実行します', {
+            level: nextLevel,
             isReply: nextLevel > 0,
             textLength: postText.length
         });
 
         if (nextLevel === 0) {
-            return postTweet(postText, null, getTwitterCredentials()) as Promise<TweetResponse>;
+            return postTweet(postText, null, getTwitterCredentials());
         } else {
             if (!originPostId) {
                 throw new Error('リプライ先の投稿IDが指定されていません');
             }
-            return postTweet(postText, originPostId, getTwitterCredentials()) as Promise<TweetResponse>;
+            return postTweet(postText, originPostId, getTwitterCredentials());
         }
     }, 'ツイート実行中にエラーが発生しました');
 }
