@@ -4,7 +4,6 @@ import { TwitterCredentials, QuizTemplate, TweetResponse } from "../../types";
 import { info } from "../../utils/logger";
 import { tryCatchRethrow } from "../../utils/errorHandler";
 import { useMocks } from "../../config/appConfig";
-import type { AxiosResponse } from 'axios';
 
 /**
  * Twitter APIのpostTweet関数の型定義
@@ -13,7 +12,7 @@ type PostTweetFunction = (
     text: string,
     replyTo: string | null,
     credentials: TwitterCredentials
-) => Promise<AxiosResponse>;
+) => Promise<TweetResponse>;
 
 /**
  * 環境変数に基づいて適切なTwitter APIモジュールを動的にロードする
