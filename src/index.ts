@@ -1,5 +1,5 @@
 import * as functions from '@google-cloud/functions-framework';
-import { execute } from './domain/services/karuta/karutaScript';
+import { execute } from './application/usecase/karutaScript';
 import { Request, Response } from 'express';
 import { info, error } from './utils/logger';
 
@@ -20,16 +20,16 @@ functions.http('helloHttp', async (req: Request, res: Response) => {
             path: req.path,
             query: req.query
         });
-        
+
         const result = await execute();
-        
+
         info(`処理が完了しました`, { result });
         res.status(200).send('Success to post tweet.');
     } catch (err) {
-        error(`エラーが発生しました`, { 
+        error(`エラーが発生しました`, {
             error: err instanceof Error ? err.message : String(err)
         });
-        
+
         res.status(500).send(`Error: ${err instanceof Error ? err.message : String(err)}`);
     }
 });
