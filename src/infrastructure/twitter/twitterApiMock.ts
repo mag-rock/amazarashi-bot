@@ -1,6 +1,6 @@
-import crypto from "crypto";
-import { TwitterCredentials, TweetResponse } from "../../types";
-import { info } from "../../utils/logger";
+import crypto from 'crypto';
+import { TwitterCredentials, TweetResponse } from '../../types';
+import { info } from '../../utils/logger';
 
 /**
  * モック用のツイート投稿関数
@@ -11,25 +11,25 @@ import { info } from "../../utils/logger";
  * @returns モックレスポンス
  */
 export function postTweet(
-    text: string,
-    replyToTweetId: string | null,
-    _credentials: TwitterCredentials
+  text: string,
+  replyToTweetId: string | null,
+  _credentials: TwitterCredentials
 ): Promise<TweetResponse> {
-    info('モックツイートを実行します', {
-        text,
-        replyTo: replyToTweetId
-    });
+  info('モックツイートを実行します', {
+    text,
+    replyTo: replyToTweetId,
+  });
 
-    // モックレスポンスを生成
-    const mockId = `mock-${crypto.randomUUID()}`;
+  // モックレスポンスを生成
+  const mockId = `mock-${crypto.randomUUID()}`;
 
-    // Return a properly structured TweetResponse
-    return Promise.resolve({
-        data: {
-            data: {
-                id: mockId,
-                text: text
-            }
-        }
-    });
+  // Return a properly structured TweetResponse
+  return Promise.resolve({
+    data: {
+      data: {
+        id: mockId,
+        text: text,
+      },
+    },
+  });
 }

@@ -6,13 +6,13 @@ import { AppConfig } from '../types';
  * @returns アプリケーション設定オブジェクト
  */
 export function getAppConfig(): AppConfig {
-    return {
-        environment: process.env.ENVIRONMENT || 'production',
-        timezone: process.env.TIMEZONE || 'Asia/Tokyo',
-        spreadsheetId: process.env.SPREADSHEET_ID || '18sYgADWuSJKYeA7NiCvDaGaSLhovBiTd5KIrC9yLz8E',
-        firebaseProjectId: process.env.FIREBASE_PROJECT_ID || '',
-        firestoreDatabaseId: process.env.FIRESTORE_DATABASE_ID || ''
-    };
+  return {
+    environment: process.env.ENVIRONMENT || 'production',
+    timezone: process.env.TIMEZONE || 'Asia/Tokyo',
+    spreadsheetId: process.env.SPREADSHEET_ID || '18sYgADWuSJKYeA7NiCvDaGaSLhovBiTd5KIrC9yLz8E',
+    firebaseProjectId: process.env.FIREBASE_PROJECT_ID || '',
+    firestoreDatabaseId: process.env.FIRESTORE_DATABASE_ID || '',
+  };
 }
 
 /**
@@ -20,7 +20,7 @@ export function getAppConfig(): AppConfig {
  * @returns ローカル環境の場合はtrue、それ以外はfalse
  */
 export function isLocalEnvironment(): boolean {
-    return getAppConfig().environment === 'local';
+  return getAppConfig().environment === 'local';
 }
 
 /**
@@ -28,5 +28,5 @@ export function isLocalEnvironment(): boolean {
  * @returns モックを使用する場合はtrue、それ以外はfalse
  */
 export function useMocks(): boolean {
-    return process.env.USE_TWITTER_MOCK === 'true';
+  return process.env.USE_TWITTER_MOCK === 'true';
 }
