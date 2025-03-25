@@ -4,15 +4,15 @@ import { logError } from './logger';
  * カスタムエラークラス
  */
 export class AppError extends Error {
-    constructor(
-        message: string,
-        public readonly code: string = 'UNKNOWN_ERROR',
-        public readonly statusCode: number = 500,
-        public readonly details?: Record<string, any>
-    ) {
-        super(message);
-        this.name = 'AppError';
-    }
+  constructor(
+    message: string,
+    public readonly code: string = 'UNKNOWN_ERROR',
+    public readonly statusCode: number = 500,
+    public readonly details?: Record<string, any>
+  ) {
+    super(message);
+    this.name = 'AppError';
+  }
 }
 
 /**
@@ -22,15 +22,15 @@ export class AppError extends Error {
  * @returns 元の関数の戻り値またはnull（エラー時）
  */
 export async function tryCatch<T>(
-    fn: () => Promise<T>,
-    errorMessage: string = 'エラーが発生しました'
+  fn: () => Promise<T>,
+  errorMessage: string = 'エラーが発生しました'
 ): Promise<T | null> {
-    try {
-        return await fn();
-    } catch (err) {
-        logError(err, errorMessage);
-        return null;
-    }
+  try {
+    return await fn();
+  } catch (err) {
+    logError(err, errorMessage);
+    return null;
+  }
 }
 
 /**
@@ -41,22 +41,22 @@ export async function tryCatch<T>(
  * @throws エラー発生時に例外を再スロー
  */
 export async function tryCatchRethrow<T>(
-    fn: () => Promise<T>,
-    errorMessage: string = 'エラーが発生しました'
+  fn: () => Promise<T>,
+  errorMessage: string = 'エラーが発生しました'
 ): Promise<T> {
-    try {
-        return await fn();
-    } catch (err) {
-        logError(err, errorMessage);
-        
-        if (err instanceof AppError) {
-            throw err;
-        } else if (err instanceof Error) {
-            throw new AppError(err.message, 'INTERNAL_ERROR', 500, { originalError: err.message });
-        } else {
-            throw new AppError(String(err), 'INTERNAL_ERROR', 500);
-        }
+  try {
+    return await fn();
+  } catch (err) {
+    logError(err, errorMessage);
+
+    if (err instanceof AppError) {
+      throw err;
+    } else if (err instanceof Error) {
+      throw new AppError(err.message, 'INTERNAL_ERROR', 500, { originalError: err.message });
+    } else {
+      throw new AppError(String(err), 'INTERNAL_ERROR', 500);
     }
+  }
 }
 
 /**
@@ -66,7 +66,7 @@ export async function tryCatchRethrow<T>(
  * @returns AppErrorインスタンス
  */
 export function createNotFoundError(message: string, details?: Record<string, any>): AppError {
-    return new AppError(message, 'NOT_FOUND', 404, details);
+  return new AppError(message, 'NOT_FOUND', 404, details);
 }
 
 /**
@@ -76,7 +76,7 @@ export function createNotFoundError(message: string, details?: Record<string, an
  * @returns AppErrorインスタンス
  */
 export function createAuthError(message: string, details?: Record<string, any>): AppError {
-    return new AppError(message, 'UNAUTHORIZED', 401, details);
+  return new AppError(message, 'UNAUTHORIZED', 401, details);
 }
 
 /**
@@ -86,5 +86,5 @@ export function createAuthError(message: string, details?: Record<string, any>):
  * @returns AppErrorインスタンス
  */
 export function createValidationError(message: string, details?: Record<string, any>): AppError {
-    return new AppError(message, 'VALIDATION_ERROR', 400, details);
+  return new AppError(message, 'VALIDATION_ERROR', 400, details);
 }
