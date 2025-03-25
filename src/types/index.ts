@@ -3,6 +3,7 @@
  * プロジェクト全体で使用される型定義を一元管理します
  */
 
+
 /**
  * Twitter API認証情報
  */
@@ -95,3 +96,11 @@ export interface AppConfig {
     firebaseProjectId: string;
     firestoreDatabaseId: string;
 }
+/**
+ * Twitter APIのpostTweet関数の型定義
+ */
+export type PostTweetFunction = (
+    text: string,
+    replyTo: string | null,
+    credentials: TwitterCredentials
+) => Promise<TweetResponse>;
