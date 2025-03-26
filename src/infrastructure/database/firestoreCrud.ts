@@ -1,7 +1,7 @@
 import firestore from './firestore';
 import { DocumentData, DocumentReference, QuerySnapshot } from '@google-cloud/firestore';
-import { info, error } from '../../utils/logger';
-import { tryCatchRethrow, createNotFoundError } from '../../utils/errorHandler';
+import { info, error } from '@/utils/logger';
+import { tryCatchRethrow, createNotFoundError } from '@/utils/errorHandler';
 
 /**
  * Firestoreにドキュメントを作成する

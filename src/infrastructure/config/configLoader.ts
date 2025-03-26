@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
-import { TwitterCredentials } from '../../types';
-import { getAppConfig } from '../../config/appConfig';
-import { info } from '../../utils/logger';
+import { TwitterCredentials } from '@/types';
+import { getAppConfig } from '@/config/appConfig';
+import { info } from '@/utils/logger';
 
 /**
  * タイムゾーンを設定したdayjsインスタンスを取得する

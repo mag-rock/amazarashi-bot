@@ -1,6 +1,6 @@
-import { execute } from '../../../../../src/domain/services/karuta/karutaScript';
-import { deleteDocumentsCreatedBy } from '../../../../../src/infrastructure/database/firestoreCrud';
-import { getDayJsWithTimeZone } from '../../../../../src/infrastructure/config/configLoader';
+import { execute } from '@/application/usecase/karutaScript';
+import { deleteDocumentsCreatedBy } from '@/infrastructure/database/firestoreCrud';
+import { getDayJsWithTimeZone } from '@/infrastructure/config/configLoader';
 
 console.log(`Running on Node.js version: ${process.version}`);
 

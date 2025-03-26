@@ -1,4 +1,4 @@
-import { nextLevelOf, quizTemplateOf, QuizPost, SheetRow } from '../../../../../src/domain/services/quiz/quizLogic';
+import { nextLevelOf, quizTemplateOf, QuizPost, SheetRow } from '@/domain/quiz/quizLogic';
 
 describe('nextLevelOf', () => {
 	test('should return 0 if quizPosts is null', () => {

@@ -1,21 +1,21 @@
-import { getAppConfig } from '../../../config/appConfig';
+import { getAppConfig } from '@/config/appConfig';
 import {
   formatLiveHistoryPosts,
   liveHistoryOf,
-} from '../../../domain/live-history/liveHistoryLogic';
+} from '@/domain/live-history/liveHistoryLogic';
 import {
   getDayJsWithTimeZone,
   getTwitterCredentials,
-} from '../../../infrastructure/config/configLoader';
+} from '@/infrastructure/config/configLoader';
 import {
   getTodaysLiveHistory,
   saveLiveHistoryResult,
-} from '../../../infrastructure/repository/live-history/liveHistoryRepository';
-import { authorizeGoogleApis, getSheets } from '../../../infrastructure/spreadsheet/spreadsheetApi';
-import { loadPostTweetFunction } from '../../../infrastructure/twitter/twitterApiFactory';
-import { SpreadsheetsParams, TweetResponse } from '../../../types';
-import { tryCatchRethrow } from '../../../utils/errorHandler';
-import { info } from '../../../utils/logger';
+} from '@/infrastructure/repository/live-history/liveHistoryRepository';
+import { authorizeGoogleApis, getSheets } from '@/infrastructure/spreadsheet/spreadsheetApi';
+import { loadPostTweetFunction } from '@/infrastructure/twitter/twitterApiFactory';
+import { SpreadsheetsParams, TweetResponse } from '@/types';
+import { tryCatchRethrow } from '@/utils/errorHandler';
+import { info } from '@/utils/logger';
 
 /**
  * ライブ履歴投稿の実行メイン関数

@@ -1,6 +1,6 @@
-import { LiveHistory, SheetRow } from '../../types';
-import { tryCatch } from '../../utils/errorHandler';
-import { info } from '../../utils/logger';
+import { LiveHistory, SheetRow } from '@/types';
+import { tryCatch } from '@/utils/errorHandler';
+import { info } from '@/utils/logger';
 
 /**
  * スプレッドシートの行データからライブ履歴情報を作成する

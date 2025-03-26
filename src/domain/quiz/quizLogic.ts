@@ -1,6 +1,6 @@
-import { QuizPost, QuizTemplate, SheetRow } from '../../types';
-import { info } from '../../utils/logger';
-import { tryCatch } from '../../utils/errorHandler';
+import { QuizPost, QuizTemplate, SheetRow } from '@/types';
+import { info } from '@/utils/logger';
+import { tryCatch } from '@/utils/errorHandler';
 
 /**
  * 次のクイズレベルを決定する

@@ -4,10 +4,10 @@ import * as process from 'process';
 import { authenticate } from '@google-cloud/local-auth';
 import { google } from 'googleapis';
 import { GoogleAuth } from 'google-auth-library';
-import { SpreadsheetsParams } from '../../types';
-import { isLocalEnvironment } from '../../config/appConfig';
-import { info, error } from '../../utils/logger';
-import { tryCatchRethrow } from '../../utils/errorHandler';
+import { SpreadsheetsParams } from '@/types';
+import { isLocalEnvironment } from '@/config/appConfig';
+import { info, error } from '@/utils/logger';
+import { tryCatchRethrow } from '@/utils/errorHandler';
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];

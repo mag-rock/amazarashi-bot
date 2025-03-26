@@ -1,4 +1,4 @@
-import { execute } from '../../../../../src/domain/services/karuta/karutaScript';
+import { execute } from '@/application/usecase/karutaScript';
 
 console.log(`Running on Node.js version: ${process.version}`);
 

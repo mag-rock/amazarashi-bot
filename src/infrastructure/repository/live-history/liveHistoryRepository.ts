@@ -1,7 +1,7 @@
-import { TweetResponse, LiveHistoryDocument, TweetPost } from '../../../types';
-import { getDayJsWithTimeZone } from '../../config/configLoader';
-import { createDocument, getDocumentsCreatedBy } from '../../database/firestoreCrud';
-import { info } from '../../../utils/logger';
+import { TweetResponse, LiveHistoryDocument, TweetPost } from '@/types';
+import { getDayJsWithTimeZone } from '@/infrastructure/config/configLoader';
+import { createDocument, getDocumentsCreatedBy } from '@/infrastructure/database/firestoreCrud';
+import { info } from '@/utils/logger';
 
 /**
  * ライブ履歴の投稿結果をFirestoreに保存する

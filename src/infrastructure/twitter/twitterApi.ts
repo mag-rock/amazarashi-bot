@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import addOAuthInterceptor from 'axios-oauth-1.0a';
-import { TwitterCredentials, TweetRequestData, TweetResponse } from '../../types';
-import { info, debug, error } from '../../utils/logger';
+import { TwitterCredentials, TweetRequestData, TweetResponse } from '@/types';
+import { info, debug, error } from '@/utils/logger';
 
 // axiosインスタンスを作成
 const axiosInstance: AxiosInstance = axios.create();

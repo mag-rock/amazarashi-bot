@@ -1,21 +1,21 @@
-import { getAppConfig } from '../../config/appConfig';
+import { getAppConfig } from '@/config/appConfig';
 import {
   formatQuizPostText,
   isFinishedTodaysQuiz,
   nextLevelOf,
   quizTemplateOf,
-} from '../../domain/quiz/quizLogic';
+} from '@/domain/quiz/quizLogic';
 import {
   getDayJsWithTimeZone,
   getTwitterCredentials,
-} from '../../infrastructure/config/configLoader';
-import { getDocumentsCreatedBy } from '../../infrastructure/database/firestoreCrud';
-import { saveQuizResult } from '../../infrastructure/repository/quiz/quizRepository';
-import { authorizeGoogleApis, getSheets } from '../../infrastructure/spreadsheet/spreadsheetApi';
-import { loadPostTweetFunction } from '../../infrastructure/twitter/twitterApiFactory';
-import { QuizDocument, SpreadsheetsParams } from '../../types';
-import { tryCatchRethrow } from '../../utils/errorHandler';
-import { info } from '../../utils/logger';
+} from '@/infrastructure/config/configLoader';
+import { getDocumentsCreatedBy } from '@/infrastructure/database/firestoreCrud';
+import { saveQuizResult } from '@/infrastructure/repository/quiz/quizRepository';
+import { authorizeGoogleApis, getSheets } from '@/infrastructure/spreadsheet/spreadsheetApi';
+import { loadPostTweetFunction } from '@/infrastructure/twitter/twitterApiFactory';
+import { QuizDocument, SpreadsheetsParams } from '@/types';
+import { tryCatchRethrow } from '@/utils/errorHandler';
+import { info } from '@/utils/logger';
 /**
  * カルタクイズの実行メイン関数
  * @returns 実行結果
