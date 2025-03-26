@@ -11,7 +11,7 @@ function makeLiveHistory(rows: SheetRow[]): LiveHistory {
   // Note: この実装は仮のものです。実際のスプレッドシートの構造に合わせて修正が必要です
   const songId = rows[0][0];
   const title = rows[0][1];
-  
+
   const performances = rows.map(row => ({
     liveId: row[2],
     liveName: row[3],
@@ -35,20 +35,20 @@ function makeLiveHistory(rows: SheetRow[]): LiveHistory {
 function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   // Note: この実装は仮のものです。実際の要件に合わせて修正が必要です
   const posts: string[] = [];
-  
+
   // 最初のツイート：曲名と上演回数
   posts.push(`『${liveHistory.title}』のライブ履歴\n上演回数：${liveHistory.performanceCount}回`);
-  
+
   // 2つ目以降のツイート：ライブ履歴
   const performancesPerTweet = 3; // 1ツイートあたりの公演数
   for (let i = 0; i < liveHistory.performances.length; i += performancesPerTweet) {
     const chunk = liveHistory.performances.slice(i, i + performancesPerTweet);
-    const text = chunk.map(p => 
+    const text = chunk.map(p =>
       `${p.date} ${p.liveName}\n${p.venue}`
     ).join('\n\n');
     posts.push(text);
   }
-  
+
   return posts;
 }
 
@@ -58,8 +58,8 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
  * @param songId 曲ID（指定しない場合はランダム選択）
  * @returns ライブ履歴情報
  */
-function liveHistoryOf(sheet: SheetRow[], songId: string | null): LiveHistory {
-  return tryCatch(() => {
+async function liveHistoryOf(sheet: SheetRow[], songId: string | null): Promise<LiveHistory | null> {
+  return tryCatch(async () => {
     if (songId == null) {
       const randomIndex = Math.floor(Math.random() * sheet.length);
       info('ランダムな曲を選択しました', { index: randomIndex });

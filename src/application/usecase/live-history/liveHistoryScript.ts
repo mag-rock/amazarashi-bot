@@ -44,7 +44,10 @@ export async function execute(): Promise<string | void> {
     const sheet = await getSheets(googleAuth, params);
 
     // ライブ履歴のテンプレートを作成
-    const liveHistory = liveHistoryOf(sheet as any[], null); // ランダムな曲を選択
+    const liveHistory = await liveHistoryOf(sheet as any[], null); // ランダムな曲を選択
+    if (!liveHistory) {
+      throw new Error('ライブ履歴の取得に失敗しました');
+    }
     const posts = formatLiveHistoryPosts(liveHistory);
 
     // ツイートを実行
