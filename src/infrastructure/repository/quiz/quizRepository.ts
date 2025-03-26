@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { createDocument, updateDocument } from '../../../infrastructure/database/firestoreCrud';
+import { createDocument, updateDocument } from '../../database/firestoreCrud';
 import { QuizDocument, TweetResponse } from '../../../types';
 import { info } from '../../../utils/logger';
 
