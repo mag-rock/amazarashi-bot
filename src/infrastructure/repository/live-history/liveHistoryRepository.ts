@@ -1,6 +1,6 @@
 import { TweetResponse, LiveHistoryDocument, TweetPost } from '../../../types';
 import { getDayJsWithTimeZone } from '../../config/configLoader';
-import { addDocument, getDocumentsCreatedBy } from '../../database/firestoreCrud';
+import { createDocument, getDocumentsCreatedBy } from '../../database/firestoreCrud';
 import { info } from '../../../utils/logger';
 
 /**
@@ -28,8 +28,8 @@ export async function saveLiveHistoryResult(
       post_id: tweetId,
     };
     prevDoc.tweet_posts.push(tweetPost);
-    
-    await addDocument('live_history', prevDoc.id, prevDoc);
+
+    await createDocument('live_history', prevDoc.id, prevDoc);
     info('ライブ履歴ドキュメントを更新しました', { docId: prevDoc.id });
     return prevDoc.id;
   } else {
@@ -46,7 +46,7 @@ export async function saveLiveHistoryResult(
       ],
     };
 
-    await addDocument('live_history', doc.id, doc);
+    await createDocument('live_history', doc.id, doc);
     info('ライブ履歴ドキュメントを作成しました', { docId: doc.id });
     return doc.id;
   }
