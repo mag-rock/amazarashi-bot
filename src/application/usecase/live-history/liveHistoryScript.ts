@@ -13,7 +13,7 @@ import {
 } from '../../../infrastructure/repository/live-history/liveHistoryRepository';
 import { authorizeGoogleApis, getSheets } from '../../../infrastructure/spreadsheet/spreadsheetApi';
 import { loadPostTweetFunction } from '../../../infrastructure/twitter/twitterApiFactory';
-import { SpreadsheetsParams } from '../../../types';
+import { SpreadsheetsParams, TweetResponse } from '../../../types';
 import { tryCatchRethrow } from '../../../utils/errorHandler';
 import { info } from '../../../utils/logger';
 
@@ -54,12 +54,12 @@ export async function execute(): Promise<string | void> {
     let prevDocId: string | null = null;
     let prevTweetId: string | null = null;
     for (let i = 0; i < posts.length; i++) {
-      const response = i === 0
+      const response: TweetResponse = i === 0
         ? await postTweet(posts[i], null, credentials)
         : await postTweet(posts[i], prevTweetId, credentials);
 
       // 結果を保存
-      const prevDoc = i === 0 ? null : docData.find(d => d.id === prevDocId);
+      const prevDoc = i === 0 ? null : docData.find(d => d.id === prevDocId) || null;
       prevDocId = await saveLiveHistoryResult(
         response,
         liveHistory.songId,
