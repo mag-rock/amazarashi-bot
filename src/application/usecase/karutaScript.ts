@@ -10,7 +10,7 @@ import {
   getTwitterCredentials,
 } from '../../infrastructure/config/configLoader';
 import { getDocumentsCreatedBy } from '../../infrastructure/database/firestoreCrud';
-import { saveQuizResult } from '../../infrastructure/repoistory/quiz/quizRepository';
+import { saveQuizResult } from '../../infrastructure/repository/quiz/quizRepository';
 import { authorizeGoogleApis, getSheets } from '../../infrastructure/spreadsheet/spreadsheetApi';
 import { loadPostTweetFunction } from '../../infrastructure/twitter/twitterApiFactory';
 import { QuizDocument, SpreadsheetsParams } from '../../types';
