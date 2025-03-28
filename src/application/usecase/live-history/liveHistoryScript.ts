@@ -60,7 +60,7 @@ export async function execute(): Promise<string | void> {
     info(`演奏一覧を取得しました: ${performances.length}件`);
 
     // ライブ履歴テンプレート作成
-    const liveHistory = await liveHistoryOf(performances, songId);
+    const liveHistory = await liveHistoryOf(performances, songId, selectedSong);
     if (!liveHistory) {
       throw new Error('ライブ履歴の取得に失敗しました');
     }

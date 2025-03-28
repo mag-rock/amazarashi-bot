@@ -104,6 +104,8 @@ export interface LiveHistory {
   title: string;
   performances: LivePerformance[];
   performanceCount: number;
+  setlistCount?: number;         // セトリ入り公演数
+  setlistCountExcludingFes?: number;  // セトリ入り公演数（フェスを除く）
 }
 
 /**
@@ -114,44 +116,7 @@ export interface LivePerformance {
   liveName: string;
   date: string;
   venue: string;
-}
-
-/**
- * Firestoreに保存されるライブ履歴ドキュメント
- */
-export interface LiveHistoryDocument {
-  id: string;
-  song_id: string;
-  date: string;
-  tweet_posts: TweetPost[];
-}
-
-/**
- * ツイートの投稿情報
- */
-export interface TweetPost {
-  sequence: number;
-  post_id: string;
-}
-
-/**
- * ライブ履歴の情報
- */
-export interface LiveHistory {
-  songId: string;
-  title: string;
-  performances: LivePerformance[];
-  performanceCount: number;
-}
-
-/**
- * ライブ公演情報
- */
-export interface LivePerformance {
-  liveId: string;
-  liveName: string;
-  date: string;
-  venue: string;
+  tourId?: string;  // ツアーID追加
 }
 
 /**
