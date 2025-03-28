@@ -1,13 +1,18 @@
-import { formatLiveHistoryPosts, liveHistoryOf } from '@/domain/live-history/liveHistoryLogic';
+import {
+  filterSongsWithLiveHistory,
+  formatLiveHistoryPosts,
+  liveHistoryOf,
+  selectRandomSong,
+} from '@/domain/live-history/liveHistoryLogic';
 import { getDayJsWithTimeZone, getTwitterCredentials } from '@/infrastructure/config/configLoader';
 import {
   getPerformancesForSong,
   getSongList,
   getTodaysLiveHistory,
-  saveLiveHistoryResult
+  saveLiveHistoryResult,
 } from '@/infrastructure/repository/live-history/liveHistoryRepository';
 import { loadPostTweetFunction } from '@/infrastructure/twitter/twitterApiFactory';
-import { SheetRows, TweetResponse } from '@/types';
+import { TweetResponse } from '@/types';
 import { tryCatchRethrow } from '@/utils/errorHandler';
 import { info } from '@/utils/logger';
 
@@ -70,17 +75,17 @@ export async function execute(): Promise<string | void> {
  * ツイートの投稿と結果保存を行う
  */
 async function publishAndSaveTweets(
-  posts: string[], 
-  credentials: any, 
-  songId: string, 
-  docData: any[], 
+  posts: string[],
+  credentials: any,
+  songId: string,
+  docData: any[],
   todayStr: string
 ): Promise<string> {
   const postTweet = await loadPostTweetFunction();
-  
+
   let prevDocId: string | null = null;
   let prevTweetId: string | null = null;
-  
+
   for (let i = 0; i < posts.length; i++) {
     const response: TweetResponse =
       i === 0
@@ -93,24 +98,4 @@ async function publishAndSaveTweets(
   }
 
   return 'SUCCESS';
-}
-
-/**
- * 曲一覧からライブ履歴がある曲をフィルタリングする
- * 演奏回数（F列=インデックス5）が0より大きい曲を抽出
- */
-function filterSongsWithLiveHistory(songList: SheetRows): SheetRows {
-  return songList.filter(song => {
-    // 演奏回数（F列=インデックス5）があり、0より大きい曲
-    const playCount = Number(song[5]);
-    return !isNaN(playCount) && playCount > 0;
-  });
-}
-
-/**
- * 曲一覧からランダムに1曲を選定する
- */
-function selectRandomSong(songsWithLiveHistory: SheetRows): string[] {
-  const randomIndex = Math.floor(Math.random() * songsWithLiveHistory.length);
-  return songsWithLiveHistory[randomIndex];
 }

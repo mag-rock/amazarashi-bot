@@ -14,10 +14,10 @@ function makeLiveHistory(rows: SheetRows, songId: string): LiveHistory {
 
   // 各行から必要な情報を抽出してパフォーマンス情報を作成
   const performances = rows.map((row) => ({
-    liveId: row[1],      // B列(1)がライブID
-    liveName: row[4],    // E列(4)がツアー名
-    date: row[3],        // D列(3)が日付
-    venue: row[6],       // G列(6)が会場
+    liveId: row[1], // B列(1)がライブID
+    liveName: row[4], // E列(4)がツアー名
+    date: row[3], // D列(3)が日付
+    venue: row[6], // G列(6)が会場
   }));
 
   return {
@@ -69,5 +69,24 @@ async function liveHistoryOf(performances: SheetRows, songId: string): Promise<L
   }, 'ライブ履歴の処理中にエラーが発生しました');
 }
 
-export { formatLiveHistoryPosts, liveHistoryOf };
+/**
+ * 曲一覧からライブ履歴がある曲をフィルタリングする
+ * 演奏回数（F列=インデックス5）が0より大きい曲を抽出
+ */
+function filterSongsWithLiveHistory(songList: SheetRows): SheetRows {
+  return songList.filter((song) => {
+    // 演奏回数（F列=インデックス5）があり、0より大きい曲
+    const playCount = Number(song[5]);
+    return !isNaN(playCount) && playCount > 0;
+  });
+}
 
+/**
+ * 曲一覧からランダムに1曲を選定する
+ */
+function selectRandomSong(songsWithLiveHistory: SheetRows): string[] {
+  const randomIndex = Math.floor(Math.random() * songsWithLiveHistory.length);
+  return songsWithLiveHistory[randomIndex];
+}
+
+export { filterSongsWithLiveHistory, formatLiveHistoryPosts, liveHistoryOf, selectRandomSong };

@@ -96,4 +96,3 @@ function formatQuizPostText(
 }
 
 export { formatQuizPostText, isFinishedTodaysQuiz, nextLevelOf, quizTemplateOf };
-
