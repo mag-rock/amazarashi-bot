@@ -61,7 +61,7 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   posts.push(firstPost);
 
   // 2つ目以降のツイート：ツアー別ライブ履歴
-  // ツアーIDでグループ化
+  // ツアーIDで分類
   const performancesByTour = new Map<string, LivePerformance[]>();
   
   liveHistory.performances.forEach(performance => {
@@ -72,14 +72,34 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
     performancesByTour.get(tourId)?.push(performance);
   });
 
-  // ツアーごとにテキストを生成
-  const tourTexts: string[] = [];
+  // ツアー情報をツアー開始日（最古の公演日）の降順で並べ替え
+  const sortedTours: { tourId: string; performances: LivePerformance[]; startDate: string }[] = [];
   
   performancesByTour.forEach((performances, tourId) => {
     if (performances.length === 0) return;
     
-    const tourName = performances[0].liveName;
-    const venues = performances.map(p => `${p.date}@${p.venue}`);
+    // 各ツアー内の公演を日付昇順でソート
+    performances.sort((a, b) => a.date.localeCompare(b.date));
+    
+    // ツアー開始日 = 最古の公演日
+    const startDate = performances[0].date;
+    
+    sortedTours.push({
+      tourId,
+      performances,
+      startDate
+    });
+  });
+  
+  // ツアー開始日の降順でソート
+  sortedTours.sort((a, b) => b.startDate.localeCompare(a.startDate));
+  
+  // ツアーごとにテキストを生成
+  const tourTexts: string[] = [];
+  
+  sortedTours.forEach(tour => {
+    const tourName = tour.performances[0].liveName;
+    const venues = tour.performances.map(p => `${p.date}@${p.venue}`);
     
     tourTexts.push(`${tourName}（${venues.join('/')}）`);
   });
