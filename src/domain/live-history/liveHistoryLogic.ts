@@ -1,4 +1,4 @@
-import { LiveHistory, SheetRow } from '@/types';
+import { LiveHistory, SheetRows } from '@/types';
 import { tryCatch } from '@/utils/errorHandler';
 import { info } from '@/utils/logger';
 
@@ -7,23 +7,23 @@ import { info } from '@/utils/logger';
  * @param rows スプレッドシートの行データ
  * @returns ライブ履歴情報
  */
-function makeLiveHistory(rows: SheetRow[]): LiveHistory {
+function makeLiveHistory(rows: SheetRows): LiveHistory {
   // Note: この実装は仮のものです。実際のスプレッドシートの構造に合わせて修正が必要です
   const songId = rows[0][0];
   const title = rows[0][1];
 
-  const performances = rows.map(row => ({
+  const performances = rows.map((row) => ({
     liveId: row[2],
     liveName: row[3],
     date: row[4],
-    venue: row[5]
+    venue: row[5],
   }));
 
   return {
     songId,
     title,
     performances,
-    performanceCount: performances.length
+    performanceCount: performances.length,
   };
 }
 
@@ -43,9 +43,7 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   const performancesPerTweet = 3; // 1ツイートあたりの公演数
   for (let i = 0; i < liveHistory.performances.length; i += performancesPerTweet) {
     const chunk = liveHistory.performances.slice(i, i + performancesPerTweet);
-    const text = chunk.map(p =>
-      `${p.date} ${p.liveName}\n${p.venue}`
-    ).join('\n\n');
+    const text = chunk.map((p) => `${p.date} ${p.liveName}\n${p.venue}`).join('\n\n');
     posts.push(text);
   }
 
@@ -58,7 +56,7 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
  * @param songId 曲ID（指定しない場合はランダム選択）
  * @returns ライブ履歴情報
  */
-async function liveHistoryOf(sheet: SheetRow[], songId: string | null): Promise<LiveHistory | null> {
+async function liveHistoryOf(sheet: SheetRows, songId: string | null): Promise<LiveHistory | null> {
   return tryCatch(async () => {
     if (songId == null) {
       const randomIndex = Math.floor(Math.random() * sheet.length);

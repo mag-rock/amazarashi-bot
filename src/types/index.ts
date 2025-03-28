@@ -40,18 +40,7 @@ export interface QuizTemplate {
 /**
  * スプレッドシートの行データ型
  */
-export type SheetRow = [
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  ...string[],
-];
+export type SheetRows = any[][];
 
 /**
  * Firestoreに保存されるクイズドキュメント

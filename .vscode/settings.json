@@ -27,6 +27,13 @@
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit"
-	}
+		"source.fixAll.eslint": "explicit",
+		"source.organizeImports": "explicit"
+	},
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSaveTimeout": 1000,
+	"editor.formatOnSaveMode": "file",
+	"editor.formatOnPaste": true,
+	"editor.formatOnType": true
 }

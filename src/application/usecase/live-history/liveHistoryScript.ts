@@ -1,12 +1,6 @@
 import { getAppConfig } from '@/config/appConfig';
-import {
-  formatLiveHistoryPosts,
-  liveHistoryOf,
-} from '@/domain/live-history/liveHistoryLogic';
-import {
-  getDayJsWithTimeZone,
-  getTwitterCredentials,
-} from '@/infrastructure/config/configLoader';
+import { formatLiveHistoryPosts, liveHistoryOf } from '@/domain/live-history/liveHistoryLogic';
+import { getDayJsWithTimeZone, getTwitterCredentials } from '@/infrastructure/config/configLoader';
 import {
   getTodaysLiveHistory,
   saveLiveHistoryResult,
@@ -57,19 +51,14 @@ export async function execute(): Promise<string | void> {
     let prevDocId: string | null = null;
     let prevTweetId: string | null = null;
     for (let i = 0; i < posts.length; i++) {
-      const response: TweetResponse = i === 0
-        ? await postTweet(posts[i], null, credentials)
-        : await postTweet(posts[i], prevTweetId, credentials);
+      const response: TweetResponse =
+        i === 0
+          ? await postTweet(posts[i], null, credentials)
+          : await postTweet(posts[i], prevTweetId, credentials);
 
       // 結果を保存
-      const prevDoc = i === 0 ? null : docData.find(d => d.id === prevDocId) || null;
-      prevDocId = await saveLiveHistoryResult(
-        response,
-        liveHistory.songId,
-        i,
-        prevDoc,
-        todayStr
-      );
+      const prevDoc = i === 0 ? null : docData.find((d) => d.id === prevDocId) || null;
+      prevDocId = await saveLiveHistoryResult(response, liveHistory.songId, i, prevDoc, todayStr);
       prevTweetId = response.data.data.id;
     }
 
