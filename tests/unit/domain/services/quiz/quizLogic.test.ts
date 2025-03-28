@@ -1,4 +1,7 @@
-import { nextLevelOf, quizTemplateOf, QuizPost, SheetRow } from '@/domain/quiz/quizLogic';
+import { nextLevelOf, quizTemplateOf } from '@/domain/quiz/quizLogic';
+import { QuizPost, SheetRows } from '@/types';
+
+type SheetRow = any[];
 
 describe('nextLevelOf', () => {
 	test('should return 0 if quizPosts is null', () => {
@@ -21,7 +24,7 @@ describe('nextLevelOf', () => {
 
 	test('should return the next level if quizPosts has one element', () => {
 		const quizPosts: QuizPost[] = [
-			{ level: 5 }
+			{ level: 5, post_id: 'value3' }
 		];
 		const result = nextLevelOf(quizPosts);
 		expect(result).toBe(6);
@@ -29,9 +32,9 @@ describe('nextLevelOf', () => {
 
 	test('should return the next level if quizPosts has multiple elements with the same level', () => {
 		const quizPosts: QuizPost[] = [
-			{ level: 2 },
-			{ level: 2 },
-			{ level: 2 }
+			{ level: 2, post_id: 'value4' },
+			{ level: 2, post_id: 'value5' },
+			{ level: 2, post_id: 'value6' }
 		];
 		const result = nextLevelOf(quizPosts);
 		expect(result).toBe(3);
@@ -39,7 +42,7 @@ describe('nextLevelOf', () => {
 });
 
 describe('quizTemplateOf', () => {
-	const testSetSheet: SheetRow[] = [
+	const testSetSheet: SheetRows = [
 		[
 			"295471",
 			"東京 acoustic version",

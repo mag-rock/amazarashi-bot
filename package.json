@@ -1,5 +1,4 @@
 {
-	"type": "module",
 	"dependencies": {
 		"@google-cloud/firestore": "^7.10.0",
 		"@google-cloud/functions-framework": "^3.0.0",
@@ -15,6 +14,7 @@
 		"test": "NODE_OPTIONS=--experimental-vm-modules jest",
 		"test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.js",
 		"test:karuta": "ts-node -r tsconfig-paths/register tests/unit/domain/services/karuta/karutaScriptRepeatTest.ts",
+		"test:live-history": "ts-node -r tsconfig-paths/register tests/unit/domain/services/live-history/liveHistoryScriptTest.ts",
 		"build": "tsc",
 		"dev": "ts-node -r tsconfig-paths/register --watch src/index.ts",
 		"clean": "rimraf dist",
