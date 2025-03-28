@@ -21,13 +21,14 @@ const CREDENTIALS_PATH = path.join(process.cwd(), 'config/credentials.json');
  * 保存された認証情報を読み込む
  * @returns 認証クライアント
  */
-async function loadSavedCredentialsIfExist(): Promise<JWT> {
+async function loadSavedCredentialsIfExist(): Promise<JWT | null> {
   try {
     const content = await fs.readFile(TOKEN_PATH, 'utf-8');
     const credentials = JSON.parse(content);
     return google.auth.fromJSON(credentials) as JWT;
   } catch (err) {
-    throw error('認証情報の読み込みに失敗しました', { error: String(err) });
+    error('認証情報の読み込みに失敗しました', { error: String(err) });
+    return null;
   }
 }
 
@@ -73,7 +74,7 @@ async function authorizeAtLocal(): Promise<JWT> {
   if (client && client.credentials) {
     await saveCredentials(client);
   }
-  return client;
+  return client!;
 }
 
 /**
