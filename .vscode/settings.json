@@ -1,0 +1,32 @@
+{
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.tsserver.experimental.enableProjectDiagnostics": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"eslint.validate": [
+		"typescript"
+	],
+	"javascript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.tsserver.maxTsServerMemory": 4096,
+	"typescript.tsserver.watchOptions": {
+		"watchFile": "useFsEvents",
+		"watchDirectory": "useFsEvents",
+		"fallbackPolling": "dynamicPriority"
+	},
+	"typescript.preferences.useAliasesForRenames": true,
+	"typescript.referencesCodeLens.enabled": true,
+	"typescript.tsserver.pluginPaths": [ "typescript-plugin-css-modules" ],
+	"js/ts.implicitProjectConfig.checkJs": false,
+	"js/ts.implicitProjectConfig.experimentalDecorators": true,
+	"typescript.tsdk.watchOptions": { },
+	"typescript.suggest.paths": true,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	}
+}
