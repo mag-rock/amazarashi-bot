@@ -60,6 +60,15 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   
   posts.push(firstPost);
 
+  // TODO: 一つのツアー別ライブ履歴が140字を超える場合の対応が必要
+  // - ツアー名が長い場合の省略
+  // - 会場名の省略
+  // - 日付フォーマットの短縮
+  // - 必要に応じて分割投稿
+  // TODO: 日付@会場の表記が見づらい問題への対応が必要
+  // - 日付のフォーマットを YYYY.MM.DD に変更
+  // - 例: 2023.12.24@Zepp Haneda / 2023.12.25@Zepp DiverCity
+
   // 2つ目以降のツイート：ツアー別ライブ履歴
   // ツアーIDで分類
   const performancesByTour = new Map<string, LivePerformance[]>();
