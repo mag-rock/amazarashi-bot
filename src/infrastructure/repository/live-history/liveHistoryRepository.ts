@@ -1,6 +1,8 @@
-import { TweetResponse, LiveHistoryDocument, TweetPost } from '@/types';
+import { getAppConfig } from '@/config/appConfig';
 import { getDayJsWithTimeZone } from '@/infrastructure/config/configLoader';
 import { createDocument, getDocumentsCreatedBy } from '@/infrastructure/database/firestoreCrud';
+import { authorizeGoogleApis, getSheets } from '@/infrastructure/spreadsheet/spreadsheetApi';
+import { LiveHistoryDocument, SheetRows, TweetPost, TweetResponse } from '@/types';
 import { info } from '@/utils/logger';
 
 /**
@@ -59,4 +61,37 @@ export async function saveLiveHistoryResult(
 export async function getTodaysLiveHistory(): Promise<LiveHistoryDocument[]> {
   const todayStr = getDayJsWithTimeZone().format('YYYY-MM-DD');
   return (await getDocumentsCreatedBy('live_history', todayStr)) as LiveHistoryDocument[];
+}
+
+/**
+ * スプレッドシートから曲一覧を取得する
+ * @returns 曲一覧のデータ
+ */
+export async function getSongList(): Promise<SheetRows> {
+  const googleAuth = await authorizeGoogleApis();
+  const config = getAppConfig();
+  const params = {
+    spreadsheetId: config.spreadsheetId,
+    targetRange: '曲一覧!A2:D' // 必要な列範囲
+  };
+  
+  return getSheets(googleAuth, params);
+}
+
+/**
+ * 特定の曲IDに対応する演奏一覧を取得する
+ * @param songId 曲ID
+ * @returns 演奏一覧のデータ
+ */
+export async function getPerformancesForSong(songId: string): Promise<SheetRows> {
+  const googleAuth = await authorizeGoogleApis();
+  const config = getAppConfig();
+  const params = {
+    spreadsheetId: config.spreadsheetId,
+    targetRange: 'ライブ履歴!A2:F'
+  };
+  
+  const data = await getSheets(googleAuth, params);
+  // songIdに一致する演奏のみフィルタリング（A列=0がsongId列と仮定）
+  return data.filter(row => row[0] === songId);
 }
