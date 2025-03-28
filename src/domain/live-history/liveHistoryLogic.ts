@@ -5,18 +5,19 @@ import { info } from '@/utils/logger';
 /**
  * スプレッドシートの行データからライブ履歴情報を作成する
  * @param rows スプレッドシートの行データ
+ * @param songId 曲ID
  * @returns ライブ履歴情報
  */
-function makeLiveHistory(rows: SheetRows): LiveHistory {
-  // Note: この実装は仮のものです。実際のスプレッドシートの構造に合わせて修正が必要です
-  const songId = rows[0][0];
-  const title = rows[0][1];
+function makeLiveHistory(rows: SheetRows, songId: string): LiveHistory {
+  // 1行目のデータから曲名を取得
+  const title = rows[0][8]; // I列(8)が曲名
 
+  // 各行から必要な情報を抽出してパフォーマンス情報を作成
   const performances = rows.map((row) => ({
-    liveId: row[2],
-    liveName: row[3],
-    date: row[4],
-    venue: row[5],
+    liveId: row[1],      // B列(1)がライブID
+    liveName: row[4],    // E列(4)がツアー名
+    date: row[3],        // D列(3)が日付
+    venue: row[6],       // G列(6)が会場
   }));
 
   return {
@@ -52,28 +53,21 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
 
 /**
  * 指定された曲IDのライブ履歴情報を取得する
- * @param sheet スプレッドシートデータ
- * @param songId 曲ID（指定しない場合はランダム選択）
+ * @param performances 演奏データ（フィルタリング済み）
+ * @param songId 曲ID
  * @returns ライブ履歴情報
  */
-async function liveHistoryOf(sheet: SheetRows, songId: string | null): Promise<LiveHistory | null> {
+async function liveHistoryOf(performances: SheetRows, songId: string): Promise<LiveHistory | null> {
   return tryCatch(async () => {
-    if (songId == null) {
-      const randomIndex = Math.floor(Math.random() * sheet.length);
-      info('ランダムな曲を選択しました', { index: randomIndex });
-      // ランダムな曲のすべての履歴を取得
-      const songIdSelected = sheet[randomIndex][0];
-      const filteredRows = sheet.filter((row) => row[0] === songIdSelected);
-      return makeLiveHistory(filteredRows);
-    } else {
-      const filteredRows = sheet.filter((row) => row[0] === songId);
-      if (filteredRows.length === 0) {
-        throw new Error(`Song with ID ${songId} not found`);
-      }
-      info('指定された曲IDの履歴を取得しました', { songId });
-      return makeLiveHistory(filteredRows);
+    if (!performances || performances.length === 0) {
+      throw new Error(`Song with ID ${songId} has no performance history`);
     }
-  }, 'ライブ履歴の取得中にエラーが発生しました');
+
+    // フィルタリング済みの演奏データからライブ履歴を作成
+    info('曲IDの演奏履歴を処理します', { songId, count: performances.length });
+    return makeLiveHistory(performances, songId);
+  }, 'ライブ履歴の処理中にエラーが発生しました');
 }
 
-export { liveHistoryOf, formatLiveHistoryPosts };
+export { formatLiveHistoryPosts, liveHistoryOf };
+

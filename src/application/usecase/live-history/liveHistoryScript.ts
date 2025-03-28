@@ -17,87 +17,98 @@ import { info } from '@/utils/logger';
  */
 export async function execute(): Promise<string | void> {
   return tryCatchRethrow(async () => {
-    // 1. 日付の取得とスキップ判定
     const todayStr = getDayJsWithTimeZone().format('YYYY-MM-DD');
     info(`本日の日付: ${todayStr}`);
 
+    // 既に投稿済みかチェック
     const docData = await getTodaysLiveHistory();
     if (docData.length > 0) {
       info('本日のライブ履歴は既に投稿済みです');
       return 'ALREADY_POSTED';
     }
 
-    // 2. スプレッドシートから「曲一覧」を取得
+    // 曲一覧の取得と処理
     const songList = await getSongList();
     if (!songList || songList.length === 0) {
       throw new Error('曲一覧の取得に失敗しました');
     }
     info(`曲一覧を取得しました: ${songList.length}曲`);
 
-    // 3. 「ライブ履歴がある曲一覧」を取得（ドメインロジックで対応する前提）
+    // ライブ履歴がある曲の抽出と選定
     const songsWithLiveHistory = filterSongsWithLiveHistory(songList);
     if (songsWithLiveHistory.length === 0) {
       throw new Error('ライブ履歴がある曲が見つかりませんでした');
     }
     info(`ライブ履歴がある曲: ${songsWithLiveHistory.length}曲`);
 
-    // 4. ランダムに1曲を選定
+    // 投稿対象曲の選定
     const selectedSong = selectRandomSong(songsWithLiveHistory);
-    const songId = selectedSong[0]; // A列=0がsongIdと仮定
-    info(`選定された曲: ${songId}`);
+    const songId = selectedSong[0]; // A列=0が曲ID
+    const songName = selectedSong[1]; // B列=1が曲名
+    info(`選定された曲: ${songName}(${songId})`);
 
-    // 5. 選定された曲に合致する演奏一覧を取得
+    // 選定曲の演奏履歴取得
     const performances = await getPerformancesForSong(songId);
     if (!performances || performances.length === 0) {
       throw new Error(`選定された曲(${songId})の演奏一覧が見つかりませんでした`);
     }
     info(`演奏一覧を取得しました: ${performances.length}件`);
 
-    // 6. ライブ履歴のテンプレートを作成
+    // ライブ履歴テンプレート作成
     const liveHistory = await liveHistoryOf(performances, songId);
     if (!liveHistory) {
       throw new Error('ライブ履歴の取得に失敗しました');
     }
     const posts = formatLiveHistoryPosts(liveHistory);
 
-    // 7. ツイートを実行
-    const postTweet = await loadPostTweetFunction();
-    const credentials = getTwitterCredentials();
-
-    let prevDocId: string | null = null;
-    let prevTweetId: string | null = null;
-    
-    // 8. 結果の保存
-    for (let i = 0; i < posts.length; i++) {
-      const response: TweetResponse =
-        i === 0
-          ? await postTweet(posts[i], null, credentials)
-          : await postTweet(posts[i], prevTweetId, credentials);
-
-      const prevDoc = i === 0 ? null : docData.find((d) => d.id === prevDocId) || null;
-      prevDocId = await saveLiveHistoryResult(response, liveHistory.songId, i, prevDoc, todayStr);
-      prevTweetId = response.data.data.id;
-    }
-
-    return 'SUCCESS';
+    // Twitter投稿実行と結果保存
+    return await publishAndSaveTweets(posts, getTwitterCredentials(), songId, docData, todayStr);
   }, 'ライブ履歴投稿実行中にエラーが発生しました');
 }
 
 /**
+ * ツイートの投稿と結果保存を行う
+ */
+async function publishAndSaveTweets(
+  posts: string[], 
+  credentials: any, 
+  songId: string, 
+  docData: any[], 
+  todayStr: string
+): Promise<string> {
+  const postTweet = await loadPostTweetFunction();
+  
+  let prevDocId: string | null = null;
+  let prevTweetId: string | null = null;
+  
+  for (let i = 0; i < posts.length; i++) {
+    const response: TweetResponse =
+      i === 0
+        ? await postTweet(posts[i], null, credentials)
+        : await postTweet(posts[i], prevTweetId, credentials);
+
+    const prevDoc = i === 0 ? null : docData.find((d) => d.id === prevDocId) || null;
+    prevDocId = await saveLiveHistoryResult(response, songId, i, prevDoc, todayStr);
+    prevTweetId = response.data.data.id;
+  }
+
+  return 'SUCCESS';
+}
+
+/**
  * 曲一覧からライブ履歴がある曲をフィルタリングする
- * @param songList 曲一覧
- * @returns ライブ履歴がある曲の一覧
+ * 演奏回数（F列=インデックス5）が0より大きい曲を抽出
  */
 function filterSongsWithLiveHistory(songList: SheetRows): SheetRows {
-  // 仮実装：本来はドメインロジックでライブ履歴がある曲を判定
-  // B列(1)に「true」または何らかの値があれば、ライブ履歴ありと仮定
-  return songList.filter(song => song[1] && song[1].toString().trim() !== '');
+  return songList.filter(song => {
+    // 演奏回数（F列=インデックス5）があり、0より大きい曲
+    const playCount = Number(song[5]);
+    return !isNaN(playCount) && playCount > 0;
+  });
 }
 
 /**
  * 曲一覧からランダムに1曲を選定する
- * @param songsWithLiveHistory ライブ履歴がある曲一覧
- * @returns ランダムに選定された1曲
  */
 function selectRandomSong(songsWithLiveHistory: SheetRows): string[] {
   const randomIndex = Math.floor(Math.random() * songsWithLiveHistory.length);

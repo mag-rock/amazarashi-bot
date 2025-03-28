@@ -72,7 +72,7 @@ export async function getSongList(): Promise<SheetRows> {
   const config = getAppConfig();
   const params = {
     spreadsheetId: config.spreadsheetId,
-    targetRange: '曲一覧!A2:D' // 必要な列範囲
+    targetRange: '曲一覧!A2:H' // 曲ID～セトリ入り公演数（フェスを除く）まで
   };
   
   return getSheets(googleAuth, params);
@@ -88,10 +88,10 @@ export async function getPerformancesForSong(songId: string): Promise<SheetRows>
   const config = getAppConfig();
   const params = {
     spreadsheetId: config.spreadsheetId,
-    targetRange: 'ライブ履歴!A2:F'
+    targetRange: 'ライブ演奏一覧!A2:M'
   };
   
   const data = await getSheets(googleAuth, params);
-  // songIdに一致する演奏のみフィルタリング（A列=0がsongId列と仮定）
-  return data.filter(row => row[0] === songId);
+  // songIdに一致する演奏のみフィルタリング（J列=9が曲ID列）
+  return data.filter(row => row[9] === songId);
 }
