@@ -8,12 +8,14 @@
 			"type": "node",
 			"request": "launch",
 			"name": "firestoreCrudTest",
-			"program": "${workspaceFolder}\\tests\\unit\\infrastructure\\database\\firestoreCrud.test.ts",
+			"program": "${workspaceFolder}/tests/unit/infrastructure/database/firestoreCrud.test.ts",
 			"runtimeArgs": [
 				"-r",
-				"ts-node/register"
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
 			],
-			"envFile": "${workspaceFolder}\\.env",
+			"envFile": "${workspaceFolder}/.env",
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"
 			]
@@ -22,12 +24,14 @@
 			"type": "node",
 			"request": "launch",
 			"name": "spreadsheetApiTest",
-			"program": "${workspaceFolder}\\tests\\unit\\infrastructure\\spreadsheet\\spreadsheetApi.test.ts",
+			"program": "${workspaceFolder}/tests/unit/infrastructure/spreadsheet/spreadsheetApi.test.ts",
 			"runtimeArgs": [
 				"-r",
-				"ts-node/register"
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
 			],
-			"envFile": "${workspaceFolder}\\.env",
+			"envFile": "${workspaceFolder}/.env",
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"
 			]
@@ -36,12 +40,14 @@
 			"type": "node",
 			"request": "launch",
 			"name": "twitterApiTest",
-			"program": "${workspaceFolder}\\tests\\unit\\infrastructure\\twitter\\twitterApi.test.ts",
+			"program": "${workspaceFolder}/tests/unit/infrastructure/twitter/twitterApi.test.ts",
 			"runtimeArgs": [
 				"-r",
-				"ts-node/register"
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
 			],
-			"envFile": "${workspaceFolder}\\.env",
+			"envFile": "${workspaceFolder}/.env",
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"
 			]
@@ -50,12 +56,14 @@
 			"type": "node",
 			"request": "launch",
 			"name": "quizLogicTest",
-			"program": "${workspaceFolder}\\tests\\unit\\domain\\services\\quiz\\quizLogic.test.ts",
+			"program": "${workspaceFolder}/tests/unit/domain/services/quiz/quizLogic.test.ts",
 			"runtimeArgs": [
 				"-r",
-				"ts-node/register"
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
 			],
-			"envFile": "${workspaceFolder}\\.env",
+			"envFile": "${workspaceFolder}/.env",
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"
 			]
@@ -64,12 +72,32 @@
 			"type": "node",
 			"request": "launch",
 			"name": "karutaScriptTest",
-			"program": "${workspaceFolder}\\tests\\unit\\domain\\services\\karuta\\karutaScriptTest.ts",
+			"program": "${workspaceFolder}/tests/unit/domain/services/karuta/karutaScriptTest.ts",
 			"runtimeArgs": [
 				"-r",
-				"ts-node/register"
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+
 			],
-			"envFile": "${workspaceFolder}\\.env",
+			"envFile": "${workspaceFolder}/.env",
+			"outFiles": [
+				"${workspaceFolder}/dist/**/*.js"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "liveHistoryScriptTest",
+			"program": "${workspaceFolder}/tests/unit/domain/services/live-history/liveHistoryScriptTest.ts",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+
+			],
+			"envFile": "${workspaceFolder}/.env",
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"
 			]
@@ -78,12 +106,31 @@
 			"type": "node",
 			"request": "launch",
 			"name": "karutaScriptRepeatTest",
-			"program": "${workspaceFolder}\\tests\\unit\\domain\\services\\karuta\\karutaScriptRepeatTest.ts",
+			"program": "${workspaceFolder}/tests/unit/domain/services/karuta/karutaScriptRepeatTest.ts",
 			"runtimeArgs": [
 				"-r",
-				"ts-node/register"
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
 			],
-			"envFile": "${workspaceFolder}\\.env",
+			"envFile": "${workspaceFolder}/.env",
+			"outFiles": [
+				"${workspaceFolder}/dist/**/*.js"
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "liveHistoryScriptRepeatTest",
+			"program": "${workspaceFolder}/tests/unit/domain/services/live-history/liveHistoryScriptRepeatTest.ts",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+
+			],
+			"envFile": "${workspaceFolder}/.env",
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"
 			]
@@ -101,7 +148,7 @@
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "neverOpen",
 			"disableOptimisticBPs": true,
-			"envFile": "${workspaceFolder}\\.env"
+			"envFile": "${workspaceFolder}/.env"
 		}
 	]
 }

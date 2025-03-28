@@ -133,6 +133,6 @@ dist
 .pnp.*
 
 # Credentials
-credentials.json
-amazarashi-bot-credentials.json
+*credentials.json
+*credentials.json.backup
 token.json
