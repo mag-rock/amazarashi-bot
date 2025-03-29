@@ -7,7 +7,8 @@
 		"axios-oauth-1.0a": "0.3.6",
 		"dayjs": "^1.11.13",
 		"google-auth-library": "^9.15.0",
-		"googleapis": "^144.0.0"
+		"googleapis": "^144.0.0",
+		"twitter-text": "^3.1.0"
 	},
 	"scripts": {
 		"start": "functions-framework --target=helloHttp --source=dist",

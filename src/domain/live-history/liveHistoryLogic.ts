@@ -1,6 +1,7 @@
 import { LiveHistory, LivePerformance, SheetRows } from '@/types';
 import { tryCatch } from '@/utils/errorHandler';
 import { info } from '@/utils/logger';
+import twitterText from 'twitter-text';
 
 /**
  * スプレッドシートの行データからライブ履歴情報を作成する
@@ -120,20 +121,24 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
     tourTexts.push(tourText);
   });
   
-  // 140文字以内に収まるようにツアー情報を分割
+  // Twitterの制限に収まるようにツアー情報を分割
   let currentPost = '';
-  const MAX_LENGTH = 140;
+  // Twitterの重み付け文字数を考慮した分割
+  const MAX_WEIGHTED_LENGTH = 280; // 現在のTwitterの文字数制限
   
   for (const tourText of tourTexts) {
-    // 現在のポストに追加してみて、140文字を超えるかチェック
+    // 現在のポストに追加したテキストを用意
     const tentativePost = currentPost ? `${currentPost}\n\n${tourText}` : tourText;
     
-    if (tentativePost.length > MAX_LENGTH && currentPost) {
-      // 140文字を超えるなら、現在のポストを確定し、新しいポストを開始
+    // twitter-textを使って文字数をチェック
+    const parsedTweet = twitterText.parseTweet(tentativePost);
+    
+    if (parsedTweet.weightedLength > MAX_WEIGHTED_LENGTH && currentPost) {
+      // 重み付け文字数が制限を超えるなら、現在のポストを確定し、新しいポストを開始
       posts.push(currentPost);
       currentPost = tourText;
     } else {
-      // 140文字以内なら、ポストに追加
+      // 制限内なら、ポストに追加
       currentPost = tentativePost;
     }
   }
