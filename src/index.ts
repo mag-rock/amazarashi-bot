@@ -37,23 +37,23 @@ functions.http('karuta', async (req: Request, res: Response) => {
 /**
  * ライブ履歴用のHTTP関数
  */
-functions.http('liveHistory', async (req: Request, res: Response) => {
-  try {
-    info(`ライブ履歴リクエストを受信しました`, {
-      method: req.method,
-      path: req.path,
-      query: req.query,
-    });
+// functions.http('liveHistory', async (req: Request, res: Response) => {
+//   try {
+//     info(`ライブ履歴リクエストを受信しました`, {
+//       method: req.method,
+//       path: req.path,
+//       query: req.query,
+//     });
 
-    const result = await executeLiveHistory();
+//     const result = await executeLiveHistory();
 
-    info(`ライブ履歴処理が完了しました`, { result });
-    res.status(200).send('Success to post live history tweet.');
-  } catch (err) {
-    error(`ライブ履歴処理でエラーが発生しました`, {
-      error: err instanceof Error ? err.message : String(err),
-    });
+//     info(`ライブ履歴処理が完了しました`, { result });
+//     res.status(200).send('Success to post live history tweet.');
+//   } catch (err) {
+//     error(`ライブ履歴処理でエラーが発生しました`, {
+//       error: err instanceof Error ? err.message : String(err),
+//     });
 
-    res.status(500).send(`Error: ${err instanceof Error ? err.message : String(err)}`);
-  }
-});
+//     res.status(500).send(`Error: ${err instanceof Error ? err.message : String(err)}`);
+//   }
+// });
