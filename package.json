@@ -15,7 +15,7 @@
 		"@": "dist"
 	},
 	"scripts": {
-		"start": "functions-framework --target=karuta --source=dist",
+		"start": "functions-framework --target=liveHistory --source=dist",
 		"start karuta": "functions-framework --target=karuta --source=dist",
 		"start liveHistory": "functions-framework --target=liveHistory --source=dist",
 		"test": "NODE_OPTIONS=--experimental-vm-modules jest",
