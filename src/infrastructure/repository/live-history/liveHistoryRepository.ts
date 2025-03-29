@@ -93,5 +93,6 @@ export async function getPerformancesForSong(songId: string): Promise<SheetRows>
 
   const data = await getSheets(googleAuth, params);
   // songIdに一致する演奏のみフィルタリング（J列=9が曲ID列）
-  return data.filter((row) => row[9] === songId);
+  // セトリ解禁済=TRUEの演奏のみに絞り込み（L列=11がセトリ解禁済列）
+  return data.filter((row) => row[9] === songId && row[11] === 'TRUE');
 }
