@@ -1,4 +1,4 @@
-import { AppConfig } from '../types';
+import { AppConfig } from '@/types';
 
 /**
  * アプリケーション設定を取得する

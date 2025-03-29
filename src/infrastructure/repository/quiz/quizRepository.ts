@@ -1,7 +1,7 @@
 import crypto from 'crypto';
-import { createDocument, updateDocument } from '../../../infrastructure/database/firestoreCrud';
-import { QuizDocument, TweetResponse } from '../../../types';
-import { info } from '../../../utils/logger';
+import { createDocument, updateDocument } from '@/infrastructure/database/firestoreCrud';
+import { QuizDocument, TweetResponse } from '@/types';
+import { info } from '@/utils/logger';
 
 /**
  * クイズ結果をFirestoreに保存する

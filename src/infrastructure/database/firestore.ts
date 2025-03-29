@@ -1,8 +1,8 @@
 import { Firestore } from '@google-cloud/firestore';
 import * as path from 'path';
 import * as process from 'process';
-import { isLocalEnvironment } from '../../config/appConfig';
-import { info } from '../../utils/logger';
+import { isLocalEnvironment } from '@/config/appConfig';
+import { info } from '@/utils/logger';
 
 let firestore: Firestore;
 const CREDENTIALS_PATH = path.join(process.cwd(), 'config/amazarashi-bot-credentials.json');

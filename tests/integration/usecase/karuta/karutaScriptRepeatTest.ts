@@ -1,6 +1,6 @@
-import { execute } from '../../../../../src/domain/services/karuta/karutaScript';
-import { deleteDocumentsCreatedBy } from '../../../../../src/infrastructure/database/firestoreCrud';
-import { getDayJsWithTimeZone } from '../../../../../src/infrastructure/config/configLoader';
+import { execute } from '@/application/usecase/karutaScript';
+import { getDayJsWithTimeZone } from '@/infrastructure/config/configLoader';
+import { deleteDocumentsCreatedBy } from '@/infrastructure/database/firestoreCrud';
 
 console.log(`Running on Node.js version: ${process.version}`);
 
@@ -12,7 +12,7 @@ async function doTest(): Promise<void> {
 		for (let i = 0; i < 30; i++) {
 			try {
 				const result = await execute();
-				if (result === 'FINISHED') {
+				if (result === 'ALREADY_POSTED') {
 					const todayStr = getDayJsWithTimeZone().format('YYYY-MM-DD');
 					await deleteDocumentsCreatedBy('quiz', todayStr);
 				}

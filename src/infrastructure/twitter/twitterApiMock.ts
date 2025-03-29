@@ -1,6 +1,6 @@
+import { TweetResponse, TwitterCredentials } from '@/types';
+import { info } from '@/utils/logger';
 import crypto from 'crypto';
-import { TwitterCredentials, TweetResponse } from '../../types';
-import { info } from '../../utils/logger';
 
 /**
  * モック用のツイート投稿関数

@@ -1,6 +1,5 @@
-import { QuizPost, QuizTemplate, SheetRow } from '../../types';
-import { info } from '../../utils/logger';
-import { tryCatch } from '../../utils/errorHandler';
+import { QuizPost, QuizTemplate, SheetRows } from '@/types';
+import { info } from '@/utils/logger';
 
 /**
  * 次のクイズレベルを決定する
@@ -32,7 +31,7 @@ function isFinishedTodaysQuiz(nextLevel: number): boolean {
  * @param row スプレッドシートの行データ
  * @returns クイズテンプレート
  */
-function makeQuizTemplate(row: SheetRow): QuizTemplate {
+function makeQuizTemplate(row: any[]): QuizTemplate {
   return {
     songId: row[0],
     title: row[1],
@@ -52,18 +51,18 @@ function makeQuizTemplate(row: SheetRow): QuizTemplate {
  * @param songId 曲ID（指定しない場合はランダム選択）
  * @returns クイズテンプレート
  */
-function quizTemplateOf(sheet: any[][] | SheetRow[], songId: string | null): QuizTemplate {
+function quizTemplateOf(sheet: SheetRows, songId: string | null): QuizTemplate {
   if (songId == null) {
     const randomIndex = Math.floor(Math.random() * sheet.length);
     info('ランダムな曲を選択しました', { index: randomIndex });
-    return makeQuizTemplate(sheet[randomIndex] as SheetRow);
+    return makeQuizTemplate(sheet[randomIndex]);
   } else {
     const filteredSheet = sheet.filter((row) => row[0] === songId);
     if (filteredSheet.length === 0) {
       throw new Error(`Song with ID ${songId} not found`);
     }
     info('指定された曲IDのテンプレートを取得しました', { songId });
-    return makeQuizTemplate(filteredSheet[0] as SheetRow);
+    return makeQuizTemplate(filteredSheet[0]);
   }
 }
 
@@ -96,4 +95,4 @@ function formatQuizPostText(
   }
 }
 
-export { nextLevelOf, isFinishedTodaysQuiz, quizTemplateOf, formatQuizPostText };
+export { formatQuizPostText, isFinishedTodaysQuiz, nextLevelOf, quizTemplateOf };

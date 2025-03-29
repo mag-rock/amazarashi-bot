@@ -1,6 +1,6 @@
-import { TwitterCredentials, TweetResponse } from '../../types';
-import { info } from '../../utils/logger';
-import { useMocks } from '../../config/appConfig';
+import { TwitterCredentials, TweetResponse } from '@/types';
+import { info } from '@/utils/logger';
+import { useMocks } from '@/config/appConfig';
 
 /**
  * 環境変数に基づいて適切なTwitter APIモジュールを動的にロードする

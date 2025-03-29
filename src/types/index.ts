@@ -40,18 +40,7 @@ export interface QuizTemplate {
 /**
  * スプレッドシートの行データ型
  */
-export type SheetRow = [
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  ...string[],
-];
+export type SheetRows = any[][];
 
 /**
  * Firestoreに保存されるクイズドキュメント
@@ -106,9 +95,48 @@ export interface AppConfig {
   firebaseProjectId: string;
   firestoreDatabaseId: string;
 }
+
 /**
- * Twitter APIのpostTweet関数の型定義
+ * ライブ履歴の情報
  */
+export interface LiveHistory {
+  songId: string;
+  title: string;
+  performances: LivePerformance[];
+  performanceCount: number;
+  setlistCountOfTour?: number;
+  setlistCountOfFes?: number;
+}
+
+/**
+ * ライブ公演情報
+ */
+export interface LivePerformance {
+  liveId: string;
+  liveName: string;
+  date: string;
+  venue: string;
+  tourId?: string; // ツアーID追加
+}
+
+/**
+ * Firestoreに保存されるライブ履歴ドキュメント
+ */
+export interface LiveHistoryDocument {
+  id: string;
+  song_id: string;
+  date: string;
+  tweet_posts: TweetPost[];
+}
+
+/**
+ * ツイートの投稿情報
+ */
+export interface TweetPost {
+  sequence: number;
+  post_id: string;
+}
+
 export type PostTweetFunction = (
   text: string,
   replyTo: string | null,

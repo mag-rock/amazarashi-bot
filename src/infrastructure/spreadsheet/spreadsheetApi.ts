@@ -1,13 +1,13 @@
+import { isLocalEnvironment } from '@/config/appConfig';
+import { SheetRows, SpreadsheetsParams } from '@/types';
+import { tryCatchRethrow } from '@/utils/errorHandler';
+import { error, info } from '@/utils/logger';
+import { authenticate } from '@google-cloud/local-auth';
 import * as fs from 'fs/promises';
+import { GoogleAuth, JWT } from 'google-auth-library';
+import { google } from 'googleapis';
 import * as path from 'path';
 import * as process from 'process';
-import { authenticate } from '@google-cloud/local-auth';
-import { google } from 'googleapis';
-import { GoogleAuth } from 'google-auth-library';
-import { SpreadsheetsParams } from '../../types';
-import { isLocalEnvironment } from '../../config/appConfig';
-import { info, error } from '../../utils/logger';
-import { tryCatchRethrow } from '../../utils/errorHandler';
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -19,13 +19,13 @@ const CREDENTIALS_PATH = path.join(process.cwd(), 'config/credentials.json');
 
 /**
  * 保存された認証情報を読み込む
- * @returns 認証クライアントまたはnull
+ * @returns 認証クライアント
  */
-async function loadSavedCredentialsIfExist() {
+async function loadSavedCredentialsIfExist(): Promise<JWT | null> {
   try {
     const content = await fs.readFile(TOKEN_PATH, 'utf-8');
     const credentials = JSON.parse(content);
-    return google.auth.fromJSON(credentials);
+    return google.auth.fromJSON(credentials) as JWT;
   } catch (err) {
     error('認証情報の読み込みに失敗しました', { error: String(err) });
     return null;
@@ -36,7 +36,7 @@ async function loadSavedCredentialsIfExist() {
  * 認証情報をファイルに保存する
  * @param client 認証クライアント
  */
-async function saveCredentials(client: any) {
+async function saveCredentials(client: any): Promise<void> {
   try {
     const content = await fs.readFile(CREDENTIALS_PATH, 'utf-8');
     const keys = JSON.parse(content);
@@ -58,7 +58,7 @@ async function saveCredentials(client: any) {
  * ローカル環境での認証を行う
  * @returns 認証クライアント
  */
-async function authorizeAtLocal() {
+async function authorizeAtLocal(): Promise<JWT> {
   let client = await loadSavedCredentialsIfExist();
   if (client) {
     info('保存された認証情報を使用します');
@@ -74,14 +74,14 @@ async function authorizeAtLocal() {
   if (client && client.credentials) {
     await saveCredentials(client);
   }
-  return client;
+  return client!;
 }
 
 /**
  * Google APIの認証を行う
  * @returns 認証クライアント
  */
-export async function authorizeGoogleApis() {
+export async function authorizeGoogleApis(): Promise<JWT> {
   return tryCatchRethrow(async () => {
     if (isLocalEnvironment()) {
       info('ローカル環境用の認証を使用します');
@@ -91,7 +91,7 @@ export async function authorizeGoogleApis() {
       const auth = new GoogleAuth({
         scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
       });
-      return await auth.getClient();
+      return (await auth.getClient()) as JWT;
     }
   }, 'Google API認証中にエラーが発生しました');
 }
@@ -102,7 +102,7 @@ export async function authorizeGoogleApis() {
  * @param params スプレッドシートパラメータ
  * @returns スプレッドシートデータ
  */
-export async function getSheets(auth: any, params: SpreadsheetsParams) {
+export async function getSheets(auth: JWT, params: SpreadsheetsParams): Promise<SheetRows> {
   return tryCatchRethrow(async () => {
     info('スプレッドシートからデータを取得します', {
       spreadsheetId: params.spreadsheetId,

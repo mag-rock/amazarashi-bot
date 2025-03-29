@@ -60,6 +60,9 @@ dist/
 # Optional stylelint cache
 .stylelintcache
 
+# Jest cache
+.jest-cache/
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
@@ -133,6 +136,6 @@ dist
 .pnp.*
 
 # Credentials
-credentials.json
-amazarashi-bot-credentials.json
+*credentials.json
+*credentials.json.backup
 token.json
