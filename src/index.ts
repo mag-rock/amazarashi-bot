@@ -1,3 +1,6 @@
+// module-alias のセットアップ
+import 'module-alias/register';
+
 import * as functions from '@google-cloud/functions-framework';
 import { execute as executeKaruta } from './application/usecase/karutaScript';
 import { execute as executeLiveHistory } from './application/usecase/live-history/liveHistoryScript';
@@ -13,7 +16,7 @@ info(`アプリケーションを起動しました`, {
 /**
  * カルタクイズ用のHTTP関数
  */
-functions.http('karuta', async (req: Request, res: Response) => {
+functions.http('helloHttp', async (req: Request, res: Response) => {
   try {
     info(`カルタクイズリクエストを受信しました`, {
       method: req.method,
