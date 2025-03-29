@@ -29,7 +29,7 @@ export async function execute(): Promise<string | void> {
     const nextLevel = nextLevelOf(docData[0]?.quiz_posts);
     if (isFinishedTodaysQuiz(nextLevel)) {
       info('本日のクイズは終了しています');
-      return 'FINISHED';
+      return 'ALREADY_POSTED';
     }
 
     // SpreadSheetからシートを取得

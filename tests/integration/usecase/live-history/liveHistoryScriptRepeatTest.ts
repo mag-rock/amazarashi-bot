@@ -12,7 +12,7 @@ async function doTest(): Promise<void> {
 		for (let i = 0; i < 5; i++) {
 			try {
 				const result = await execute();
-				if (result === 'FINISHED') {
+				if (result === 'ALREADY_POSTED') {
 					const todayStr = getDayJsWithTimeZone().format('YYYY-MM-DD');
 					await deleteDocumentsCreatedBy('live_history', todayStr);
 				}
