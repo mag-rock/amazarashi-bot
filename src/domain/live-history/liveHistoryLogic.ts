@@ -108,9 +108,24 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   
   sortedTours.forEach(tour => {
     const tourName = tour.performances[0].liveName;
-    const venues = tour.performances.map(p => `${p.date}@${p.venue}`);
+    const performances = tour.performances;
+    let tourText = '';
     
-    tourTexts.push(`${tourName}（${venues.join('/')}）`);
+    if (performances.length === 1) {
+      // 公演数が1の場合: ツアー名(日付@会場)
+      tourText = `${tourName}（${performances[0].date}@${performances[0].venue}）`;
+    } else if (performances.length <= 3) {
+      // 公演数が2または3の場合: ツアー名(日付, 日付, 日付)
+      const dates = performances.map(p => p.date);
+      tourText = `${tourName}（${dates.join(', ')}）`;
+    } else {
+      // 公演数が4以上の場合: ツアー名(最初の日付 - 最後の日付)
+      const firstDate = performances[0].date;
+      const lastDate = performances[performances.length - 1].date;
+      tourText = `${tourName}（${firstDate} - ${lastDate}）`;
+    }
+    
+    tourTexts.push(tourText);
   });
   
   // 140文字以内に収まるようにツアー情報を分割
