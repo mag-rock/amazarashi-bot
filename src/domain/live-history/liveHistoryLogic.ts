@@ -32,8 +32,8 @@ function makeLiveHistory(rows: SheetRows, songId: string, songInfo: string[] | n
 
   // 曲情報が提供された場合、追加情報を設定
   if (songInfo) {
-    liveHistory.setlistCount = Number(songInfo[6]); // G列(6)がセトリ入り公演数
-    liveHistory.setlistCountExcludingFes = Number(songInfo[7]); // H列(7)がセトリ入り公演数（フェスを除く）
+    liveHistory.setlistCountOfTour = Number(songInfo[6]); // G列(6)がセトリ入り公演数（ツアー、単発）
+    liveHistory.setlistCountOfFes = Number(songInfo[7]); // H列(7)が	セトリ入り公演数（フェス）
   }
 
   return liveHistory;
@@ -91,15 +91,10 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
 
   // 最初のツイート：曲名と各種カウント情報
   let firstPost = `『${liveHistory.title}』のライブ演奏履歴\n`;
-  firstPost += `総演奏回数：${liveHistory.performanceCount}回`;
 
-  if (liveHistory.setlistCount !== undefined) {
-    firstPost += `\nセトリ入り公演数：${liveHistory.setlistCount}公演`;
-  }
-
-  if (liveHistory.setlistCountExcludingFes !== undefined) {
-    firstPost += `\nセトリ入り公演数（フェスを除く）：${liveHistory.setlistCountExcludingFes}公演`;
-  }
+  firstPost += `ツアー、単発公演のセトリ入り：${liveHistory.setlistCountOfTour ?? 0}回`;
+  firstPost += `\nフェスのセトリ入り：${liveHistory.setlistCountOfFes ?? 0}回`;
+  firstPost += `\n総演奏回数：${liveHistory.performanceCount}回`;
 
   posts.push(firstPost);
 

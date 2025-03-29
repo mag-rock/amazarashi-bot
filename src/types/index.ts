@@ -104,8 +104,8 @@ export interface LiveHistory {
   title: string;
   performances: LivePerformance[];
   performanceCount: number;
-  setlistCount?: number; // セトリ入り公演数
-  setlistCountExcludingFes?: number; // セトリ入り公演数（フェスを除く）
+  setlistCountOfTour?: number;
+  setlistCountOfFes?: number;
 }
 
 /**

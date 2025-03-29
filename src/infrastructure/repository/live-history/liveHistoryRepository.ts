@@ -88,7 +88,7 @@ export async function getPerformancesForSong(songId: string): Promise<SheetRows>
   const config = getAppConfig();
   const params = {
     spreadsheetId: config.spreadsheetId,
-    targetRange: 'ライブ演奏一覧!C2:M',
+    targetRange: 'ライブ演奏一覧!C2:O',
   };
 
   const data = await getSheets(googleAuth, params);

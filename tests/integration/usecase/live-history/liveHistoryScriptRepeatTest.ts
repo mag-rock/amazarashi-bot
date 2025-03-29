@@ -9,7 +9,7 @@ async function doTest(): Promise<void> {
 		console.log('USE_TWITTER_MOCK is not true.');
 		return;
 	} else {
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < 30; i++) {
 			try {
 				const result = await execute();
 				if (result === 'ALREADY_POSTED') {
