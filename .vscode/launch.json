@@ -8,7 +8,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "firestoreCrudTest",
-			"program": "${workspaceFolder}/tests/unit/infrastructure/database/firestoreCrud.test.ts",
+			"program": "${workspaceFolder}/tests/integration/usecase/infrastructure/database/firestoreCrud.test.ts",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -24,7 +24,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "spreadsheetApiTest",
-			"program": "${workspaceFolder}/tests/unit/infrastructure/spreadsheet/spreadsheetApi.test.ts",
+			"program": "${workspaceFolder}/tests/integration/usecase/infrastructure/spreadsheet/spreadsheetApi.test.ts",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -40,7 +40,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "twitterApiTest",
-			"program": "${workspaceFolder}/tests/unit/infrastructure/twitter/twitterApi.test.ts",
+			"program": "${workspaceFolder}/tests/integration/usecase/infrastructure/twitter/twitterApi.test.ts",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -56,7 +56,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "quizLogicTest",
-			"program": "${workspaceFolder}/tests/unit/domain/services/quiz/quizLogic.test.ts",
+			"program": "${workspaceFolder}/tests/unit/domain/quiz/quizLogic.test.ts",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -72,7 +72,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "karutaScriptTest",
-			"program": "${workspaceFolder}/tests/unit/domain/services/karuta/karutaScriptTest.ts",
+			"program": "${workspaceFolder}/tests/integration/usecase/karuta/karutaScriptTest.ts",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -89,7 +89,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "liveHistoryScriptTest",
-			"program": "${workspaceFolder}/tests/unit/domain/services/live-history/liveHistoryScriptTest.ts",
+			"program": "${workspaceFolder}/tests/integration/usecase/live-history/liveHistoryScriptTest.ts",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -106,7 +106,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "karutaScriptRepeatTest",
-			"program": "${workspaceFolder}/tests/unit/domain/services/karuta/karutaScriptRepeatTest.ts",
+			"program": "${workspaceFolder}/tests/integration/usecase/karuta/karutaScriptRepeatTest.ts",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -122,7 +122,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "liveHistoryScriptRepeatTest",
-			"program": "${workspaceFolder}/tests/unit/domain/services/live-history/liveHistoryScriptRepeatTest.ts",
+			"program": "${workspaceFolder}/tests/integration/usecase/live-history/liveHistoryScriptRepeatTest.ts",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
