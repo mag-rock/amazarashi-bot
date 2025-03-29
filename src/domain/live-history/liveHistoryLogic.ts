@@ -40,6 +40,48 @@ function makeLiveHistory(rows: SheetRows, songId: string, songInfo: string[] | n
 }
 
 /**
+ * ツアー情報のテキストをTwitterの文字数制限に合わせて分割する
+ * @param tourTexts ツアー情報のテキスト配列
+ * @returns ツイート用の分割されたテキスト配列
+ */
+export function splitTourTextsIntoTweets(tourTexts: string[]): string[] {
+  const posts: string[] = [];
+  
+  // Twitterの制限に収まるようにツアー情報を分割
+  let currentPost = '';
+  // Twitterの重み付け文字数を考慮した分割
+  const MAX_WEIGHTED_LENGTH = 280; // 現在のTwitterの文字数制限
+  
+  for (const tourText of tourTexts) {
+    // 現在のポストに追加したテキストを用意
+    const tentativePost = currentPost ? `${currentPost}\n\n${tourText}` : tourText;
+    
+    // twitter-textを使って文字数をチェック
+    const parsedTweet = twitterText.parseTweet(tentativePost);
+    
+    if (parsedTweet.weightedLength > MAX_WEIGHTED_LENGTH && currentPost) {
+      // 重み付け文字数が制限を超えるなら、現在のポストを確定し、新しいポストを開始
+      posts.push(currentPost);
+      currentPost = tourText;
+    } else {
+      // 制限内なら、ポストに追加
+      currentPost = tentativePost;
+    }
+  }
+  
+  // 最後のポストがあれば追加
+  if (currentPost) {
+    posts.push(currentPost);
+  }
+  
+  // TODO: 単体で長すぎるテキストの場合、そのまま1つのツイートとして返してしまうため、
+  // 実際のユースケースでは280文字を超えるような長いテキストが単体で渡されないようにする必要がある
+  // 今後の改善として、単体テキストも分割できるように機能を拡張することを検討する
+  
+  return posts;
+}
+
+/**
  * ライブ履歴情報を投稿用のテキストに変換する
  * @param liveHistory ライブ履歴情報
  * @returns 投稿用テキストの配列（複数ツイートに分割）
@@ -121,32 +163,9 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
     tourTexts.push(tourText);
   });
   
-  // Twitterの制限に収まるようにツアー情報を分割
-  let currentPost = '';
-  // Twitterの重み付け文字数を考慮した分割
-  const MAX_WEIGHTED_LENGTH = 280; // 現在のTwitterの文字数制限
-  
-  for (const tourText of tourTexts) {
-    // 現在のポストに追加したテキストを用意
-    const tentativePost = currentPost ? `${currentPost}\n\n${tourText}` : tourText;
-    
-    // twitter-textを使って文字数をチェック
-    const parsedTweet = twitterText.parseTweet(tentativePost);
-    
-    if (parsedTweet.weightedLength > MAX_WEIGHTED_LENGTH && currentPost) {
-      // 重み付け文字数が制限を超えるなら、現在のポストを確定し、新しいポストを開始
-      posts.push(currentPost);
-      currentPost = tourText;
-    } else {
-      // 制限内なら、ポストに追加
-      currentPost = tentativePost;
-    }
-  }
-  
-  // 最後のポストがあれば追加
-  if (currentPost) {
-    posts.push(currentPost);
-  }
+  // ツアー情報をツイートに分割して追加
+  const tourPosts = splitTourTextsIntoTweets(tourTexts);
+  posts.push(...tourPosts);
 
   return posts;
 }
