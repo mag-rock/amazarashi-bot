@@ -16,7 +16,7 @@ info(`アプリケーションを起動しました`, {
 /**
  * カルタクイズ用のHTTP関数
  */
-functions.http('helloHttp', async (req: Request, res: Response) => {
+functions.http('karuta', async (req: Request, res: Response) => {
   try {
     info(`カルタクイズリクエストを受信しました`, {
       method: req.method,
