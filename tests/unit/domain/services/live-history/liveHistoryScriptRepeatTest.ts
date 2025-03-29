@@ -1,6 +1,6 @@
 import { execute } from '@/application/usecase/live-history/liveHistoryScript';
-import { deleteDocumentsCreatedBy } from '@/infrastructure/database/firestoreCrud';
 import { getDayJsWithTimeZone } from '@/infrastructure/config/configLoader';
+import { deleteDocumentsCreatedBy } from '@/infrastructure/database/firestoreCrud';
 
 console.log(`Running on Node.js version: ${process.version}`);
 
@@ -9,12 +9,12 @@ async function doTest(): Promise<void> {
 		console.log('USE_TWITTER_MOCK is not true.');
 		return;
 	} else {
-		for (let i = 0; i < 30; i++) {
+		for (let i = 0; i < 5; i++) {
 			try {
 				const result = await execute();
 				if (result === 'FINISHED') {
 					const todayStr = getDayJsWithTimeZone().format('YYYY-MM-DD');
-					await deleteDocumentsCreatedBy('quiz', todayStr);
+					await deleteDocumentsCreatedBy('live_history', todayStr);
 				}
 				console.log('Success to post tweet.');
 			} catch (error) {
