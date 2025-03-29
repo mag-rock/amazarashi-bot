@@ -47,8 +47,8 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   const posts: string[] = [];
 
   // 最初のツイート：曲名と各種カウント情報
-  let firstPost = `『${liveHistory.title}』のライブ履歴\n`;
-  firstPost += `演奏回数：${liveHistory.performanceCount}回`;
+  let firstPost = `『${liveHistory.title}』のライブ演奏履歴\n`;
+  firstPost += `総演奏回数：${liveHistory.performanceCount}回`;
   
   if (liveHistory.setlistCount !== undefined) {
     firstPost += `\nセトリ入り公演数：${liveHistory.setlistCount}公演`;
@@ -59,15 +59,6 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   }
   
   posts.push(firstPost);
-
-  // TODO: 一つのツアー別ライブ履歴が140字を超える場合の対応が必要
-  // - ツアー名が長い場合の省略
-  // - 会場名の省略
-  // - 日付フォーマットの短縮
-  // - 必要に応じて分割投稿
-  // TODO: 日付@会場の表記が見づらい問題への対応が必要
-  // - 日付のフォーマットを YYYY.MM.DD に変更
-  // - 例: 2023.12.24@Zepp Haneda / 2023.12.25@Zepp DiverCity
 
   // 2つ目以降のツイート：ツアー別ライブ履歴
   // ツアーIDで分類
@@ -115,14 +106,15 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
       // 公演数が1の場合: ツアー名(日付@会場)
       tourText = `${tourName}（${performances[0].date}@${performances[0].venue}）`;
     } else if (performances.length <= 3) {
-      // 公演数が2または3の場合: ツアー名(日付, 日付, 日付)
-      const dates = performances.map(p => p.date);
-      tourText = `${tourName}（${dates.join(', ')}）`;
+      // 公演数が2または3の場合: ツアー名(日付@会場, 日付@会場, 日付@会場)
+      const venueTexts = performances.map(p => `${p.date}@${p.venue}`);
+      tourText = `${tourName}（${venueTexts.join(', ')}）`;
     } else {
-      // 公演数が4以上の場合: ツアー名(最初の日付 - 最後の日付)
+      // 公演数が4以上の場合: ツアー名(最初の日付 - 最後の日付 n回)
       const firstDate = performances[0].date;
       const lastDate = performances[performances.length - 1].date;
-      tourText = `${tourName}（${firstDate} - ${lastDate}）`;
+      const count = performances.length;
+      tourText = `${tourName}（${firstDate} - ${lastDate} ${count}回）`;
     }
     
     tourTexts.push(tourText);
