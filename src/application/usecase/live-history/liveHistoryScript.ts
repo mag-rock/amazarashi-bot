@@ -27,10 +27,10 @@ export async function execute(): Promise<string | void> {
 
     // 既に投稿済みかチェック
     const docData = await getTodaysLiveHistory();
-    if (docData.length > 0) {
-      info('本日のライブ履歴は既に投稿済みです');
-      return 'ALREADY_POSTED';
-    }
+    // if (docData.length > 0) {
+    //   info('本日のライブ履歴は既に投稿済みです');
+    //   return 'ALREADY_POSTED';
+    // }
 
     // 曲一覧の取得と処理
     const songList = await getSongList();
