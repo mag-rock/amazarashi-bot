@@ -100,7 +100,7 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   let firstPost = `『${liveHistory.title}』のライブ演奏履歴\n`;
 
   firstPost += `■ツアー、単発公演のセトリ入り：${liveHistory.setlistCountOfTour ?? 0}回`;
-  firstPost += `\n■フェスのセトリ入り：${liveHistory.setlistCountOfFes ?? 0}回`;
+  firstPost += `\n■フェス、対バンのセトリ入り：${liveHistory.setlistCountOfFes ?? 0}回`;
   firstPost += `\n■総演奏回数：${liveHistory.performanceCount}回`;
 
   posts.push(firstPost);
