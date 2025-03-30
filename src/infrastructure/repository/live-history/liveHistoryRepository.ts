@@ -96,7 +96,7 @@ export async function fetchPerformancesForSong(songId: string): Promise<Performa
   const config = getAppConfig();
   const params = {
     spreadsheetId: config.spreadsheetId,
-    targetRange: 'ライブ演奏一覧!C2:O',
+    targetRange: 'ライブ演奏一覧!C2:P',
   };
 
   const sheet = await getSheets(googleAuth, params);
@@ -132,12 +132,15 @@ function parseSheetRowsOfSongList(rows: SheetRows): SongRecord[] {
  */
 function parseSheetRowsOfPerformanceList(rows: SheetRows): PerformanceRecord[] {
   return rows.map((row) => ({
-    tourId: row[0], // C列-2=A列: ツアーID
-    liveId: row[1], // D列-2=B列: ライブID
-    date: row[3], // F列-2=D列: 日付
-    liveName: row[4], // G列-2=E列: ライブ名
-    venue: row[6], // I列-2=G列: 会場
-    songId: row[9], // L列-2=J列: 曲ID
-    isSetlistPublic: row[11] === 'TRUE', // N列-2=L列: セトリ解禁済
+    tourId: row[0], // C列: ツアーID
+    liveId: row[1], // D列: ライブID
+    tourType: row[2], // E列: 公演種別
+    domestic: row[3], // F列: 国内・海外
+    date: row[4], // G列: 日付
+    liveName: row[5], // H列: ライブ名
+    venue: row[7], // J列: 会場
+    region: row[8], // K列: 地域
+    songId: row[11], // N列: 曲ID
+    isSetlistPublic: row[13] === 'TRUE', // P列: セトリ解禁済
   }));
 }

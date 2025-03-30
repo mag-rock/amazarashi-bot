@@ -60,13 +60,16 @@ export interface SongRecord {
  * 演奏情報のレコード型
  */
 export interface PerformanceRecord {
-  tourId: string;
-  liveId: string;
-  date: string;
-  liveName: string;
-  venue: string;
-  songId: string;
-  isSetlistPublic: boolean;
+  tourId: string; // ツアーID
+  liveId: string; // ライブID
+  tourType: string; // 公演種別（ツアー、フェス等）
+  domestic: string; // 国内・海外
+  date: string; // 日付
+  liveName: string; // ツアー名
+  venue: string; // 会場
+  region: string; // 地域（都道府県）
+  songId: string; // 曲ID
+  isSetlistPublic: boolean; // セトリ解禁済
 }
 
 /**
@@ -143,7 +146,10 @@ export interface LivePerformance {
   liveName: string;
   date: string;
   venue: string;
-  tourId?: string; // ツアーID追加
+  tourId?: string;
+  tourType?: string;
+  domestic?: string;
+  region?: string;
 }
 
 /**

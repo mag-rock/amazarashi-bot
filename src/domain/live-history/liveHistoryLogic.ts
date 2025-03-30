@@ -13,10 +13,10 @@ import twitterText from 'twitter-text';
 function makeLiveHistory(
   performances: PerformanceRecord[],
   songId: string,
-  songRecord: SongRecord | null
+  songRecord: SongRecord
 ): LiveHistory {
   // 曲名を取得
-  const title = performances[0].songId;
+  const title = songRecord?.title;
 
   // 各行から必要な情報を抽出してパフォーマンス情報を作成
   const livePerformances: LivePerformance[] = performances.map((record) => ({
@@ -25,6 +25,9 @@ function makeLiveHistory(
     liveName: record.liveName,
     date: record.date,
     venue: record.venue,
+    tourType: record.tourType,
+    domestic: record.domestic,
+    region: record.region,
   }));
 
   const liveHistory: LiveHistory = {
@@ -146,7 +149,8 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
 
     if (performances.length === 1) {
       // 公演数が1の場合: ツアー名(日付)
-      tourText = `${tourName}（${performances[0].date}）`;
+      const perf = performances[0];
+      tourText = `${tourName}（${perf.date}）`;
     } else if (performances.length <= 3) {
       // 公演数が2または3の場合: ツアー名(日付, 日付, 日付)
       const venueTexts = performances.map((p) => `${p.date}`);
@@ -179,7 +183,7 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
 async function liveHistoryOf(
   performances: PerformanceRecord[],
   songId: string,
-  songRecord: SongRecord | null = null
+  songRecord: SongRecord
 ): Promise<LiveHistory | null> {
   return tryCatch(async () => {
     if (!performances || performances.length === 0) {
