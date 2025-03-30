@@ -2,7 +2,14 @@ import { getAppConfig } from '@/config/appConfig';
 import { getDayJsWithTimeZone } from '@/infrastructure/config/configLoader';
 import { createDocument, getDocumentsCreatedBy } from '@/infrastructure/database/firestoreCrud';
 import { authorizeGoogleApis, getSheets } from '@/infrastructure/spreadsheet/spreadsheetApi';
-import { LiveHistoryDocument, SheetRows, TweetPost, TweetResponse } from '@/types';
+import {
+  LiveHistoryDocument,
+  PerformanceRecord,
+  SheetRows,
+  SongRecord,
+  TweetPost,
+  TweetResponse,
+} from '@/types';
 import { info } from '@/utils/logger';
 
 /**
@@ -67,7 +74,7 @@ export async function getTodaysLiveHistory(): Promise<LiveHistoryDocument[]> {
  * スプレッドシートから曲一覧を取得する
  * @returns 曲一覧のデータ
  */
-export async function getSongList(): Promise<SheetRows> {
+export async function fetchSongList(): Promise<SongRecord[]> {
   const googleAuth = await authorizeGoogleApis();
   const config = getAppConfig();
   const params = {
@@ -75,7 +82,8 @@ export async function getSongList(): Promise<SheetRows> {
     targetRange: '曲一覧!A2:H', // 曲ID～セトリ入り公演数（フェスを除く）まで
   };
 
-  return getSheets(googleAuth, params);
+  const sheet = await getSheets(googleAuth, params);
+  return parseSheetRowsOfSongList(sheet);
 }
 
 /**
@@ -83,7 +91,7 @@ export async function getSongList(): Promise<SheetRows> {
  * @param songId 曲ID
  * @returns 演奏一覧のデータ
  */
-export async function getPerformancesForSong(songId: string): Promise<SheetRows> {
+export async function fetchPerformancesForSong(songId: string): Promise<PerformanceRecord[]> {
   const googleAuth = await authorizeGoogleApis();
   const config = getAppConfig();
   const params = {
@@ -91,8 +99,45 @@ export async function getPerformancesForSong(songId: string): Promise<SheetRows>
     targetRange: 'ライブ演奏一覧!C2:O',
   };
 
-  const data = await getSheets(googleAuth, params);
-  // songIdに一致する演奏のみフィルタリング（J列=9が曲ID列）
-  // セトリ解禁済=TRUEの演奏のみに絞り込み（L列=11がセトリ解禁済列）
-  return data.filter((row) => row[9] === songId && row[11] === 'TRUE');
+  const sheet = await getSheets(googleAuth, params);
+  const performances = parseSheetRowsOfPerformanceList(sheet);
+
+  return performances.filter(
+    (performance) => performance.songId === songId && performance.isSetlistPublic
+  );
+}
+
+/**
+ * スプレッドシートの曲一覧データをSongRecord型に変換する
+ * @param rows スプレッドシートの行データ
+ * @returns SongRecord型の配列
+ */
+function parseSheetRowsOfSongList(rows: SheetRows): SongRecord[] {
+  return rows.map((row) => ({
+    songId: row[0], // A列: 曲ID
+    title: row[1], // B列: 曲名
+    artist: row[2], // C列: アーティスト
+    album: row[3], // D列: アルバム
+    releaseDate: row[4], // E列: リリース日
+    playCount: Number(row[5]), // F列: 演奏回数
+    setlistCountOfTour: Number(row[6]), // G列: セトリ入り公演数（ツアー、単発）
+    setlistCountOfFes: Number(row[7]), // H列: セトリ入り公演数（フェス）
+  }));
+}
+
+/**
+ * スプレッドシートの演奏一覧データをPerformanceRecord型に変換する
+ * @param rows スプレッドシートの行データ
+ * @returns PerformanceRecord型の配列
+ */
+function parseSheetRowsOfPerformanceList(rows: SheetRows): PerformanceRecord[] {
+  return rows.map((row) => ({
+    tourId: row[0], // C列-2=A列: ツアーID
+    liveId: row[1], // D列-2=B列: ライブID
+    date: row[3], // F列-2=D列: 日付
+    liveName: row[4], // G列-2=E列: ライブ名
+    venue: row[6], // I列-2=G列: 会場
+    songId: row[9], // L列-2=J列: 曲ID
+    isSetlistPublic: row[11] === 'TRUE', // N列-2=L列: セトリ解禁済
+  }));
 }

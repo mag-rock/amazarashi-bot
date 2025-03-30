@@ -43,6 +43,33 @@ export interface QuizTemplate {
 export type SheetRows = any[][];
 
 /**
+ * 曲情報のレコード型
+ */
+export interface SongRecord {
+  songId: string;
+  title: string;
+  artist: string;
+  album: string;
+  releaseDate: string;
+  playCount: number;
+  setlistCountOfTour: number;
+  setlistCountOfFes: number;
+}
+
+/**
+ * 演奏情報のレコード型
+ */
+export interface PerformanceRecord {
+  tourId: string;
+  liveId: string;
+  date: string;
+  liveName: string;
+  venue: string;
+  songId: string;
+  isSetlistPublic: boolean;
+}
+
+/**
  * Firestoreに保存されるクイズドキュメント
  */
 export interface QuizDocument {
