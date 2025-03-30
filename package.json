@@ -16,8 +16,9 @@
 	},
 	"scripts": {
 		"start": "functions-framework --target=liveHistory --source=dist",
-		"start karuta": "functions-framework --target=karuta --source=dist",
-		"start liveHistory": "functions-framework --target=liveHistory --source=dist",
+		"start:karuta": "functions-framework --target=karuta --source=dist",
+		"start:liveHistory": "functions-framework --target=liveHistory --source=dist",
+		"start:health": "functions-framework --target=health --source=dist",
 		"test": "NODE_OPTIONS=--experimental-vm-modules jest",
 		"test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.js",
 		"test:karuta": "ts-node -r tsconfig-paths/register tests/unit/domain/services/karuta/karutaScriptRepeatTest.ts",
