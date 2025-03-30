@@ -1,3 +1,6 @@
+// module-alias のセットアップ
+import 'module-alias/register';
+
 import * as functions from '@google-cloud/functions-framework';
 import { execute as executeKaruta } from './application/usecase/karutaScript';
 import { execute as executeLiveHistory } from './application/usecase/live-history/liveHistoryScript';
@@ -56,4 +59,14 @@ functions.http('liveHistory', async (req: Request, res: Response) => {
 
     res.status(500).send(`Error: ${err instanceof Error ? err.message : String(err)}`);
   }
+});
+
+functions.http('health', async (req: Request, res: Response) => {
+  info(`ヘルスチェックリクエストを受信しました`, {
+    method: req.method,
+    path: req.path,
+    query: req.query,
+  });
+
+  res.status(200).send('The server is running.');
 });

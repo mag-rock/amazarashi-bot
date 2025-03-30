@@ -54,7 +54,7 @@ export function splitTourTextsIntoTweets(tourTexts: string[]): string[] {
 
   for (const tourText of tourTexts) {
     // 現在のポストに追加したテキストを用意
-    const tentativePost = currentPost ? `${currentPost}\n${tourText}` : tourText;
+    const tentativePost = currentPost ? `${currentPost}\n\n${tourText}` : tourText;
 
     // twitter-textを使って文字数をチェック
     const parsedTweet = twitterText.parseTweet(tentativePost);
@@ -92,9 +92,9 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   // 最初のツイート：曲名と各種カウント情報
   let firstPost = `『${liveHistory.title}』のライブ演奏履歴\n`;
 
-  firstPost += `ツアー、単発公演のセトリ入り：${liveHistory.setlistCountOfTour ?? 0}回`;
-  firstPost += `\nフェスのセトリ入り：${liveHistory.setlistCountOfFes ?? 0}回`;
-  firstPost += `\n総演奏回数：${liveHistory.performanceCount}回`;
+  firstPost += `■ツアー、単発公演のセトリ入り：${liveHistory.setlistCountOfTour ?? 0}回`;
+  firstPost += `\n■フェスのセトリ入り：${liveHistory.setlistCountOfFes ?? 0}回`;
+  firstPost += `\n■総演奏回数：${liveHistory.performanceCount}回`;
 
   posts.push(firstPost);
 
@@ -141,11 +141,11 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
     let tourText = '';
 
     if (performances.length === 1) {
-      // 公演数が1の場合: ツアー名(日付@会場)
-      tourText = `${tourName}（${performances[0].date}@${performances[0].venue}）`;
+      // 公演数が1の場合: ツアー名(日付)
+      tourText = `${tourName}（${performances[0].date}）`;
     } else if (performances.length <= 3) {
-      // 公演数が2または3の場合: ツアー名(日付@会場, 日付@会場, 日付@会場)
-      const venueTexts = performances.map((p) => `${p.date}@${p.venue}`);
+      // 公演数が2または3の場合: ツアー名(日付, 日付, 日付)
+      const venueTexts = performances.map((p) => `${p.date}`);
       tourText = `${tourName}（${venueTexts.join(', ')}）`;
     } else {
       // 公演数が4以上の場合: ツアー名(最初の日付 - 最後の日付 n回)
