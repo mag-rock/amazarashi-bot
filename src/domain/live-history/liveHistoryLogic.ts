@@ -58,7 +58,7 @@ export function splitTourTextsIntoTweets(tourTexts: string[]): string[] {
 
   for (const tourText of tourTexts) {
     // 現在のポストに追加したテキストを用意
-    const tentativePost = currentPost ? `${currentPost}\n\n${tourText}` : tourText;
+    const tentativePost = currentPost ? `${currentPost}\n${tourText}` : tourText;
 
     // twitter-textを使って文字数をチェック
     const parsedTweet = twitterText.parseTweet(tentativePost);
