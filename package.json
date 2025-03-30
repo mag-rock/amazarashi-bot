@@ -8,10 +8,17 @@
 		"dayjs": "^1.11.13",
 		"google-auth-library": "^9.15.0",
 		"googleapis": "^144.0.0",
+		"module-alias": "^2.2.3",
 		"twitter-text": "^3.1.0"
 	},
+	"_moduleAliases": {
+		"@": "dist"
+	},
 	"scripts": {
-		"start": "functions-framework --target=helloHttp --source=dist",
+		"start": "functions-framework --target=liveHistory --source=dist",
+		"start:karuta": "functions-framework --target=karuta --source=dist",
+		"start:liveHistory": "functions-framework --target=liveHistory --source=dist",
+		"start:health": "functions-framework --target=health --source=dist",
 		"test": "NODE_OPTIONS=--experimental-vm-modules jest",
 		"test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.js",
 		"test:karuta": "ts-node -r tsconfig-paths/register tests/unit/domain/services/karuta/karutaScriptRepeatTest.ts",
