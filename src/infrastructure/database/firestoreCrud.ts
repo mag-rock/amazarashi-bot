@@ -1,80 +1,177 @@
+import { createNotFoundError, tryCatchRethrow } from '@/utils/errorHandler';
+import { info } from '@/utils/logger';
+import { DocumentData } from '@google-cloud/firestore';
 import firestore from './firestore';
-import { DocumentData, DocumentReference, QuerySnapshot } from '@google-cloud/firestore';
 
-export async function createDocument(collection: string, docId: string, data: Record<string, any>): Promise<void> {
-	const docRef = firestore.collection(collection).doc(docId);
-	await docRef.set(data);
-	console.log(`Document ${docId} created in collection ${collection}`);
+/**
+ * Firestoreにドキュメントを作成する
+ * @param collection コレクション名
+ * @param docId ドキュメントID
+ * @param data ドキュメントデータ
+ */
+export async function createDocument(
+  collection: string,
+  docId: string,
+  data: Record<string, any>
+): Promise<void> {
+  return tryCatchRethrow(async () => {
+    const docRef = firestore.collection(collection).doc(docId);
+    await docRef.set(data);
+    info(`ドキュメントを作成しました`, { collection, docId });
+  }, `ドキュメント作成中にエラーが発生しました: ${collection}/${docId}`);
 }
 
-export async function readDocument(collection: string, docId: string): Promise<DocumentData | null> {
-	const docRef = firestore.collection(collection).doc(docId);
-	const doc = await docRef.get();
-	if (!doc.exists) {
-		console.log(`No document found with ID ${docId} in collection ${collection}`);
-		return null;
-	}
-	console.log(`Document data:`, doc.data());
-	return doc.data() || null;
+/**
+ * Firestoreからドキュメントを読み取る
+ * @param collection コレクション名
+ * @param docId ドキュメントID
+ * @returns ドキュメントデータまたはnull（存在しない場合）
+ */
+export async function readDocument(
+  collection: string,
+  docId: string
+): Promise<DocumentData | null> {
+  return tryCatchRethrow(async () => {
+    const docRef = firestore.collection(collection).doc(docId);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      info(`ドキュメントが見つかりませんでした`, { collection, docId });
+      return null;
+    }
+
+    info(`ドキュメントを取得しました`, { collection, docId });
+    return doc.data() || null;
+  }, `ドキュメント読み取り中にエラーが発生しました: ${collection}/${docId}`);
 }
 
-export async function updateDocument(collection: string, docId: string, data: Record<string, any>): Promise<void> {
-	const docRef = firestore.collection(collection).doc(docId);
-	await docRef.update(data);
-	console.log(`Document ${docId} updated in collection ${collection}`);
+/**
+ * Firestoreのドキュメントを更新する
+ * @param collection コレクション名
+ * @param docId ドキュメントID
+ * @param data 更新データ
+ */
+export async function updateDocument(
+  collection: string,
+  docId: string,
+  data: Record<string, any>
+): Promise<void> {
+  return tryCatchRethrow(async () => {
+    const docRef = firestore.collection(collection).doc(docId);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      throw createNotFoundError(`ドキュメントが存在しません: ${collection}/${docId}`);
+    }
+
+    await docRef.update(data);
+    info(`ドキュメントを更新しました`, { collection, docId });
+  }, `ドキュメント更新中にエラーが発生しました: ${collection}/${docId}`);
 }
 
+/**
+ * Firestoreからドキュメントを削除する
+ * @param collection コレクション名
+ * @param docId ドキュメントID
+ */
 export async function deleteDocument(collection: string, docId: string): Promise<void> {
-	const docRef = firestore.collection(collection).doc(docId);
-	await docRef.delete();
-	console.log(`Document ${docId} deleted from collection ${collection}`);
+  return tryCatchRethrow(async () => {
+    const docRef = firestore.collection(collection).doc(docId);
+    const doc = await docRef.get();
+
+    if (!doc.exists) {
+      throw createNotFoundError(`ドキュメントが存在しません: ${collection}/${docId}`);
+    }
+
+    await docRef.delete();
+    info(`ドキュメントを削除しました`, { collection, docId });
+  }, `ドキュメント削除中にエラーが発生しました: ${collection}/${docId}`);
 }
 
-export async function getAllDocuments(collection: string): Promise<Array<DocumentData & { id: string }>> {
-	const collectionRef = firestore.collection(collection);
-	const snapshot = await collectionRef.get();
+/**
+ * コレクション内の全ドキュメントを取得する
+ * @param collection コレクション名
+ * @returns ドキュメントの配列
+ */
+export async function getAllDocuments(
+  collection: string
+): Promise<Array<DocumentData & { id: string }>> {
+  return tryCatchRethrow(async () => {
+    const collectionRef = firestore.collection(collection);
+    const snapshot = await collectionRef.get();
 
-	if (snapshot.empty) {
-		console.log(`コレクション ${collection} にドキュメントが存在しません。`);
-		return [];
-	}
+    if (snapshot.empty) {
+      info(`コレクションにドキュメントが存在しません`, { collection });
+      return [];
+    }
 
-	const documents: Array<DocumentData & { id: string }> = [];
-	snapshot.forEach(doc => {
-		documents.push({ id: doc.id, ...doc.data() });
-	});
+    const documents: Array<DocumentData & { id: string }> = [];
+    snapshot.forEach((doc) => {
+      documents.push({ id: doc.id, ...doc.data() });
+    });
 
-	console.log(`コレクション ${collection} の全ドキュメントを取得しました。`);
-	return documents;
+    info(`コレクションの全ドキュメントを取得しました`, { collection, count: documents.length });
+    return documents;
+  }, `コレクションの全ドキュメント取得中にエラーが発生しました: ${collection}`);
 }
 
-export async function getDocumentsCreatedBy(collection: string, day: string): Promise<Array<DocumentData & { id: string }>> {
-	const collectionRef = firestore.collection(collection);
-	const snapshot = await collectionRef.where('date', '==', day).get();
+/**
+ * 指定された日付で作成されたドキュメントを取得する
+ * @param collection コレクション名
+ * @param day 日付文字列
+ * @returns ドキュメントの配列
+ */
+export async function getDocumentsCreatedBy(
+  collection: string,
+  day: string
+): Promise<Array<DocumentData & { id: string }>> {
+  return tryCatchRethrow(async () => {
+    const collectionRef = firestore.collection(collection);
+    const snapshot = await collectionRef.where('date', '==', day).get();
 
-	if (snapshot.empty) {
-		console.log(`コレクション ${collection} に該当するドキュメントが存在しません。`);
-		return [];
-	}
+    if (snapshot.empty) {
+      info(`指定された日付のドキュメントが存在しません`, { collection, day });
+      return [];
+    }
 
-	const documents: Array<DocumentData & { id: string }> = [];
-	snapshot.forEach(doc => {
-		documents.push({ id: doc.id, ...doc.data() });
-	});
+    const documents: Array<DocumentData & { id: string }> = [];
+    snapshot.forEach((doc) => {
+      documents.push({ id: doc.id, ...doc.data() });
+    });
 
-	console.log(`コレクション ${collection} の指定された日付のドキュメントを取得しました。`);
-	return documents;
+    info(`指定された日付のドキュメントを取得しました`, {
+      collection,
+      day,
+      count: documents.length,
+    });
+    return documents;
+  }, `指定された日付のドキュメント取得中にエラーが発生しました: ${collection}/${day}`);
 }
 
+/**
+ * 指定された日付で作成されたドキュメントを削除する
+ * @param collection コレクション名
+ * @param day 日付文字列
+ */
 export async function deleteDocumentsCreatedBy(collection: string, day: string): Promise<void> {
-	const collectionRef = firestore.collection(collection);
-	const snapshot = await collectionRef.where('date', '==', day).get();
-	const batch = firestore.batch();
+  return tryCatchRethrow(async () => {
+    const collectionRef = firestore.collection(collection);
+    const snapshot = await collectionRef.where('date', '==', day).get();
 
-	snapshot.forEach((doc) => {
-		batch.delete(doc.ref);
-	});
+    if (snapshot.empty) {
+      info(`指定された日付のドキュメントが存在しません`, { collection, day });
+      return;
+    }
 
-	await batch.commit();
-	console.log(`コレクション ${collection} の指定された日付のドキュメントを削除しました。`);
-} 
+    const batch = firestore.batch();
+    let count = 0;
+
+    snapshot.forEach((doc) => {
+      batch.delete(doc.ref);
+      count++;
+    });
+
+    await batch.commit();
+    info(`指定された日付のドキュメントを削除しました`, { collection, day, count });
+  }, `指定された日付のドキュメント削除中にエラーが発生しました: ${collection}/${day}`);
+}
