@@ -97,11 +97,13 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   const posts: string[] = [];
 
   // 最初のツイート：曲名と各種カウント情報
-  let firstPost = `『${liveHistory.title}』のライブ演奏履歴\n`;
+  let firstPost = `🎵 『${liveHistory.title}』のライブ演奏履歴\n\n`;
 
-  firstPost += `■ツアー、単発公演のセトリ入り：${liveHistory.setlistCountOfTour ?? 0}回`;
-  firstPost += `\n■フェス、対バンのセトリ入り：${liveHistory.setlistCountOfFes ?? 0}回`;
-  firstPost += `\n■総演奏回数：${liveHistory.performanceCount}回`;
+  firstPost += `📋 セトリ採用回数\n`;
+  firstPost += `　・ツアー/単発公演：${liveHistory.setlistCountOfTour ?? 0}回\n`;
+  firstPost += `　・フェス/対バン：${liveHistory.setlistCountOfFes ?? 0}回\n\n`;
+
+  firstPost += `🎤 演奏回数：${liveHistory.performanceCount}回`;
 
   posts.push(firstPost);
 
