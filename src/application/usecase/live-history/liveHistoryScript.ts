@@ -6,8 +6,8 @@ import {
 } from '@/domain/live-history/liveHistoryLogic';
 import { getDayJsWithTimeZone, getTwitterCredentials } from '@/infrastructure/config/configLoader';
 import {
-  getPerformancesForSong,
-  getSongList,
+  fetchPerformancesForSong,
+  fetchSongList,
   getTodaysLiveHistory,
   saveLiveHistoryResult,
 } from '@/infrastructure/repository/live-history/liveHistoryRepository';
@@ -33,7 +33,7 @@ export async function execute(): Promise<string | void> {
     // }
 
     // 曲一覧の取得と処理
-    const songList = await getSongList();
+    const songList = await fetchSongList();
     if (!songList || songList.length === 0) {
       throw new Error('曲一覧の取得に失敗しました');
     }
@@ -48,26 +48,30 @@ export async function execute(): Promise<string | void> {
 
     // 投稿対象曲の選定
     const selectedSong = selectRandomSong(songsWithLiveHistory);
-    const songId = selectedSong[0]; // A列=0が曲ID
-    const songName = selectedSong[1]; // B列=1が曲名
-    info(`選定された曲: ${songName}(${songId})`);
+    info(`選定された曲: ${selectedSong.title}(${selectedSong.songId})`);
 
     // 選定曲の演奏履歴取得
-    const performances = await getPerformancesForSong(songId);
+    const performances = await fetchPerformancesForSong(selectedSong.songId);
     if (!performances || performances.length === 0) {
-      throw new Error(`選定された曲(${songId})の演奏一覧が見つかりませんでした`);
+      throw new Error(`選定された曲(${selectedSong.songId})の演奏一覧が見つかりませんでした`);
     }
     info(`演奏一覧を取得しました: ${performances.length}件`);
 
     // ライブ履歴テンプレート作成
-    const liveHistory = await liveHistoryOf(performances, songId, selectedSong);
+    const liveHistory = await liveHistoryOf(performances, selectedSong.songId, selectedSong);
     if (!liveHistory) {
       throw new Error('ライブ履歴の取得に失敗しました');
     }
     const posts = formatLiveHistoryPosts(liveHistory);
 
     // Twitter投稿実行と結果保存
-    return await publishAndSaveTweets(posts, getTwitterCredentials(), songId, docData, todayStr);
+    return await publishAndSaveTweets(
+      posts,
+      getTwitterCredentials(),
+      selectedSong.songId,
+      docData,
+      todayStr
+    );
   }, 'ライブ履歴投稿実行中にエラーが発生しました');
 }
 

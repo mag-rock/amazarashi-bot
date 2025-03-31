@@ -1,67 +1,72 @@
-※重要：「ツアーID」という項目がC1
-ツアーID	ライブID	公演種別	日付	ツアー名	date	会場	曲順	曲名	曲ID	バリエーション	セトリ解禁済	ツアー最終公演日
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	5	つじつま合わせに生まれた僕等	87787		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	10	夏を待っていました	94676		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	15	カルマ	94700		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	9	爆弾の作り方	94703		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	13	コンビニ傘	104135		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	11	ワンルーム叙事詩	104136		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	12	奇跡	104140		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	4	アノミー	108117		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	7	ピアノ泥棒	108620		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	16	未来づくり	122094		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	8	冬が来る前に	122095		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	6	美しき思い出	122097		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	17	千年幸福論	122099		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	14	古いSF映画	122103		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	3	空っぽの空に潰される	122104		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	2	デスゲーム	122105		TRUE	-
-27ab3cb5	0b55ae90	ツアー	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	1	千年幸福論 ポエトリーリーディング	#N/A	朗読	TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	4	ムカデ	87786		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	6	つじつま合わせに生まれた僕等	87787		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	11	夏を待っていました	94676		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	16	カルマ	94700		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	10	爆弾の作り方	94703		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	14	コンビニ傘	104135		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	12	ワンルーム叙事詩	104136		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	13	奇跡	104140		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	5	アノミー	108117		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	8	ピアノ泥棒	108620		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	18	未来づくり	122094		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	9	冬が来る前に	122095		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	7	美しき思い出	122097		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	19	千年幸福論	122099		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	15	古いSF映画	122103		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	3	空っぽの空に潰される	122104		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	2	デスゲーム	122105		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	17	祈り	130995		TRUE	-
-27ab3cb5	90149c38	ツアー	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	1	千年幸福論 ポエトリーリーディング	#N/A	朗読	TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	4	ムカデ	87786		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	6	つじつま合わせに生まれた僕等	87787		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	11	夏を待っていました	94676		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	16	カルマ	94700		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	10	爆弾の作り方	94703		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	14	コンビニ傘	104135		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	12	ワンルーム叙事詩	104136		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	13	奇跡	104140		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	5	アノミー	108117		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	8	ピアノ泥棒	108620		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	18	未来づくり	122094		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	9	冬が来る前に	122095		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	7	美しき思い出	122097		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	19	千年幸福論	122099		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	15	古いSF映画	122103		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	3	空っぽの空に潰される	122104		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	2	デスゲーム	122105		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	17	祈り	130995		TRUE	-
-27ab3cb5	3bd4c9b7	ツアー	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	1	千年幸福論 ポエトリーリーディング	#N/A	朗読	TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	10	少年少女	87785		TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	9	光、再考	87788		TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	15	夏を待っていました	94676		TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	11	カルマ	94700		TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	13	隅田川	94701		TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	5	無題	94704		TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	1	ポエジー	104137		TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	7	逃避行	122100		TRUE	-
-88b1d8e8	57c760df	ツアー	2012/06/30	amazarashi LIVE 「ごめんなさい ちゃんといえるかな」	2012.06.30	OSAKA BIG CAT	4	空っぽの空に潰される	122104		TRUE	-
-```
+ツアーID	ライブID	公演種別	国内・海外	日付	ツアー名	date	会場	地域	曲順	曲名	曲ID	バリエーション	セトリ解禁済	ツアー最終公演日
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	1	千年幸福論 ポエトリーリーディング	#N/A	朗読	TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	2	デスゲーム	122105		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	3	空っぽの空に潰される	122104		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	4	アノミー	108117		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	5	つじつま合わせに生まれた僕等	87787		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	6	美しき思い出	122097		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	7	ピアノ泥棒	108620		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	8	冬が来る前に	122095		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	9	爆弾の作り方	94703		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	10	夏を待っていました	94676		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	11	ワンルーム叙事詩	104136		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	12	奇跡	104140		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	13	コンビニ傘	104135		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	14	古いSF映画	122103		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	15	カルマ	94700		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	16	未来づくり	122094		TRUE	-
+27ab3cb5	0b55ae90	ツアー	国内	2012/01/28	amazarashi LIVE 「千年幸福論」	2012.01.28	渋谷公会堂	東京都	17	千年幸福論	122099		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	1	千年幸福論 ポエトリーリーディング	#N/A	朗読	TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	2	デスゲーム	122105		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	3	空っぽの空に潰される	122104		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	4	ムカデ	87786		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	5	アノミー	108117		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	6	つじつま合わせに生まれた僕等	87787		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	7	美しき思い出	122097		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	8	ピアノ泥棒	108620		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	9	冬が来る前に	122095		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	10	爆弾の作り方	94703		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	11	夏を待っていました	94676		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	12	ワンルーム叙事詩	104136		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	13	奇跡	104140		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	14	コンビニ傘	104135		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	15	古いSF映画	122103		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	16	カルマ	94700		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	17	祈り	130995		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	18	未来づくり	122094		TRUE	-
+27ab3cb5	90149c38	ツアー	国内	2012/03/16	amazarashi LIVE 「千年幸福論」	2012.03.16	渋谷AX	東京都	19	千年幸福論	122099		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	1	千年幸福論 ポエトリーリーディング	#N/A	朗読	TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	2	デスゲーム	122105		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	3	空っぽの空に潰される	122104		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	4	ムカデ	87786		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	5	アノミー	108117		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	6	つじつま合わせに生まれた僕等	87787		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	7	美しき思い出	122097		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	8	ピアノ泥棒	108620		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	9	冬が来る前に	122095		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	10	爆弾の作り方	94703		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	11	夏を待っていました	94676		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	12	ワンルーム叙事詩	104136		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	13	奇跡	104140		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	14	コンビニ傘	104135		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	15	古いSF映画	122103		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	16	カルマ	94700		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	17	祈り	130995		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	18	未来づくり	122094		TRUE	-
+27ab3cb5	3bd4c9b7	ツアー	国内	2012/03/23	amazarashi LIVE 「千年幸福論」	2012.03.23	大阪umeda AKASO	大阪府	19	千年幸福論	122099		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	1	冬が来る前に	122095		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	2	初雪	87784		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	3	ワンルーム叙事詩	104136		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	4	奇跡	104140		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	5	空っぽの空に潰される	122104		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	6	カラス	130997		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	7	さくら	108618		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	8	ピアノ泥棒	108620		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	9	つじつま合わせに生まれた僕等	87787		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	10	ラブソング	131004		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	11	夏を待っていました	94676		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	12	ハルルソラ	130996		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	13	美しき思い出	122097		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	14	真っ白な世界	104134		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	15	クリスマス	104139		TRUE	-
+7ca9d1fe	42aeae0c	ツアー	国内	2012/11/30	amazarashi LIVE 「0.7」	2012.11.30	渋谷公会堂	東京都	16	終わりで始まり	155305	アコースティック	TRUE	-

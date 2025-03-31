@@ -43,6 +43,36 @@ export interface QuizTemplate {
 export type SheetRows = any[][];
 
 /**
+ * 曲情報のレコード型
+ */
+export interface SongRecord {
+  songId: string;
+  title: string;
+  artist: string;
+  album: string;
+  releaseDate: string;
+  playCount: number;
+  setlistCountOfTour: number;
+  setlistCountOfFes: number;
+}
+
+/**
+ * 演奏情報のレコード型
+ */
+export interface PerformanceRecord {
+  tourId: string; // ツアーID
+  liveId: string; // ライブID
+  tourType: string; // 公演種別（ツアー、フェス等）
+  domestic: string; // 国内・海外
+  date: string; // 日付
+  liveName: string; // ツアー名
+  venue: string; // 会場
+  region: string; // 地域（都道府県）
+  songId: string; // 曲ID
+  isSetlistPublic: boolean; // セトリ解禁済
+}
+
+/**
  * Firestoreに保存されるクイズドキュメント
  */
 export interface QuizDocument {
@@ -116,7 +146,10 @@ export interface LivePerformance {
   liveName: string;
   date: string;
   venue: string;
-  tourId?: string; // ツアーID追加
+  tourId?: string;
+  tourType?: string;
+  domestic?: string;
+  region?: string;
 }
 
 /**
