@@ -9,13 +9,13 @@ from typing import List, Dict
 import os
 
 def get_pr_data() -> List[Dict]:
-    """ghコマンドを使用してPRデータを取得するのだ"""
+    """ghコマンドを使用してPRデータを取得します"""
     cmd = "gh pr list --state all --json number,title,createdAt,updatedAt,mergedAt,closedAt,additions,deletions,comments,reviews,reviewRequests,author"
     result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
     return json.loads(result.stdout)
 
 def calculate_review_time(pr: Dict) -> float:
-    """PRのレビュー時間を計算するのだ"""
+    """PRのレビュー時間を計算します"""
     created_at = pr['createdAt']
     if pr.get('mergedAt'):
         end_time = pr['mergedAt']
@@ -27,7 +27,7 @@ def calculate_review_time(pr: Dict) -> float:
     return (end_time - created_at).total_seconds() / 3600  # 時間単位に変換
 
 def analyze_prs(prs: List[Dict]):
-    """PRデータを分析するのだ"""
+    """PRデータを分析します"""
     # DataFrameの作成と基本データの追加
     df = pd.DataFrame(prs)
     
@@ -199,13 +199,13 @@ def analyze_prs(prs: List[Dict]):
     
     plt.tight_layout()
     plt.savefig('pr_analysis.png')
-    print("\n分析結果を 'pr_analysis.png' と 'pr_analysis.md' に保存したのだ！")
+    print("\n分析結果を 'pr_analysis.png' と 'pr_analysis.md' に保存しました")
 
 def main():
-    """メイン関数なのだ"""
+    """メイン関数です"""
     print("PRデータを取得中...")
     prs = get_pr_data()
-    print(f"合計 {len(prs)} 件のPRを取得したのだ！")
+    print(f"合計 {len(prs)} 件のPRを取得しました")
     
     analyze_prs(prs)
 
