@@ -143,4 +143,4 @@ git commit -m "feat: ライブ履歴の表示フォーマットを改善"
 ## 参考資料
 
 - [Pro Git - 歴史の書き換え](https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E3%83%84%E3%83%BC%E3%83%AB-%E6%AD%B4%E5%8F%B2%E3%81%AE%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88)
-- [Gitコミットの整理（英語）](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) 
+- [Gitコミットの整理（英語）](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History)
