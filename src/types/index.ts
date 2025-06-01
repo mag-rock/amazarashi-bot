@@ -136,6 +136,8 @@ export interface LiveHistory {
   performanceCount: number;
   setlistCountOfTour?: number;
   setlistCountOfFes?: number;
+  lastPerformanceDate?: string;
+  lastPerformanceLiveName?: string;
 }
 
 /**
