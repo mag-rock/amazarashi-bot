@@ -12,7 +12,7 @@ import {
   saveLiveHistoryResult,
 } from '@/infrastructure/repository/live-history/liveHistoryRepository';
 import { loadPostTweetFunction } from '@/infrastructure/twitter/twitterApiFactory';
-import { TweetResponse } from '@/types';
+import { TweetResponse, LiveHistoryDocument } from '@/types';
 import { tryCatchRethrow } from '@/utils/errorHandler';
 import { info } from '@/utils/logger';
 
@@ -87,17 +87,20 @@ async function publishAndSaveTweets(
 ): Promise<string> {
   const postTweet = await loadPostTweetFunction();
 
-  let prevDocId: string | null = null;
-  let prevTweetId: string | null = null;
+  let prevDoc: LiveHistoryDocument | null =
+    (docData.find((d) => d.song_id === songId) as LiveHistoryDocument) || null;
+  let prevTweetId: string | null =
+    prevDoc && prevDoc.tweet_posts.length > 0
+      ? prevDoc.tweet_posts[prevDoc.tweet_posts.length - 1].post_id
+      : null;
 
   for (let i = 0; i < posts.length; i++) {
     const response: TweetResponse =
-      i === 0
+      prevTweetId === null && i === 0
         ? await postTweet(posts[i], null, credentials)
         : await postTweet(posts[i], prevTweetId, credentials);
 
-    const prevDoc = i === 0 ? null : docData.find((d) => d.id === prevDocId) || null;
-    prevDocId = await saveLiveHistoryResult(response, songId, i, prevDoc, todayStr);
+    prevDoc = await saveLiveHistoryResult(response, songId, i, prevDoc, todayStr);
     prevTweetId = response.data.data.id;
   }
 
