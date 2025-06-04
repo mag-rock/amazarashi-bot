@@ -19,7 +19,7 @@ import { info } from '@/utils/logger';
  * @param sequence ツイートの順番（0から始まる）
  * @param prevDoc 前回のドキュメント（続きのツイートの場合）
  * @param todayStr 今日の日付文字列
- * @returns 保存したドキュメントのID
+ * @returns 保存したドキュメント
  */
 export async function saveLiveHistoryResult(
   response: TweetResponse,
@@ -27,7 +27,7 @@ export async function saveLiveHistoryResult(
   sequence: number,
   prevDoc: LiveHistoryDocument | null,
   todayStr: string
-): Promise<string> {
+): Promise<LiveHistoryDocument> {
   const tweetId = response.data.data.id;
 
   if (prevDoc) {
@@ -40,7 +40,7 @@ export async function saveLiveHistoryResult(
 
     await createDocument('live_history', prevDoc.id, prevDoc);
     info('ライブ履歴ドキュメントを更新しました', { docId: prevDoc.id });
-    return prevDoc.id;
+    return prevDoc;
   } else {
     // 最初のツイートの場合は新規ドキュメントを作成
     const doc: LiveHistoryDocument = {
@@ -57,7 +57,7 @@ export async function saveLiveHistoryResult(
 
     await createDocument('live_history', doc.id, doc);
     info('ライブ履歴ドキュメントを作成しました', { docId: doc.id });
-    return doc.id;
+    return doc;
   }
 }
 
