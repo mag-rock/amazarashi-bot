@@ -30,11 +30,26 @@ function makeLiveHistory(
     region: record.region,
   }));
 
+  // 最後の演奏日と最後の演奏ライブ名を取得
+  let lastPerformanceDate: string | undefined;
+  let lastPerformanceLiveName: string | undefined;
+
+  if (livePerformances.length > 0) {
+    // 演奏履歴を日付降順でソートして最新の演奏を取得
+    const sortedPerformances = [...livePerformances].sort((a, b) => b.date.localeCompare(a.date));
+    const latestPerformance = sortedPerformances[0];
+    
+    lastPerformanceDate = latestPerformance.date;
+    lastPerformanceLiveName = latestPerformance.liveName;
+  }
+
   const liveHistory: LiveHistory = {
     songId,
     title,
     performances: livePerformances,
     performanceCount: livePerformances.length,
+    lastPerformanceDate,
+    lastPerformanceLiveName,
   };
 
   // 曲情報が提供された場合、追加情報を設定
@@ -104,6 +119,12 @@ function formatLiveHistoryPosts(liveHistory: LiveHistory): string[] {
   firstPost += `　・フェス/対バン：${liveHistory.setlistCountOfFes ?? 0}回\n\n`;
 
   firstPost += `🎤 演奏回数：${liveHistory.performanceCount}回`;
+
+  // 最後の演奏日と最後の演奏ライブ名を追加
+  if (liveHistory.lastPerformanceDate && liveHistory.lastPerformanceLiveName) {
+    firstPost += `\n\n📆 最後の演奏日：${liveHistory.lastPerformanceDate}\n`;
+    firstPost += `　${liveHistory.lastPerformanceLiveName}`;
+  }
 
   posts.push(firstPost);
 

@@ -1,5 +1,10 @@
 import twitterText from 'twitter-text';
-import { splitTourTextsIntoTweets } from '../../../../src/domain/live-history/liveHistoryLogic';
+import {
+    formatLiveHistoryPosts,
+    liveHistoryOf,
+    splitTourTextsIntoTweets
+} from '../../../../src/domain/live-history/liveHistoryLogic';
+import { LiveHistory, PerformanceRecord, SongRecord } from '../../../../src/types';
 
 describe('liveHistoryLogic', () => {
   describe('splitTourTextsIntoTweets', () => {
@@ -179,6 +184,189 @@ describe('liveHistoryLogic', () => {
       expect(result[0]).toContain('🎸');
       expect(result[0]).toContain('♪♫');
       expect(result[0]).toContain('👨‍🎤');
+    });
+  });
+
+  describe('formatLiveHistoryPosts', () => {
+    it('最後の演奏日と最後の演奏ライブ名が含まれる投稿テキストを生成する', () => {
+      const liveHistory: LiveHistory = {
+        songId: 'test-song-001',
+        title: 'テスト楽曲',
+        performances: [],
+        performanceCount: 5,
+        setlistCountOfTour: 3,
+        setlistCountOfFes: 2,
+        lastPerformanceDate: '2024-08-31',
+        lastPerformanceLiveName: 'amazarashi LIVE TOUR 2024「愛と憂鬱」'
+      };
+
+      const result = formatLiveHistoryPosts(liveHistory);
+
+      expect(result.length).toBeGreaterThan(0);
+      
+      const firstPost = result[0];
+      expect(firstPost).toContain('🎵 『テスト楽曲』のライブ演奏履歴');
+      expect(firstPost).toContain('📋 セトリ採用回数');
+      expect(firstPost).toContain('　・ツアー/単発公演：3回');
+      expect(firstPost).toContain('　・フェス/対バン：2回');
+      expect(firstPost).toContain('🎤 演奏回数：5回');
+      expect(firstPost).toContain('📆 最後の演奏日：2024-08-31');
+      expect(firstPost).toContain('　amazarashi LIVE TOUR 2024「愛と憂鬱」');
+    });
+
+    it('最後の演奏日・ライブ名がない場合は該当部分が含まれない', () => {
+      const liveHistory: LiveHistory = {
+        songId: 'test-song-002',
+        title: 'テスト楽曲2',
+        performances: [],
+        performanceCount: 3,
+        setlistCountOfTour: 2,
+        setlistCountOfFes: 1
+        // lastPerformanceDate, lastPerformanceLiveNameは未設定
+      };
+
+      const result = formatLiveHistoryPosts(liveHistory);
+
+      expect(result.length).toBeGreaterThan(0);
+      
+      const firstPost = result[0];
+      expect(firstPost).toContain('🎵 『テスト楽曲2』のライブ演奏履歴');
+      expect(firstPost).toContain('🎤 演奏回数：3回');
+      expect(firstPost).not.toContain('📆 最後の演奏日');
+      expect(firstPost).not.toContain('amazarashi LIVE TOUR');
+    });
+
+    it('最後の演奏日のみある場合は該当部分が含まれない', () => {
+      const liveHistory: LiveHistory = {
+        songId: 'test-song-003',
+        title: 'テスト楽曲3',
+        performances: [],
+        performanceCount: 1,
+        setlistCountOfTour: 1,
+        setlistCountOfFes: 0,
+        lastPerformanceDate: '2024-08-31'
+        // lastPerformanceLiveNameは未設定
+      };
+
+      const result = formatLiveHistoryPosts(liveHistory);
+
+      expect(result.length).toBeGreaterThan(0);
+      
+      const firstPost = result[0];
+      expect(firstPost).not.toContain('📆 最後の演奏日');
+    });
+  });
+
+  describe('liveHistoryOf', () => {
+    it('最後の演奏日と最後の演奏ライブ名が正しく設定される', async () => {
+      const performances: PerformanceRecord[] = [
+        {
+          tourId: 'tour-001',
+          liveId: 'live-001',
+          tourType: 'ツアー',
+          domestic: '国内',
+          date: '2023-03-15',
+          liveName: 'amazarashi LIVE TOUR 2023',
+          venue: '東京国際フォーラム',
+          region: '東京都',
+          songId: 'song-001',
+          isSetlistPublic: true
+        },
+        {
+          tourId: 'tour-002',
+          liveId: 'live-002',
+          tourType: 'ツアー',
+          domestic: '国内',
+          date: '2024-08-31',
+          liveName: 'amazarashi LIVE TOUR 2024「愛と憂鬱」',
+          venue: '横浜アリーナ',
+          region: '神奈川県',
+          songId: 'song-001',
+          isSetlistPublic: true
+        },
+        {
+          tourId: 'tour-001',
+          liveId: 'live-003',
+          tourType: 'ツアー',
+          domestic: '国内',
+          date: '2023-04-20',
+          liveName: 'amazarashi LIVE TOUR 2023',
+          venue: '大阪城ホール',
+          region: '大阪府',
+          songId: 'song-001',
+          isSetlistPublic: true
+        }
+      ];
+
+      const songRecord: SongRecord = {
+        songId: 'song-001',
+        title: 'テスト楽曲',
+        artist: 'amazarashi',
+        album: 'テストアルバム',
+        releaseDate: '2020-01-01',
+        playCount: 3,
+        setlistCountOfTour: 2,
+        setlistCountOfFes: 1
+      };
+
+      const result = await liveHistoryOf(performances, 'song-001', songRecord);
+
+      expect(result).not.toBeNull();
+      expect(result!.lastPerformanceDate).toBe('2024-08-31');
+      expect(result!.lastPerformanceLiveName).toBe('amazarashi LIVE TOUR 2024「愛と憂鬱」');
+    });
+
+    it('演奏履歴が1件のみの場合も正しく設定される', async () => {
+      const performances: PerformanceRecord[] = [
+        {
+          tourId: 'tour-001',
+          liveId: 'live-001',
+          tourType: 'ツアー',
+          domestic: '国内',
+          date: '2023-03-15',
+          liveName: 'amazarashi LIVE TOUR 2023',
+          venue: '東京国際フォーラム',
+          region: '東京都',
+          songId: 'song-001',
+          isSetlistPublic: true
+        }
+      ];
+
+      const songRecord: SongRecord = {
+        songId: 'song-001',
+        title: 'テスト楽曲',
+        artist: 'amazarashi',
+        album: 'テストアルバム',
+        releaseDate: '2020-01-01',
+        playCount: 1,
+        setlistCountOfTour: 1,
+        setlistCountOfFes: 0
+      };
+
+      const result = await liveHistoryOf(performances, 'song-001', songRecord);
+
+      expect(result).not.toBeNull();
+      expect(result!.lastPerformanceDate).toBe('2023-03-15');
+      expect(result!.lastPerformanceLiveName).toBe('amazarashi LIVE TOUR 2023');
+    });
+
+    it('演奏履歴が空の場合はエラーになる', async () => {
+      const performances: PerformanceRecord[] = [];
+
+      const songRecord: SongRecord = {
+        songId: 'song-001',
+        title: 'テスト楽曲',
+        artist: 'amazarashi',
+        album: 'テストアルバム',
+        releaseDate: '2020-01-01',
+        playCount: 0,
+        setlistCountOfTour: 0,
+        setlistCountOfFes: 0
+      };
+
+      const result = await liveHistoryOf(performances, 'song-001', songRecord);
+
+      expect(result).toBeNull();
     });
   });
 }); 
