@@ -1,0 +1,6 @@
+sources:
+  npm: true
+
+apps:
+  - name: amazarashi-bot
+    source_path: .

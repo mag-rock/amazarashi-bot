@@ -139,3 +139,4 @@ dist
 *credentials.json
 *credentials.json.backup
 token.json
+.licenses/

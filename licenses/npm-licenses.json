@@ -1,0 +1,1448 @@
+{
+  "apps": [
+    {
+      "name": "amazarashi-bot",
+      "sources": [
+        {
+          "name": "amazarashi-bot.npm",
+          "dependencies": [
+            {
+              "name": "amazarashi-bot.npm.@babel/code-frame",
+              "dependency": "@babel/code-frame",
+              "version": "7.26.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@babel/helper-validator-identifier",
+              "dependency": "@babel/helper-validator-identifier",
+              "version": "7.25.9",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@babel/runtime",
+              "dependency": "@babel/runtime",
+              "version": "7.27.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@google-cloud/firestore",
+              "dependency": "@google-cloud/firestore",
+              "version": "7.11.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.@google-cloud/functions-framework",
+              "dependency": "@google-cloud/functions-framework",
+              "version": "3.4.2",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.@google-cloud/local-auth",
+              "dependency": "@google-cloud/local-auth",
+              "version": "3.0.1",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.@grpc/grpc-js",
+              "dependency": "@grpc/grpc-js",
+              "version": "1.12.4",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.@grpc/proto-loader",
+              "dependency": "@grpc/proto-loader",
+              "version": "0.7.13",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.@js-sdsl/ordered-map",
+              "dependency": "@js-sdsl/ordered-map",
+              "version": "4.4.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@opentelemetry/api",
+              "dependency": "@opentelemetry/api",
+              "version": "1.9.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/aspromise",
+              "dependency": "@protobufjs/aspromise",
+              "version": "1.1.2",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/base64",
+              "dependency": "@protobufjs/base64",
+              "version": "1.1.2",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/codegen",
+              "dependency": "@protobufjs/codegen",
+              "version": "2.0.4",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/eventemitter",
+              "dependency": "@protobufjs/eventemitter",
+              "version": "1.1.0",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/fetch",
+              "dependency": "@protobufjs/fetch",
+              "version": "1.1.0",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/float",
+              "dependency": "@protobufjs/float",
+              "version": "1.0.2",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/inquire",
+              "dependency": "@protobufjs/inquire",
+              "version": "1.1.0",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/path",
+              "dependency": "@protobufjs/path",
+              "version": "1.1.2",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/pool",
+              "dependency": "@protobufjs/pool",
+              "version": "1.1.0",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@protobufjs/utf8",
+              "dependency": "@protobufjs/utf8",
+              "version": "1.1.0",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.@tootallnate/once",
+              "dependency": "@tootallnate/once",
+              "version": "2.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/body-parser",
+              "dependency": "@types/body-parser",
+              "version": "1.19.5",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/caseless",
+              "dependency": "@types/caseless",
+              "version": "0.12.5",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/connect",
+              "dependency": "@types/connect",
+              "version": "3.4.38",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/express",
+              "dependency": "@types/express",
+              "version": "4.17.21",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/express-serve-static-core",
+              "dependency": "@types/express-serve-static-core",
+              "version": "4.19.6",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/http-errors",
+              "dependency": "@types/http-errors",
+              "version": "2.0.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/long",
+              "dependency": "@types/long",
+              "version": "4.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/mime",
+              "dependency": "@types/mime",
+              "version": "1.3.5",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/node",
+              "dependency": "@types/node",
+              "version": "20.17.24",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/normalize-package-data",
+              "dependency": "@types/normalize-package-data",
+              "version": "2.4.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/qs",
+              "dependency": "@types/qs",
+              "version": "6.9.17",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/range-parser",
+              "dependency": "@types/range-parser",
+              "version": "1.2.7",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/request",
+              "dependency": "@types/request",
+              "version": "2.48.12",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/send",
+              "dependency": "@types/send",
+              "version": "0.17.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/serve-static",
+              "dependency": "@types/serve-static",
+              "version": "1.15.7",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.@types/tough-cookie",
+              "dependency": "@types/tough-cookie",
+              "version": "4.0.5",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.abort-controller",
+              "dependency": "abort-controller",
+              "version": "3.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.accepts",
+              "dependency": "accepts",
+              "version": "1.3.8",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.agent-base-6.0.2",
+              "dependency": "agent-base-6.0.2",
+              "version": "6.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.agent-base-7.1.1",
+              "dependency": "agent-base-7.1.1",
+              "version": "7.1.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.ajv",
+              "dependency": "ajv",
+              "version": "8.17.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.ajv-formats",
+              "dependency": "ajv-formats",
+              "version": "2.1.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.ansi-regex",
+              "dependency": "ansi-regex",
+              "version": "5.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.ansi-styles",
+              "dependency": "ansi-styles",
+              "version": "4.3.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.array-flatten",
+              "dependency": "array-flatten",
+              "version": "1.1.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.arrify",
+              "dependency": "arrify",
+              "version": "2.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.asynckit",
+              "dependency": "asynckit",
+              "version": "0.4.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.available-typed-arrays",
+              "dependency": "available-typed-arrays",
+              "version": "1.0.7",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.axios",
+              "dependency": "axios",
+              "version": "1.8.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.axios-oauth-1.0a",
+              "dependency": "axios-oauth-1.0a",
+              "version": "0.3.6",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.base64-js",
+              "dependency": "base64-js",
+              "version": "1.5.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.bignumber.js",
+              "dependency": "bignumber.js",
+              "version": "9.1.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.body-parser",
+              "dependency": "body-parser",
+              "version": "1.20.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.buffer-equal-constant-time",
+              "dependency": "buffer-equal-constant-time",
+              "version": "1.0.1",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.bytes",
+              "dependency": "bytes",
+              "version": "3.1.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.call-bind",
+              "dependency": "call-bind",
+              "version": "1.0.7",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.cliui",
+              "dependency": "cliui",
+              "version": "8.0.1",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.cloudevents",
+              "dependency": "cloudevents",
+              "version": "8.0.2",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.color-convert",
+              "dependency": "color-convert",
+              "version": "2.0.1",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.color-name",
+              "dependency": "color-name",
+              "version": "1.1.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.combined-stream",
+              "dependency": "combined-stream",
+              "version": "1.0.8",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.content-disposition",
+              "dependency": "content-disposition",
+              "version": "0.5.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.content-type",
+              "dependency": "content-type",
+              "version": "1.0.5",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.cookie",
+              "dependency": "cookie",
+              "version": "0.7.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.cookie-signature",
+              "dependency": "cookie-signature",
+              "version": "1.0.6",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.core-js",
+              "dependency": "core-js",
+              "version": "2.6.12",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.dayjs",
+              "dependency": "dayjs",
+              "version": "1.11.13",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.debug-2.6.9",
+              "dependency": "debug-2.6.9",
+              "version": "2.6.9",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.debug-4.4.0",
+              "dependency": "debug-4.4.0",
+              "version": "4.4.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.define-data-property",
+              "dependency": "define-data-property",
+              "version": "1.1.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.delayed-stream",
+              "dependency": "delayed-stream",
+              "version": "1.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.depd",
+              "dependency": "depd",
+              "version": "2.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.destroy",
+              "dependency": "destroy",
+              "version": "1.2.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.duplexify",
+              "dependency": "duplexify",
+              "version": "4.1.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.ecdsa-sig-formatter",
+              "dependency": "ecdsa-sig-formatter",
+              "version": "1.0.11",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.ee-first",
+              "dependency": "ee-first",
+              "version": "1.1.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.emoji-regex",
+              "dependency": "emoji-regex",
+              "version": "8.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.encodeurl-1.0.2",
+              "dependency": "encodeurl-1.0.2",
+              "version": "1.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.encodeurl-2.0.0",
+              "dependency": "encodeurl-2.0.0",
+              "version": "2.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.end-of-stream",
+              "dependency": "end-of-stream",
+              "version": "1.4.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.error-ex",
+              "dependency": "error-ex",
+              "version": "1.3.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.es-define-property",
+              "dependency": "es-define-property",
+              "version": "1.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.es-errors",
+              "dependency": "es-errors",
+              "version": "1.3.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.escalade",
+              "dependency": "escalade",
+              "version": "3.2.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.escape-html",
+              "dependency": "escape-html",
+              "version": "1.0.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.etag",
+              "dependency": "etag",
+              "version": "1.8.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.event-target-shim",
+              "dependency": "event-target-shim",
+              "version": "5.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.express",
+              "dependency": "express",
+              "version": "4.21.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.extend",
+              "dependency": "extend",
+              "version": "3.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.fast-deep-equal",
+              "dependency": "fast-deep-equal",
+              "version": "3.1.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.fast-uri",
+              "dependency": "fast-uri",
+              "version": "3.0.3",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.finalhandler",
+              "dependency": "finalhandler",
+              "version": "1.3.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.find-up",
+              "dependency": "find-up",
+              "version": "4.1.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.follow-redirects",
+              "dependency": "follow-redirects",
+              "version": "1.15.9",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.for-each",
+              "dependency": "for-each",
+              "version": "0.3.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.form-data-2.5.2",
+              "dependency": "form-data-2.5.2",
+              "version": "2.5.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.form-data-4.0.1",
+              "dependency": "form-data-4.0.1",
+              "version": "4.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.forwarded",
+              "dependency": "forwarded",
+              "version": "0.2.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.fresh",
+              "dependency": "fresh",
+              "version": "0.5.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.function-bind",
+              "dependency": "function-bind",
+              "version": "1.1.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.functional-red-black-tree",
+              "dependency": "functional-red-black-tree",
+              "version": "1.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.gaxios",
+              "dependency": "gaxios",
+              "version": "6.7.1",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.gcp-metadata",
+              "dependency": "gcp-metadata",
+              "version": "6.1.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.get-caller-file",
+              "dependency": "get-caller-file",
+              "version": "2.0.5",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.get-intrinsic",
+              "dependency": "get-intrinsic",
+              "version": "1.2.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.google-auth-library",
+              "dependency": "google-auth-library",
+              "version": "9.15.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.google-gax",
+              "dependency": "google-gax",
+              "version": "4.4.1",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.googleapis",
+              "dependency": "googleapis",
+              "version": "144.0.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.googleapis-common",
+              "dependency": "googleapis-common",
+              "version": "7.2.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.gopd",
+              "dependency": "gopd",
+              "version": "1.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.gtoken",
+              "dependency": "gtoken",
+              "version": "7.1.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.has-property-descriptors",
+              "dependency": "has-property-descriptors",
+              "version": "1.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.has-proto",
+              "dependency": "has-proto",
+              "version": "1.0.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.has-symbols",
+              "dependency": "has-symbols",
+              "version": "1.0.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.has-tostringtag",
+              "dependency": "has-tostringtag",
+              "version": "1.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.hasown",
+              "dependency": "hasown",
+              "version": "2.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.hosted-git-info",
+              "dependency": "hosted-git-info",
+              "version": "2.8.9",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.http-errors",
+              "dependency": "http-errors",
+              "version": "2.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.http-proxy-agent",
+              "dependency": "http-proxy-agent",
+              "version": "5.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.https-proxy-agent-5.0.1",
+              "dependency": "https-proxy-agent-5.0.1",
+              "version": "5.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.https-proxy-agent-7.0.5",
+              "dependency": "https-proxy-agent-7.0.5",
+              "version": "7.0.5",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.iconv-lite",
+              "dependency": "iconv-lite",
+              "version": "0.4.24",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.inherits",
+              "dependency": "inherits",
+              "version": "2.0.4",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.ipaddr.js",
+              "dependency": "ipaddr.js",
+              "version": "1.9.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-arguments",
+              "dependency": "is-arguments",
+              "version": "1.1.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-arrayish",
+              "dependency": "is-arrayish",
+              "version": "0.2.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-callable",
+              "dependency": "is-callable",
+              "version": "1.2.7",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-core-module",
+              "dependency": "is-core-module",
+              "version": "2.15.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-docker",
+              "dependency": "is-docker",
+              "version": "2.2.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-fullwidth-code-point",
+              "dependency": "is-fullwidth-code-point",
+              "version": "3.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-generator-function",
+              "dependency": "is-generator-function",
+              "version": "1.0.10",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-stream",
+              "dependency": "is-stream",
+              "version": "2.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-typed-array",
+              "dependency": "is-typed-array",
+              "version": "1.1.13",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.is-wsl",
+              "dependency": "is-wsl",
+              "version": "2.2.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.js-tokens",
+              "dependency": "js-tokens",
+              "version": "4.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.json-bigint",
+              "dependency": "json-bigint",
+              "version": "1.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.json-parse-even-better-errors",
+              "dependency": "json-parse-even-better-errors",
+              "version": "2.3.1",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.json-schema-traverse",
+              "dependency": "json-schema-traverse",
+              "version": "1.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.jwa",
+              "dependency": "jwa",
+              "version": "2.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.jws",
+              "dependency": "jws",
+              "version": "4.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.lines-and-columns",
+              "dependency": "lines-and-columns",
+              "version": "1.2.4",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.locate-path",
+              "dependency": "locate-path",
+              "version": "5.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.lodash.camelcase",
+              "dependency": "lodash.camelcase",
+              "version": "4.3.0",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.long",
+              "dependency": "long",
+              "version": "5.2.3",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.media-typer",
+              "dependency": "media-typer",
+              "version": "0.3.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.merge-descriptors",
+              "dependency": "merge-descriptors",
+              "version": "1.0.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.methods",
+              "dependency": "methods",
+              "version": "1.1.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.mime",
+              "dependency": "mime",
+              "version": "1.6.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.mime-db",
+              "dependency": "mime-db",
+              "version": "1.52.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.mime-types",
+              "dependency": "mime-types",
+              "version": "2.1.35",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.minimist",
+              "dependency": "minimist",
+              "version": "1.2.8",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.module-alias",
+              "dependency": "module-alias",
+              "version": "2.2.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.ms-2.0.0",
+              "dependency": "ms-2.0.0",
+              "version": "2.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.ms-2.1.3",
+              "dependency": "ms-2.1.3",
+              "version": "2.1.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.negotiator",
+              "dependency": "negotiator",
+              "version": "0.6.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.node-fetch",
+              "dependency": "node-fetch",
+              "version": "2.7.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.normalize-package-data",
+              "dependency": "normalize-package-data",
+              "version": "2.5.0",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.oauth-sign",
+              "dependency": "oauth-sign",
+              "version": "0.9.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.object-hash",
+              "dependency": "object-hash",
+              "version": "3.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.object-inspect",
+              "dependency": "object-inspect",
+              "version": "1.13.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.on-finished",
+              "dependency": "on-finished",
+              "version": "2.4.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.once",
+              "dependency": "once",
+              "version": "1.4.0",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.open",
+              "dependency": "open",
+              "version": "7.4.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.p-limit",
+              "dependency": "p-limit",
+              "version": "2.3.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.p-locate",
+              "dependency": "p-locate",
+              "version": "4.1.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.p-try",
+              "dependency": "p-try",
+              "version": "2.2.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.parse-json",
+              "dependency": "parse-json",
+              "version": "5.2.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.parseurl",
+              "dependency": "parseurl",
+              "version": "1.3.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.path-exists",
+              "dependency": "path-exists",
+              "version": "4.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.path-parse",
+              "dependency": "path-parse",
+              "version": "1.0.7",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.path-to-regexp",
+              "dependency": "path-to-regexp",
+              "version": "0.1.12",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.picocolors",
+              "dependency": "picocolors",
+              "version": "1.1.1",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.possible-typed-array-names",
+              "dependency": "possible-typed-array-names",
+              "version": "1.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.process",
+              "dependency": "process",
+              "version": "0.11.10",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.proto3-json-serializer",
+              "dependency": "proto3-json-serializer",
+              "version": "2.0.2",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.protobufjs",
+              "dependency": "protobufjs",
+              "version": "7.4.0",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.proxy-addr",
+              "dependency": "proxy-addr",
+              "version": "2.0.7",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.proxy-from-env",
+              "dependency": "proxy-from-env",
+              "version": "1.1.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.punycode",
+              "dependency": "punycode",
+              "version": "1.4.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.qs",
+              "dependency": "qs",
+              "version": "6.13.0",
+              "license": "bsd-3-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.range-parser",
+              "dependency": "range-parser",
+              "version": "1.2.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.raw-body",
+              "dependency": "raw-body",
+              "version": "2.5.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.read-pkg",
+              "dependency": "read-pkg",
+              "version": "5.2.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.read-pkg-up",
+              "dependency": "read-pkg-up",
+              "version": "7.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.readable-stream",
+              "dependency": "readable-stream",
+              "version": "3.6.2",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.regenerator-runtime",
+              "dependency": "regenerator-runtime",
+              "version": "0.14.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.require-directory",
+              "dependency": "require-directory",
+              "version": "2.1.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.require-from-string",
+              "dependency": "require-from-string",
+              "version": "2.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.resolve",
+              "dependency": "resolve",
+              "version": "1.22.8",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.retry-request",
+              "dependency": "retry-request",
+              "version": "7.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.safe-buffer",
+              "dependency": "safe-buffer",
+              "version": "5.2.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.safer-buffer",
+              "dependency": "safer-buffer",
+              "version": "2.1.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.semver-5.7.2",
+              "dependency": "semver-5.7.2",
+              "version": "5.7.2",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.semver-7.7.1",
+              "dependency": "semver-7.7.1",
+              "version": "7.7.1",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.send",
+              "dependency": "send",
+              "version": "0.19.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.serve-static",
+              "dependency": "serve-static",
+              "version": "1.16.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.server-destroy",
+              "dependency": "server-destroy",
+              "version": "1.0.1",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.set-function-length",
+              "dependency": "set-function-length",
+              "version": "1.2.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.setprototypeof",
+              "dependency": "setprototypeof",
+              "version": "1.2.0",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.side-channel",
+              "dependency": "side-channel",
+              "version": "1.0.6",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.spdx-correct",
+              "dependency": "spdx-correct",
+              "version": "3.2.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.spdx-exceptions",
+              "dependency": "spdx-exceptions",
+              "version": "2.5.0",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.spdx-expression-parse",
+              "dependency": "spdx-expression-parse",
+              "version": "3.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.spdx-license-ids",
+              "dependency": "spdx-license-ids",
+              "version": "3.0.20",
+              "license": "cc0-1.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.statuses",
+              "dependency": "statuses",
+              "version": "2.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.stream-events",
+              "dependency": "stream-events",
+              "version": "1.0.5",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.stream-shift",
+              "dependency": "stream-shift",
+              "version": "1.0.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.string-width",
+              "dependency": "string-width",
+              "version": "4.2.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.string_decoder",
+              "dependency": "string_decoder",
+              "version": "1.3.0",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.strip-ansi",
+              "dependency": "strip-ansi",
+              "version": "6.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.stubs",
+              "dependency": "stubs",
+              "version": "3.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.supports-preserve-symlinks-flag",
+              "dependency": "supports-preserve-symlinks-flag",
+              "version": "1.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.teeny-request",
+              "dependency": "teeny-request",
+              "version": "9.0.0",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.toidentifier",
+              "dependency": "toidentifier",
+              "version": "1.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.tr46",
+              "dependency": "tr46",
+              "version": "0.0.3",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.twemoji-parser",
+              "dependency": "twemoji-parser",
+              "version": "11.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.twitter-text",
+              "dependency": "twitter-text",
+              "version": "3.1.0",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.type-fest-0.6.0",
+              "dependency": "type-fest-0.6.0",
+              "version": "0.6.0",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.type-fest-0.8.1",
+              "dependency": "type-fest-0.8.1",
+              "version": "0.8.1",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.type-is",
+              "dependency": "type-is",
+              "version": "1.6.18",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.undici-types",
+              "dependency": "undici-types",
+              "version": "6.19.8",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.unpipe",
+              "dependency": "unpipe",
+              "version": "1.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.url-template",
+              "dependency": "url-template",
+              "version": "2.0.8",
+              "license": "other"
+            },
+            {
+              "name": "amazarashi-bot.npm.util",
+              "dependency": "util",
+              "version": "0.12.5",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.util-deprecate",
+              "dependency": "util-deprecate",
+              "version": "1.0.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.utils-merge",
+              "dependency": "utils-merge",
+              "version": "1.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.uuid-8.3.2",
+              "dependency": "uuid-8.3.2",
+              "version": "8.3.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.uuid-9.0.1",
+              "dependency": "uuid-9.0.1",
+              "version": "9.0.1",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.validate-npm-package-license",
+              "dependency": "validate-npm-package-license",
+              "version": "3.0.4",
+              "license": "apache-2.0"
+            },
+            {
+              "name": "amazarashi-bot.npm.vary",
+              "dependency": "vary",
+              "version": "1.1.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.webidl-conversions",
+              "dependency": "webidl-conversions",
+              "version": "3.0.1",
+              "license": "bsd-2-clause"
+            },
+            {
+              "name": "amazarashi-bot.npm.whatwg-url",
+              "dependency": "whatwg-url",
+              "version": "5.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.which-typed-array",
+              "dependency": "which-typed-array",
+              "version": "1.1.15",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.wrap-ansi",
+              "dependency": "wrap-ansi",
+              "version": "7.0.0",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.wrappy",
+              "dependency": "wrappy",
+              "version": "1.0.2",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.y18n",
+              "dependency": "y18n",
+              "version": "5.0.8",
+              "license": "isc"
+            },
+            {
+              "name": "amazarashi-bot.npm.yargs",
+              "dependency": "yargs",
+              "version": "17.7.2",
+              "license": "mit"
+            },
+            {
+              "name": "amazarashi-bot.npm.yargs-parser",
+              "dependency": "yargs-parser",
+              "version": "21.1.1",
+              "license": "isc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
